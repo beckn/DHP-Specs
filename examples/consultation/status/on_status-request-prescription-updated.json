@@ -1,0 +1,147 @@
+{
+  "context": {
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_status",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
+  },
+  "message": {
+    "order": {
+      "id": "759b905c-5a30-4d18-a6af-0decbac9282f",
+      "provider": {
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
+        "descriptor": {
+          "name": "Example Hospitals",
+          "short_desc": "Example Hospitals Pvt Ltd",
+          "images": [
+            {
+              "url": "https://ExampleHospitals.in/images/logo.png"
+            }
+          ]
+        }
+      },
+      "items": [
+        {
+          "id": "cons-01",
+          "descriptor": {
+            "code": "consultation",
+            "name": "Dr Asthana",
+            "short_desc": "Orthopaedic Surgeon",
+            "long_desc": "About the Doctor: With over 20 years of experience in Orthopaedics"
+          },
+          "price": {
+            "value": "300",
+            "currency": "INR"
+          },
+          "fulfillment_ids": [
+            "ful-01"
+          ]
+        }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-01",
+          "type": "OPD",
+          "customer": {
+            "person": {
+              "name": "Rajesh Kumar",
+              "age": "26",
+              "gender": "M",
+              "dob": "1995-09-11"
+            }
+          },
+          "state": {
+            "descriptor": {
+              "code": "prescription-updated",
+              "name": "Prescription Updated"
+            }
+          },
+          "agent": {
+            "person": {
+              "id": "237402938409485039850935",
+              "name": "Dr Asthana",
+              "gender": "male",
+              "creds": [
+                {
+                  "id": "237402938409485039850935",
+                  "type": "VerifiableCredential",
+                  "url": "https://www.aiims.com/honours/237402938409485039850935"
+                }
+              ]
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-08-10T11:00:00Z"
+              },
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-08-10T11:59:00Z"
+              },
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            }
+          ]
+        }
+      ],
+      "billing": {
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
+      },
+      "quote": {
+        "price": {
+          "value": "350",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "General Physician Consultation",
+            "price": {
+              "currency": "INR",
+              "value": "300"
+            }
+          },
+          {
+            "title": "Slot surcharge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
+            }
+          }
+        ]
+      },
+      "payments": [
+        {
+          "type": "ON-FULFILLMENT",
+          "status": "NOT-PAID",
+          "params": {
+            "amount": "350",
+            "currency": "INR"
+          }
+        }
+      ]
+    }
+  }
+}
