@@ -36,8 +36,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -54,7 +52,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -70,7 +67,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -87,8 +83,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -104,7 +98,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -125,8 +118,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -142,8 +133,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -161,8 +150,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -179,8 +166,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -201,8 +186,6 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    bap_uri: https://bap.example.com/api/v0/0.9.3-draft/
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -219,11 +202,10 @@ paths:
                   context:
                     domain: nic2004:85110
                     country: IND
-                    city: '*'
+                    city: std:080
                     action: search
                     core_version: 0.7.1
-                    transaction_id: '1239890342'
-                    message_id: '123793824'
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     intent:
@@ -244,16 +226,15 @@ paths:
                     city: std:080
                     action: search
                     core_version: 0.7.1
-                    transaction_id: '1239890342'
-                    message_id: '123793824'
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     intent:
                       fulfillment:
                         person:
                           tags:
-                            ./uhi-0_9_1-draft.gender: female
-                            ./uhi-0_9_1-draft.lang: hin
+                            ./dhp-0_7_1.gender: female
+                            ./dhp-0_7_1.lang: hin
                       category:
                         descriptor:
                           code: INTERNAL_MEDICINE
@@ -328,13 +309,8 @@ paths:
                     country: IND
                     city: std:080
                     action: select
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
-                    bap_uri: https://bpp.example-hsp.com/api/v0/0.9.3-draft/
-                    transaction_id: '1239890342'
-                    message_id: '123793824'
+                    core_version: 0.7.1
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     order:
@@ -420,11 +396,7 @@ paths:
                     country: IND
                     city: std:080
                     action: init
-                    core_version: 0.9.3
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
+                    core_version: 0.7.1
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -613,12 +585,8 @@ paths:
                     country: IND
                     city: std:080
                     action: on_search
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
-                    transaction_id: '1239890342'
-                    message_id: '123793824'
+                    core_version: 0.7.1
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     catalog:
@@ -787,12 +755,8 @@ paths:
                     country: IND
                     city: std:080
                     action: select
-                    core_version: 0.9.3
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
-                    transaction_id: '1239890342'
-                    message_id: '123793824'
+                    core_version: 0.7.1
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     order:
@@ -824,9 +788,9 @@ paths:
                           currency: INR
                           value: '110'
                           breakup:
-                            - ./uhi-draft01.consultation: '100'
-                            - ./uhi-draft01.cgst: '5'
-                            - ./uhi-draft01.sgst: '5'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.cgst: '5'
+                            - ./dhp-0_7_1.sgst: '5'
                     
       responses:
         '200':
@@ -908,7 +872,6 @@ paths:
                     city: std:080
                     action: on_init
                     core_version: 0.7.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
@@ -1157,10 +1120,7 @@ paths:
                     country: IND
                     city: std:080
                     action: on_status
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
+                    core_version: 0.7.1
                     transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
@@ -1229,10 +1189,7 @@ paths:
                     country: IND
                     city: std:080
                     action: on_status
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
+                    core_version: 0.7.1
                     transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
@@ -1301,10 +1258,7 @@ paths:
                     country: IND
                     city: std:080
                     action: on_status
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
+                    core_version: 0.7.1
                     transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
@@ -1373,10 +1327,7 @@ paths:
                     country: IND
                     city: std:080
                     action: on_status
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
+                    core_version: 0.7.1
                     transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
@@ -1445,10 +1396,7 @@ paths:
                     country: IND
                     city: std:080
                     action: on_status
-                    core_version: 0.9.3-draft
-                    ./dhp-0_7_1.supported_dhp_versions:
-                      - 0.7.1
-                      - 0.7.2
+                    core_version: 0.7.1
                     transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: '2021-03-23T10:00:40.065Z'
@@ -1796,12 +1744,6 @@ components:
       properties:
         type:
           type: string
-          enum:
-            - CONTEXT-ERROR
-            - CORE-ERROR
-            - DOMAIN-ERROR
-            - POLICY-ERROR
-            - JSON-SCHEMA-ERROR
         code:
           type: string
           description: 'DHP specific error code. For full list of error codes, refer to error_codes.md in the root folder of this repo'
@@ -1870,7 +1812,7 @@ components:
           $ref: '#/components/schemas/Tags'
     
     Image:
-      description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/> An image can also be sent as a data string. For example : <br/><br/> ```data:js87y34ilhriuho84r3i4```'
+      description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/>'
       type: string
     
     Intent:
@@ -2040,13 +1982,13 @@ components:
       properties:
         uri:
           type: string
-          description: 'A payment uri to be called by the DHP-Consumer. If empty, then the payment is to be done offline. The details of payment should be present in the params object. If ```tl_method``` = http/get, then the payment details will be sent as url params. Two url param values, ```$transaction_id``` and ```$amount``` are mandatory. And example url would be : https://www.example.com/pay?txid=$transaction_id&amount=$amount&vpa=upiid&payee=shopez&billno=1234'
+          description: 'A payment target uri to be called by the DHP-Consumer. Supported formats are <br></br>a) https and, <br></br>b) payto - Refer to RFC8905'
           format: uri
         tl_method:
           type: string
           enum:
-            - http/get
-            - http/post
+            - https
+            - payto
         params:
           type: object
           properties:
@@ -2065,6 +2007,7 @@ components:
             - currency
         type:
           type: string
+          descriptor: Stage at which the payment is expected
           enum:
             - ON-ORDER
             - PRE-FULFILLMENT
@@ -2082,6 +2025,8 @@ components:
       description: Describes a person.
       type: object
       properties:
+        id:
+          type: string
         name:
           $ref: '#/components/schemas/Name'
         image:
@@ -2096,6 +2041,8 @@ components:
           type: string
         tags:
           $ref: '#/components/schemas/Tags'
+      required:
+        - name
 
     Policy:
       description: Describes a policy. Allows for domain extension.
@@ -2254,9 +2201,9 @@ components:
         type:
           type: string
           enum:
-            - dhp_consumer
-            - dhp_provider
-            - dg
+            - consumer
+            - provider
+            - gateway
         cb_url:
           type: string
           description: Callback URL of the subscriber. The Registry will call this URL's on_subscribe API to validate the subscriber\'s credentials
@@ -2293,7 +2240,7 @@ components:
           format: date-time
 
     Tags:
-      description: Describes a tag. This is a simple key-value store which is used to contain extended metadata
+      description: Describes a tag. This is a simple key-value store which is used to contain read-only metadata
       additionalProperties:
         type: string
 
