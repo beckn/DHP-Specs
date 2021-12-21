@@ -1779,8 +1779,10 @@ components:
               $ref: '#/components/schemas/Person'
             contact:
               $ref: '#/components/schemas/Contact'
-        person:
+        agent:
           $ref: '#/components/schemas/Agent'
+        person:
+          $ref: '#/components/schemas/Person'
         contact:
           $ref: '#/components/schemas/Contcat'
         start:
