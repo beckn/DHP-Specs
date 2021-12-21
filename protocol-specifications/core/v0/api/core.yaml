@@ -919,8 +919,8 @@ paths:
                           currency: INR
                           value: '120'
                           breakup:
-                            - ./uhi-draft-0_9_3.consultation: '100'
-                            - ./uhi-draft-0_9_3.phr_handling_fees: '10'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.phr_handling_fees: '10'
                             - ./ind-gstin.cgst: '5'
                             - ./ind-gstin.sgst: '5'
                       payment:
@@ -1060,8 +1060,8 @@ paths:
                           currency: INR
                           value: '120'
                           breakup:
-                            - ./uhi-draft-0_9_3.consultation: '100'
-                            - ./uhi-draft-0_9_3.phr_handling_fees: '10'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.phr_handling_fees: '10'
                             - ./ind-gstin.cgst: '5'
                             - ./ind-gstin.sgst: '5'
                       payment:
@@ -1312,8 +1312,8 @@ paths:
                           currency: INR
                           value: '120'
                           breakup:
-                            - ./uhi-draft-0_9_3.consultation: '100'
-                            - ./uhi-draft-0_9_3.phr_handling_fees: '10'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.phr_handling_fees: '10'
                             - ./ind-gstin.cgst: '5'
                             - ./ind-gstin.sgst: '5'
                       payment:
@@ -1381,8 +1381,8 @@ paths:
                           currency: INR
                           value: '120'
                           breakup:
-                            - ./uhi-draft-0_9_3.consultation: '100'
-                            - ./uhi-draft-0_9_3.phr_handling_fees: '10'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.phr_handling_fees: '10'
                             - ./ind-gstin.cgst: '5'
                             - ./ind-gstin.sgst: '5'
                       payment:
@@ -1450,8 +1450,8 @@ paths:
                           currency: INR
                           value: '120'
                           breakup:
-                            - ./uhi-draft-0_9_3.consultation: '100'
-                            - ./uhi-draft-0_9_3.phr_handling_fees: '10'
+                            - ./dhp-0_7_1.consultation: '100'
+                            - ./dhp-0_7_1.phr_handling_fees: '10'
                             - ./ind-gstin.cgst: '5'
                             - ./ind-gstin.sgst: '5'
                       payment:
