@@ -1784,6 +1784,10 @@ components:
               $ref: '#/components/schemas/Contact'
         person:
           $ref: '#/components/schemas/Agent'
+        person:
+          $ref: '#/components/schemas/Person'
+        contact:
+          $ref: '#/components/schemas/Contcat'
         start:
           description: Details on the start of fulfillment
           type: object
