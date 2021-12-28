@@ -24,4 +24,4 @@ December 20, 2022 or Date of publication of next draft which ever is earlier
 ## Architecture
 This section provides a high level architecture of the decentralized network that is created by implementing DHP specifications.
 
-![Architecture](https://github.com/iSPIRT/DHP-Specs/blob/docs/protocol-specifications/docs/images/DHP-Network-Architecture-Reference.png)
+![Architecture](https://github.com/iSPIRT/DHP-Specs/blob/main/protocol-specifications/docs/images/DHP-Network-Architecture-Reference.png)

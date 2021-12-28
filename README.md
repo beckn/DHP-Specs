@@ -1,5 +1,21 @@
 # Decentralized Health Protocol (DHP) Open API Specifications
 
+## Latest Release
+0.7.1 | December 28th 2021
+
+## Current Working Draft Version: 
+0.7.2-draft
+
+## Versioning Scheme
+[Semantic Version Scheme 2.0.0](https://semver.org/)
+
+## Releases
+
+| DHP Specification Version        | Beckn Protocol Core Specification Version         |
+|----------------------------------|---------------------------------------------------|
+| 0.7.1                            | 0.9.3                                             |
+| 0.7.0 (Baseline Version)         | 0.9.3-draft                                       |
+
 Decentralized Health Protocol (DHP) is an ambitions open source  project that aims to define interoperable protocol specifications for creating decentralized network of health and wellness services including tele consultation and various other services. 
 
 DHP architecture allows someone to setup an open network of consumer side applications and provide side platforms using common protocol specifications. DHP is maintained by the open source community and is getting adopted for India's [Universal Health Interface (UHI)](https://abdm.gov.in/assets/uploads/consultation_papersDocs/UHI_Consultation_Paper.pdf) network under the [Ayushman Bharat Digital Mission](https://abdm.gov.in/). DHP protocol extends the generic [beckn protocol](https://becknprotocol.io/) to create API specifications, schemas and taxonomy for health and wellness domain. 
