@@ -239,7 +239,46 @@ paths:
                       category:
                         descriptor:
                           code: INTERNAL_MEDICINE
-                  
+              Search for Ambulance Provider:
+                value:
+                  context:
+                    domain: nic2008:86909
+                    country: IND
+                    city: std:080
+                    action: search
+                    core_version: 0.9.3
+                    "./dhp.dhp_version": 0.7.1
+                    message_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
+                    timestamp: '2021-11-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                        end:
+                          location:
+                            gps: 12.4535445,77.9283792
+              
+              Search for Ambulance Provider during emergency:
+                value:
+                  context:
+                    domain: nic2008:86909
+                    country: IND
+                    city: std:080
+                    action: search
+                    core_version: 0.9.3
+                    "./dhp.dhp_version": 0.7.1
+                    message_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
+                    timestamp: '2021-11-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      fulfillment:
+                        type: EMERGENCY-PICKUP
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                                    
       responses:
         '200':
           description: Acknowledgement of message received
@@ -420,6 +459,50 @@ paths:
                         customer:
                           id: 61-8787-9274-4422
                           cred: example@ndhm
+              In ambulance the patient provides any additional billing and fulfillment details and finalizes booking:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: init
+                    core_version: 0.9.3
+                    bap_id: https://mock_bap.com/
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://mock_bpp.com/
+                    bpp_uri: https://mock_bpp.com/beckn/
+                    transaction_id: '1239890342'
+                    message_id: '123793824'
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      provider:
+                        id: abc_hospital_koramangala
+                      items:
+                      - id: amb_1
+                        quantity:
+                          count: 1
+                      billing:
+                        name: John Doe
+                        address:
+                          door: 21A
+                          name: ABC Apartments
+                          locality: HSR Layout
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560102'
+                        email: user@example.com
+                        phone: "+919876543210"
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                        end:
+                          location:
+                            gps: 12.1512245,77.8383928
+                      created_at: '2021-06-23T07:33:02.655Z'
+                      updated_at: '2021-06-23T07:33:02.655Z'
 
       responses:
         '200':
@@ -489,6 +572,50 @@ paths:
               required:
                 - context
                 - message
+            examples:
+              Patient confirms ambulance booking:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: confirm
+                    core_version: 0.9.3
+                    bap_id: https://mock_bap.com/
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://mock_bpp.com/
+                    bpp_uri: https://mock_bpp.com/beckn/
+                    transaction_id: '1239890342'
+                    message_id: '123793824'
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      provider:
+                        id: abc_hospital_koramangala
+                      items:
+                      - id: amb_1
+                        quantity:
+                          count: 1
+                      billing:
+                        name: John Doe
+                        address:
+                          door: 21A
+                          name: ABC Apartments
+                          locality: HSR Layout
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560102'
+                        email: user@example.com
+                        phone: "+919876543210"
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                        end:
+                          location:
+                            gps: 12.1512245,77.8383928
+                
       responses:
         '200':
           description: Acknowledgement of message received
@@ -559,7 +686,7 @@ paths:
         - DHP Gateway (DG)
       description: Send catalog
       requestBody:
-        description: Sends catalog of healtchare services & products as a response to /search
+        description: Sends catalog of healthcare services & products as a response to /search
         content:
           application/json:
             schema:
@@ -685,7 +812,263 @@ paths:
                                 name: Consultation
                               category_id: '1'
                               fulfillment_id: '4'
-                  
+              Catalog of Doctors with their availability schedule for IN PERSON CONSULTATION Fulfillment:
+                value:
+                  context:
+                    domain: nic2004:85110
+                    country: IND
+                    city: std:080
+                    action: on_search
+                    core_version: 0.7.1
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    catalog:
+                      descriptor:
+                        name: Practo
+                      providers:
+                        - id: 289edce4-d002-4962-b311-4c025e22b4f6
+                          descriptor:
+                            name: Example Hospitals
+                          categories:
+                            - id: '1'
+                              descriptor:
+                                name: OPD
+                            - id: '2'
+                              descriptor:
+                                name: Diagnostics
+                            - id: '3'
+                              descriptor:
+                                name: Emergency
+                          fulfillments:
+                            - id: '1'
+                              type: IN_PERSON_CONSULT
+                              person:
+                                id: '1'
+                                name: Dr Asthana
+                                gender: male
+                                image: https://image/of/person.png
+                                cred: uhiId:237402938409485039850935
+                              start:
+                                time:
+                                  timestamp: T10:00Z
+                                location:
+                                  gps: 12.4535445,77.9283792
+                                  address:
+                                    name: Example Hospitals
+                                    building: ABC Building
+                                    street: EFG Street
+                                    locality: string
+                                    ward: string
+                                    city: string
+                                    state: Karnataka
+                                    country: India
+                                    area_code: 560068
+                              end:
+                                time:
+                                  timestamp: T10:15Z
+                            - id: '2'
+                              type: IN_PERSON_CONSULT
+                              person:
+                                id: '1'
+                                name: Dr Asthana
+                                gender: male
+                                image: https://image/of/person.png
+                                cred: uhiId:237402938409485039850935
+                              start:
+                                time:
+                                  timestamp: T10:15Z
+                                location:
+                                  gps: 12.4535445,77.9283792
+                                  address:
+                                    name: Example Hospitals
+                                    building: ABC Building
+                                    street: EFG Street
+                                    locality: string
+                                    ward: string
+                                    city: string
+                                    state: Karnataka
+                                    country: India
+                                    area_code: 560068
+                              end:
+                                time:
+                                  timestamp: T10:30Z
+                            - id: '3'
+                              type: IN_PERSON_CONSULT
+                              person:
+                                id: '1'
+                                name: Dr Bhargava
+                                gender: female
+                                image: https://image/of/person.png
+                                cred: uhiId:237402938409485039850935
+                              start:
+                                time:
+                                  timestamp: T10:00Z
+                                location:
+                                  gps: 12.4535445,77.9283792
+                                  address:
+                                    name: Example Hospitals
+                                    building: ABC Building
+                                    street: EFG Street
+                                    locality: string
+                                    ward: string
+                                    city: string
+                                    state: Karnataka
+                                    country: India
+                                    area_code: 560068
+                              end:
+                                time:
+                                  timestamp: T10:15Z
+                            - id: '4'
+                              type: IN_PERSON_CONSULT
+                              person:
+                                id: '1'
+                                name: Dr Bhargava
+                                gender: female
+                                image: https://image/of/person.png
+                                cred: uhiId:237402938409485039850935
+                              start:
+                                time:
+                                  timestamp: T10:15Z
+                                location:
+                                  gps: 12.4535445,77.9283792
+                                  address:
+                                    name: Example Hospitals
+                                    building: ABC Building
+                                    street: EFG Street
+                                    locality: string
+                                    ward: string
+                                    city: string
+                                    state: Karnataka
+                                    country: India
+                                    area_code: 560068
+                              end:
+                                time:
+                                  timestamp: T10:30Z
+                          items:
+                            - id: '1'
+                              descriptor:
+                                name: Consultation
+                              category_id: '1'
+                              fulfillment_id: '1'
+                            - id: '1'
+                              descriptor:
+                                name: Consultation
+                              category_id: '1'
+                              fulfillment_id: '2'
+                            - id: '1'
+                              descriptor:
+                                name: Consultation
+                              category_id: '1'
+                              fulfillment_id: '3'
+                            - id: '1'
+                              descriptor:
+                                name: Consultation
+                              category_id: '1'
+                              fulfillment_id: '4'
+              Catalog of ambulance services nearby:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_search
+                    core_version: 0.9.1
+                    bap_id: https://mock_bap.com/
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://mock_bpp.com/
+                    bpp_uri: https://mock_bpp.com/beckn/
+                    transaction_id: '1209849124'
+                    message_id: '12341242343'
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    catalog:
+                      bpp/descriptor:
+                        name: ABC Hospitals
+                      bpp/providers:
+                      - id: abc_hospital_koramangala
+                        descriptor:
+                          name: ABC Hospitals Koramangala
+                        locations:
+                        - id: loc_1
+                          gps: 12.9349377,77.6055586
+                        - id: loc_2
+                          gps: 12.9349377,77.6055586
+                        - id: loc_3
+                          gps: 12.9349377,77.6055586
+                        categories:
+                        - id: basic
+                          descriptor:
+                            name: Basic Ambulance
+                        - id: advance
+                          descriptor:
+                            name: Advance Ambulance
+                        - id: neonatal
+                          descriptor:
+                            name: Neonatal Ambulance
+                        - id: air
+                          descriptor:
+                            name: Air Ambulance
+                        items:
+                        - id: amb_1
+                          descriptor:
+                            name: Ambulance 1 ABC
+                          category_id: basic
+                          location_id: loc_1
+                          price:
+                            currency: INR
+                            value: '170'
+                          time:
+                            label: ETA
+                            duration: P8M
+                          matched: true
+                        - id: amb_2
+                          descriptor:
+                            name: Ambulance 2 ABC
+                          category_id: basic
+                          location_id: loc_3
+                          price:
+                            currency: INR
+                            value: '290'
+                          time:
+                            label: ETA
+                            duration: P12M
+                          matched: true
+                        - id: amb_3
+                          descriptor:
+                            name: Ambulance 3 ABC
+                          category_id: advance
+                          location_id: loc_2
+                          price:
+                            currency: INR
+                            value: '570'
+                          time:
+                            label: ETA
+                            duration: P12M
+                          matched: true
+                      - id: efg_ambulances
+                        descriptor:
+                          name: Ambulance Services
+                        locations:
+                        - id: efg_loc_1
+                          gps: 12.9349377,77.6055586
+                        categories:
+                        - id: basic
+                          descriptor:
+                            name: Basic Ambulance
+                        items:
+                        - id: efg_amb_1
+                          descriptor:
+                            name: Basic ambulance
+                          category_id: basic
+                          location_id: efg-loc-1
+                          price:
+                            currency: INR
+                            value: '200'
+                          time:
+                            label: ETA
+                            duration: P12M
+                          matched: true
       responses:
         '200':
           description: Acknowledgement of message received
@@ -927,7 +1310,71 @@ paths:
                         uri: payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello
                         type: ON-ORDER
                         status: PENDING
-                  
+              Ambulance service provider returns payment terms:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_init
+                    core_version: 0.9.3
+                    bap_id: https://mock_bap.com/
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://mock_bpp.com/
+                    bpp_uri: https://mock_bpp.com/beckn/
+                    transaction_id: '1239890342'
+                    message_id: '123793824'
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      provider:
+                        id: abc_hospital_koramangala
+                      items:
+                      - id: amb_1
+                        quantity:
+                          count: 1
+                      billing:
+                        name: John Doe
+                        address:
+                          door: 21A
+                          name: ABC Apartments
+                          locality: HSR Layout
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560102'
+                        email: user@example.com
+                        phone: "+919876543210"
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                        end:
+                          location:
+                            gps: 12.1512245,77.8383928
+                        agent:
+                          contact:
+                            phone: "+919876543210"
+                      quote:
+                        price:
+                          currency: INR
+                          value: '200'
+                        breakup:
+                        - title: Ambulance Charges
+                          price:
+                            currency: INR
+                            value: '200'
+                        ttl: P1H
+                      payment:
+                        uri: https://api.bpp.com/pay?amt=$amount&txn_id=ksh87yriuro34iyr3p4&mode=upi&vpa=bpp@upi
+                        tl_method: http/get
+                        params:
+                          transaction_id: ksh87yriuro34iyr3p4
+                          amount: '180'
+                          mode: upi
+                          vpa: bpp@upi
+                        type: POST-FULFILLMENT
+                        status: NOT-PAID    
 
       responses:
         '200':
@@ -1068,7 +1515,74 @@ paths:
                         uri: payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello
                         type: ON-ORDER
                         status: PAID
-                  
+              Ambulance service confirms the order and sends the latest state of the booking:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_confirm
+                    core_version: 0.9.3
+                    bap_id: https://mock_bap.com/
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://mock_bpp.com/
+                    bpp_uri: https://mock_bpp.com/beckn/
+                    transaction_id: '1239890342'
+                    message_id: '123793824'
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: order_1
+                      state: Active
+                      provider:
+                        id: abc_hospital_koramangala
+                      items:
+                      - id: amb_1
+                        quantity:
+                          count: 1
+                      billing:
+                        name: John Doe
+                        address:
+                          door: 21A
+                          name: ABC Apartments
+                          locality: HSR Layout
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560102'
+                        email: user@example.com
+                        phone: "+919876543210"
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 12.4535445,77.9283792
+                        end:
+                          location:
+                            gps: 12.1512245,77.8383928
+                        agent:
+                          contact:
+                            phone: "+919876543210"
+                      quote:
+                        price:
+                          currency: INR
+                          value: '200'
+                        breakup:
+                        - title: Ambulance Charges
+                          price:
+                            currency: INR
+                            value: '200'
+                        ttl: P1H
+                      payment:
+                        uri: https://api.bpp.com/pay?amt=$amount&txn_id=ksh87yriuro34iyr3p4&mode=upi&vpa=bpp@upi
+                        tl_method: http/get
+                        params:
+                          transaction_id: ksh87yriuro34iyr3p4
+                          amount: '180'
+                          mode: upi
+                          vpa: bpp@upi
+                        type: POST-FULFILLMENT
+                        status: NOT-PAID
+
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1612,6 +2126,17 @@ components:
         code:
           type: string
           description: City code
+    Circle:
+      description: Describes a circular area on the map
+      type: object
+      properties:
+        gps:
+          $ref: '#/components/schemas/Gps'
+        radius:
+          $ref: '#/components/schemas/Scalar'
+      required:
+        - gps
+        - radius
     Contact:
       type: object
       properties:
@@ -1783,12 +2308,12 @@ components:
               $ref: '#/components/schemas/Person'
             contact:
               $ref: '#/components/schemas/Contact'
-        person:
+        agent:
           $ref: '#/components/schemas/Agent'
         person:
           $ref: '#/components/schemas/Person'
         contact:
-          $ref: '#/components/schemas/Contcat'
+          $ref: '#/components/schemas/Contact'
         start:
           description: Details on the start of fulfillment
           type: object
@@ -1801,6 +2326,8 @@ components:
               $ref: '#/components/schemas/Contact'
             person:
               $ref: '#/components/schemas/Person'
+            location:
+              $ref: '#/components/schemas/Location'
         end:
           description: Details on the end of fulfillment
           type: object
@@ -1813,8 +2340,14 @@ components:
               $ref: '#/components/schemas/Contact'
             person:
               $ref: '#/components/schemas/Person'
+            location:
+              $ref: '#/components/schemas/Location'
         tags:
           $ref: '#/components/schemas/Tags'
+    Gps:
+      description: Describes a gps coordinate
+      type: string
+      pattern: '^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$'
     
     Image:
       description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/>'
@@ -1917,7 +2450,32 @@ components:
       properties:
         code:
           type: string
-   
+    Location:
+      description: Describes the location of a runtime object.
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        gps:
+          $ref: '#/components/schemas/Gps'
+        address:
+          $ref: '#/components/schemas/Address'
+        station_code:
+          type: string
+        city:
+          $ref: '#/components/schemas/City'
+        country:
+          $ref: '#/components/schemas/Country'
+        circle:
+          $ref: '#/components/schemas/Circle'
+        polygon:
+          type: string
+        3dspace:
+          type: string
+        time:
+          $ref: '#/components/schemas/Time'   
     Name:
       type: string
       description: 'Describes the name of a person in format: ./{given_name}/{honorific_prefix}/{first_name}/{middle_name}/{last_name}/{honorific_suffix}'
@@ -2010,21 +2568,6 @@ components:
             type: string
           required:
             - currency
-        type:
-          type: string
-          descriptor: Stage at which the payment is expected
-          enum:
-            - ON-ORDER
-            - PRE-FULFILLMENT
-            - ON-FULFILLMENT
-            - POST-FULFILLMENT
-        status:
-          type: string
-          enum:
-            - PAID
-            - NOT-PAID
-        time:
-          $ref: '#/components/schemas/Time'
 
     Person:
       description: Describes a person.
@@ -2105,6 +2648,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
         payments:
           type: array
           items:
