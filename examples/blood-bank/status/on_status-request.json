@@ -1,0 +1,114 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_status",
+    "version": "0.7.1",
+    "message_id": "65b422c4-1867-4d72-b5f5-d31588e2f7c6",
+    "timestamp": "2023-07-16T17:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "9bd631e4-01e7-44e1-a999-db41ef0ae4f7"
+  },
+  "message": {
+    "order": {
+      "id": "26493",
+      "provider": {
+        "id": "2",
+        "descriptor": {
+          "name": "LifeLine Blood Bank"
+        }
+      },
+      "state": "CONFIRMED",
+      "items": [
+        {
+          "id": "2",
+          "descriptor": {
+            "name": "Blood Donation"
+          },
+          "fulfillment_id": "3",
+          "provider_id": "2"
+        }
+      ],
+      "billing": {
+        "name": "Jane Doe",
+        "address": "Door 14, Salarpuria Greenage, Street No 9, Hosur Road, 560069",
+        "email": "jane.doe@example.com",
+        "phone": "+91-8888888888"
+      },
+      "fulfillment": {
+        "id": "3",
+        "type": "BLOOD_DONATION",
+        "person": {
+          "id": "2",
+          "name": "Dr Verma",
+          "gender": "female",
+          "image": "https://image/of/person2.png",
+          "creds": [
+            {
+              "id": "smc:13-50840"
+            }
+          ]
+        },
+        "state": {
+          "descriptor": {
+            "code": "DONATION_COMPLETE"
+          }
+        },
+        "stops": [
+          {
+            "type": "start",
+            "time": {
+              "timestamp": "T11:15Z"
+            }
+          },
+          {
+            "type": "end",
+            "time": {
+              "timestamp": "T11:30Z"
+            }
+          }
+        ],
+        "customer": {
+          "person": {
+            "creds": [
+              {
+                "type": "health_id",
+                "id": "71-8787-9274-4423"
+              },
+              {
+                "type": "phr_address",
+                "url": "example2@ndhm"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "donation_url": "https://www.lifelinebloodbank.org/donation"
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "0"
+        },
+        "breakup": [
+          {
+            "title": "donation",
+            "price": {
+              "currency": "INR",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "uri": "payto://ban/98273982749429?amount=INR:0&ifsc=SBIN0000576&message=thanks",
+        "type": "ON-ORDER",
+        "status": "NOT-APPLICABLE"
+      }
+    }
+  }
+}

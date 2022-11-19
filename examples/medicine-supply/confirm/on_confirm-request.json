@@ -1,0 +1,112 @@
+{
+  "context": {
+    "domain": "nic2004:47112",
+    "action": "on_confirm",
+    "version": "1.0.0",
+    "message_id": "a48b1be2-42a7-4b45-bc4e-2e89b86f7e6d",
+    "timestamp": "2023-08-21T12:30:00.000Z",
+    "ttl": "PT15M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "e3ddbbec-8a95-4b68-bf2c-3c087b92c3b0"
+  },
+  "message": {
+    "order": {
+      "id": "medical-supply-123",
+      "provider": {
+        "id": "medical-supply-xyz",
+        "descriptor": {
+          "name": "XYZ Medical Supply"
+        }
+      },
+      "items": [
+        {
+          "id": "supplies-123",
+          "descriptor": {
+            "name": "Medical Supplies"
+          },
+          "fulfillment_id": "fulf_medical-supply-123",
+          "provider_id": "medical-supply-xyz"
+        }
+      ],
+      "billing": {
+        "name": "Michael Smith",
+        "address": "567 Pine Street, Cityville, 43210",
+        "email": "michael.smith@example.com",
+        "phone": "+91-7777777777"
+      },
+      "fulfillment": {
+        "id": "fulf_medical-supply-123",
+        "type": "DELIVERY",
+        "agent": {
+          "person": {
+            "id": "delivery-agent-123",
+            "name": "Delivery Person",
+            "gender": "male",
+            "image": "https://example.com/deliveryperson.png",
+            "creds": [
+              {
+                "id": "pdc:34567"
+              }
+            ]
+          },
+          "state": {
+            "descriptor": {
+              "code": "CONFIRMED"
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "T14:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "T14:15Z"
+              }
+            }
+          ],
+          "customer": {
+            "person": {
+              "id": "customer-123",
+              "creds": [
+                {
+                  "url": "example@medicalsupply.com"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "200"
+        },
+        "breakup": [
+          {
+            "title": "supplies_fee",
+            "price": {
+              "currency": "INR",
+              "value": "200"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "type": "PREPAID",
+        "status": "PAID",
+        "params": {
+          "amount": "200",
+          "currency": "INR",
+          "transaction_status": "SUCCESS"
+        }
+      }
+    }
+  }
+}

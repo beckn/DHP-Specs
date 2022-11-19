@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:086",
+    "action": "on_select",
+    "core_version": "1.1.0",
+    "bap_id": "https://pharmacy-bap.com",
+    "bap_uri": "https://api.pharmacy-bap.com/beckn/",
+    "bpp_id": "https://pharmacy.com",
+    "bpp_uri": "https://api.pharmacy.com/beckn/",
+    "transaction_id": "9k632d81-92a1-4dbd-8274-7c536f9bdf1h",
+    "message_id": "h57cc72e-7c9d-4bb7-a6df-9a53a32ef1c7",
+    "timestamp": "2023-09-15T14:45:00Z"
+  },
+  "message": {
+    "order": {
+      "id": "987654",
+      "items": [
+        {
+          "id": "701",
+          "descriptor": {
+            "name": "Paracetamol (10 tablets)"
+          },
+          "fulfillment_id": "9",
+          "price": {
+            "currency": "INR",
+            "value": "40"
+          }
+        }
+      ],
+      "provider": {
+        "id": "pqr-pharmacy",
+        "descriptor": {
+          "name": "PQR Pharmacy"
+        }
+      },
+      "fulfillment": {
+        "id": "9",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "PQR Pharmacy Store"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T13:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "Customer Address"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T14:00:00Z"
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "40",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Paracetamol (10 tablets)",
+            "price": {
+              "currency": "INR",
+              "value": "40"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "id": "7",
+        "mode": "ONLINE",
+        "status": "PENDING"
+      }
+    }
+  }
+}

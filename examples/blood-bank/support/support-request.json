@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "support",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://blood-bank.com",
+    "bpp_uri": "https://blood-bank.com/beckn/",
+    "transaction_id": "support-blood-donation-query",
+    "message_id": "support-healthcare-2",
+    "timestamp": "2023-09-15T11:00:00.052Z"
+  },
+  "message": {
+    "ref_id": "blood-donation-query-456"
+  }
+}

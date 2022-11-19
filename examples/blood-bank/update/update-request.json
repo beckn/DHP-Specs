@@ -1,0 +1,53 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "update",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://bloodbank-service-provider.com",
+    "bpp_uri": "https://bloodbank-service-provider.com/beckn/",
+    "transaction_id": "c1a2n3u4p5d6-12345",
+    "message_id": "update-fulfillment-bloodbank-1",
+    "timestamp": "2023-09-09T16:00:00.052Z"
+  },
+  "message": {
+    "update_target": "fulfillment, billing",
+    "order": {
+      "id": "blood-donation-appointment-order-1",
+      "fulfillment": {
+        "id": "updated-fulfillment-5",
+        "start": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "ward": "HSR Layout",
+              "country": "India",
+              "building": "Blood Bank",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "locality": "HSR Sector 2",
+              "door": "456",
+              "area_code": "560102",
+              "street": "17th Cross Rd"
+            }
+          }
+        }
+      },
+      "billing": {
+        "name": "Jane Doe",
+        "address": "456 HSR Layout",
+        "city": {
+          "name": "Bengaluru"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "janedoe@example.com",
+        "phone": "+91-0987654321"
+      }
+    }
+  }
+}

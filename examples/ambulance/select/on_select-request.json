@@ -1,0 +1,90 @@
+{
+  "context": {
+    "domain": "nic2004:86909",
+    "country": "IND",
+    "city": "std:080",
+    "action": "on_select",
+    "core_version": "1.1.0",
+    "bap_id": "https://ambulance-bap.com",
+    "bap_uri": "https://api.ambulance-bap.com/beckn/",
+    "bpp_id": "https://ambulance-service.com",
+    "bpp_uri": "https://api.ambulance-service.com/beckn/",
+    "transaction_id": "7f9014b1-12a3-47ef-a6c5-5ebc0f189c12",
+    "message_id": "9d734baf-2e9d-4d58-b9e3-8c9c02d06259",
+    "timestamp": "2023-09-15T10:30:00Z"
+  },
+  "message": {
+    "order": {
+      "id": "123456",
+      "items": [
+        {
+          "id": "101",
+          "descriptor": {
+            "name": "Ambulance Service"
+          },
+          "fulfillment_id": "1",
+          "price": {
+            "currency": "INR",
+            "value": "500"
+          }
+        }
+      ],
+      "provider": {
+        "id": "xyz-ambulance",
+        "descriptor": {
+          "name": "XYZ Ambulance"
+        }
+      },
+      "fulfillment": {
+        "id": "1",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Ambulance"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T10:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Ambulance"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T11:00:00Z"
+          }
+        },
+        "agent": {
+          "name": "John Doe",
+          "rateable": true,
+          "rating": "4.8"
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "500",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Ambulance Service",
+            "price": {
+              "currency": "INR",
+              "value": "500"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "id": "1",
+        "mode": "ONLINE",
+        "status": "PENDING"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "context": {
+    "domain": "nic2004:86909",
+    "action": "on_search",
+    "version": "0.7.1",
+    "message_id": "fbdcd857-0f2a-4939-b9df-f319f3a51884",
+    "timestamp": "2023-07-20T14:20:55.310Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:084"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49",
+        "descriptor": {
+          "name": "Local Blood Bank"
+        },
+        "categories": [
+          {
+            "id": "7",
+            "descriptor": {
+              "name": "Blood Bank"
+            }
+          }
+        ],
+        "fulfillments": [
+          {
+            "id": "1",
+            "type": "BLOOD-BANK-SERVICE",
+            "agent": {
+              "facility": {
+                "id": "5",
+                "name": "Blood Bank Services"
+              },
+              "schedule": [
+                {
+                  "type": "start",
+                  "time": {
+                    "timestamp": "2023-09-15T08:00:00Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "time": {
+                    "timestamp": "2023-09-15T18:00:00Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

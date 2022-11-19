@@ -1,0 +1,27 @@
+{
+  "context": {
+    "country": "IND",
+    "domain": "nic2004:85191",
+    "city": "std:080",
+    "action": "on_track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bpp_id": "https://ambulanceservice-provider.com",
+    "message_id": "a1m2b3u4l5a6n7c8e9",
+    "timestamp": "2023-09-08T13:00:00.052Z"
+  },
+  "message": {
+    "tracking": {
+      "content_type": "application/json",
+      "url": "https://ambulanceservice-provider.com/track/ambulance-service-345",
+      "status": "active",
+      "location": {
+        "descriptor": {
+          "name": "Emergency Ambulance Services"
+        },
+        "gps": "12.971598, 77.594566",
+        "address": "345, Emergency Road, Koramangala, Bangalore, 560034"
+      }
+    }
+  }
+}

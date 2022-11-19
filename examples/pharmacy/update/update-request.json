@@ -1,0 +1,50 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "update",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://pharmacy-service-provider.com",
+    "bpp_uri": "https://pharmacy-service-provider.com/beckn/",
+    "transaction_id": "c1a2n3u4p5d6-12345",
+    "message_id": "update-fulfillment-pharmacy-1",
+    "timestamp": "2023-09-09T19:00:00.052Z"
+  },
+  "message": {
+    "update_target": "fulfillment, item",
+    "order": {
+      "id": "pharmacy-order-1",
+      "fulfillment": {
+        "id": "updated-fulfillment-8",
+        "start": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "ward": "Marathahalli",
+              "country": "India",
+              "building": "Pharmacy Store",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "locality": "Marathahalli Main Rd",
+              "door": "654",
+              "area_code": "560037",
+              "street": "HAL Old Airport Rd"
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "id": "updated-item-6",
+          "descriptor": {
+            "name": "Paracetamol Tablets"
+          },
+          "quantity": 10
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_support",
+    "version": "0.7.1",
+    "message_id": "support-healthcare-3",
+    "timestamp": "2023-09-15T12:00:00.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    }
+  },
+  "message": {
+    "phone": "+91-1122334455",
+    "email": "support@healthcare.com",
+    "url": "http://support.healthcare.com/contact-us"
+  }
+}

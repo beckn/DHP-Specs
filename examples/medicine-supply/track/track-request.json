@@ -1,0 +1,20 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://medicalsupply-provider.com",
+    "bpp_uri": "https://medicalsupply-provider.com/beckn/",
+    "transaction_id": "m1e2d3i4c5a6l7s8u9p0p1l2y",
+    "message_id": "a1b2c3d4-e5f6-4g7h-8i9j-klmno1p2q3r4",
+    "timestamp": "2023-09-08T12:00:00.052Z"
+  },
+  "message": {
+    "order_id": "medical-supply-order-789",
+    "callback_url": "https://user-app.com/track/callback"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_status",
+    "version": "0.7.1",
+    "message_id": "12345678-1234-1234-1234-123456789012",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "12345678-1234-1234-1234-123456789012"
+  },
+  "message": {
+    "order": {
+      "id": "12345",
+      "provider": {
+        "id": "1",
+        "descriptor": {
+          "name": "Emergency Ambulance Service"
+        }
+      },
+      "state": "CONFIRMED",
+      "items": [
+        {
+          "id": "1",
+          "descriptor": {
+            "name": "Ambulance"
+          },
+          "fulfillment_id": "2",
+          "provider_id": "1"
+        }
+      ],
+      "billing": {
+        "name": "John Doe",
+        "address": "Door 12, Salarpuria Greenage, Street No 7, Hosur Road, 560068",
+        "email": "john.doe@example.com",
+        "phone": "+91-9999999999"
+      },
+      "fulfillment": {
+        "id": "2",
+        "type": "EMERGENCY",
+        "person": {
+          "id": "1",
+          "name": "Paramedic",
+          "gender": "male",
+          "image": "https://image/of/person.png",
+          "creds": [
+            {
+              "id": "pmc:13-50839"
+            }
+          ]
+        },
+        "state": {
+          "descriptor": {
+            "code": "AMBULANCE_DISPATCHED"
+          }
+        },
+        "stops": [
+          {
+            "type": "start",
+            "time": {
+              "timestamp": "T10:15Z"
+            }
+          },
+          {
+            "type": "end",
+            "time": {
+              "timestamp": "T10:30Z"
+            }
+          }
+        ],
+        "customer": {
+          "person": {
+            "creds": [
+              {
+                "type": "health_id",
+                "id": "61-8787-9274-4422"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "emergency_type": "Cardiac Arrest"
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "5000"
+        },
+        "breakup": [
+          {
+            "title": "ambulance_charge",
+            "price": {
+              "currency": "INR",
+              "value": "4000"
+            }
+          },
+          {
+            "title": "paramedic_charge",
+            "price": {
+              "currency": "INR",
+              "value": "1000"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "url": "payto://ban/98273982749428?amount=INR:5000&ifsc=SBIN0000575&message=hello",
+        "type": "PRE-ORDER",
+        "status": "NOT-PAID"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "status",
+    "version": "0.7.1",
+    "bap_id": "https://medicalsupply-bap.com/",
+    "bap_uri": "https://medicalsupply-bap.com/dhp.io",
+    "message_id": "m1234567-n8o9-0p1q-2r3s-4t5u6v7w8x9y",
+    "timestamp": "2023-09-20T13:00:00.052Z",
+    "ttl": "PT5M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order_id": "medical-supply-order-345"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_status",
+    "version": "0.7.1",
+    "message_id": "25b422c4-4867-4d72-b5f5-d31588e2f7c9",
+    "timestamp": "2023-07-16T20:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "3ed631e4-01e7-44e1-a999-db41ef0ae4fa"
+  },
+  "message": {
+    "order": {
+      "id": "26496",
+      "provider": {
+        "id": "5",
+        "descriptor": {
+          "name": "PharmaWell Pharmacy"
+        }
+      },
+      "state": "READY_FOR_PICKUP",
+      "items": [
+        {
+          "id": "5",
+          "descriptor": {
+            "name": "Medicine"
+          },
+          "fulfillment_id": "6",
+          "provider_id": "5"
+        }
+      ],
+      "billing": {
+        "name": "Jim Doe",
+        "address": "Door 20, Salarpuria Greenage, Street No 15, Hosur Road, 560072",
+        "email": "jim.doe@example.com",
+        "phone": "+91-5555555555"
+      },
+      "fulfillment": {
+        "id": "6",
+        "type": "PICKUP",
+        "person": {
+          "id": "5",
+          "name": "Pharmacy Staff",
+          "gender": "female",
+          "image": "https://image/of/person5.png",
+          "creds": [
+            {
+              "id": "pmc:13-50843"
+            }
+          ]
+        },
+        "state": {
+          "descriptor": {
+            "code": "READY_FOR_PICKUP"
+          }
+        },
+        "stops": [
+          {
+            "type": "start",
+            "time": {
+              "timestamp": "T14:15Z"
+            }
+          },
+          {
+            "type": "end",
+            "time": {
+              "timestamp": "T14:30Z"
+            }
+          }
+        ],
+        "customer": {
+          "person": {
+            "creds": [
+              {
+                "type": "health_id",
+                "id": "101-8787-9274-4426"
+              },
+              {
+                "type": "phr_address",
+                "url": "example5@ndhm"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "pickup_address": "PharmaWell Pharmacy, Street No 15, Hosur Road, 560072"
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "1000"
+        },
+        "breakup": [
+          {
+            "title": "medicine_charge",
+            "price": {
+              "currency": "INR",
+              "value": "1000"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "url": "payto://ban/98273982749432?amount=INR:1000&ifsc=SBIN0000579&message=thanks",
+        "type": "PRE-ORDER",
+        "status": "PAID"
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "update",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://ambulance-service-provider.com",
+    "bpp_uri": "https://ambulance-service-provider.com/beckn/",
+    "transaction_id": "c1a2n3u4p5d6-12345",
+    "message_id": "update-fulfillment-ambulance-1",
+    "timestamp": "2023-09-09T15:00:00.052Z"
+  },
+  "message": {
+    "update_target": "fulfillment, billing",
+    "order": {
+      "id": "ambulance-booking-order-1",
+      "fulfillment": {
+        "id": "updated-fulfillment-4",
+        "start": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "ward": "Koramangala",
+              "country": "India",
+              "building": "Patient's Residence",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "locality": "Koramangala 5th Block",
+              "door": "123",
+              "area_code": "560034",
+              "street": "5th Cross Rd"
+            }
+          }
+        }
+      },
+      "billing": {
+        "name": "John Doe",
+        "address": "123 Koramangala",
+        "city": {
+          "name": "Bengaluru"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "johndoe@example.com",
+        "phone": "+91-1234567890"
+      }
+    }
+  }
+}

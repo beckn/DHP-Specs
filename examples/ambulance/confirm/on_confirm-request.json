@@ -1,0 +1,132 @@
+{
+  "context": {
+    "domain": "nic2004:47112",
+    "action": "on_confirm",
+    "version": "1.0.0",
+    "message_id": "a48b1be2-42a7-4b45-bc4e-2e89b86f7e6d",
+    "timestamp": "2023-08-21T12:30:00.000Z",
+    "ttl": "PT15M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "e3ddbbec-8a95-4b68-bf2c-3c087b92c3b0"
+  },
+  "message": {
+    "order": {
+      "id": "ambulance-123",
+      "provider": {
+        "id": "ambulance-xyz",
+        "descriptor": {
+          "name": "XYZ Ambulance Service"
+        }
+      },
+      "items": [
+        {
+          "id": "ambulance-ride-123",
+          "descriptor": {
+            "name": "Ambulance Service"
+          },
+          "fulfillment_id": "fulf_ambulance-123",
+          "provider_id": "ambulance-xyz"
+        }
+      ],
+      "billing": {
+        "name": "Mary Johnson",
+        "address": "456 Oak Street, Townsville, 67890",
+        "email": "mary.johnson@example.com",
+        "phone": "+91-8888888888"
+      },
+      "fulfillment": {
+        "id": "fulf_ambulance-123",
+        "type": "AMBULANCE-RIDE",
+        "agent": {
+          "person": {
+            "id": "paramedic-123",
+            "name": "Paramedic John",
+            "gender": "male",
+            "image": "https://example.com/paramedic.png",
+            "creds": [
+              {
+                "id": "pdc:67890"
+              }
+            ]
+          },
+          "state": {
+            "descriptor": {
+              "code": "CONFIRMED"
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "T14:00Z"
+              },
+              "location": {
+                "gps": "12.345678, 98.765432",
+                "address": {
+                  "country": "India",
+                  "state": "Karnataka",
+                  "city": "Bangalore",
+                  "street": "Emergency Avenue",
+                  "area_code": "560003"
+                }
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "T14:15Z"
+              },
+              "location": {
+                "gps": "12.345678, 98.765432",
+                "address": {
+                  "country": "India",
+                  "state": "Karnataka",
+                  "city": "Bangalore",
+                  "street": "Emergency Avenue",
+                  "area_code": "560003"
+                }
+              }
+            }
+          ],
+          "customer": {
+            "person": {
+              "id": "patient-123",
+              "creds": [
+                {
+                  "url": "example@ambulanceservice.com"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "1500"
+        },
+        "breakup": [
+          {
+            "title": "ambulance_service_fee",
+            "price": {
+              "currency": "INR",
+              "value": "1500"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "type": "POST-FULFILLMENT",
+        "status": "PAID",
+        "params": {
+          "amount": "1500",
+          "currency": "INR",
+          "transaction_status": "SUCCESS"
+        }
+      }
+    }
+  }
+}

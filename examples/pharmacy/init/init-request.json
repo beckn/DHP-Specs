@@ -1,0 +1,56 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "init",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "pharmacy-provider-123",
+        "descriptor": {
+          "name": "XYZ Pharmacy"
+        }
+      },
+      "items": [
+        {
+          "id": "medication-123",
+          "fulfillment_id": ["fulf_medication-123"]
+        }
+      ],
+      "billing": {
+        "name": "Alice Smith",
+        "address": "Apt 303, Maple Towers, Richmond Road, 560001",
+        "city": {
+          "name": "Bangalore"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "alice.smith@example.com",
+        "phone": "+91-7777777777"
+      },
+      "fulfillment": {
+        "customer": {
+          "person": {
+            "id": "customer-123",
+            "creds": [
+              {
+                "url": "customer@example.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

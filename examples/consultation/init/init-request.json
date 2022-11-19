@@ -1,0 +1,58 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "init",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "9bfc2081-4e34-4f0b-9d7b-d0ad87de4a80",
+    "timestamp": "2023-07-30T13:30:00.052Z",
+    "ttl": "PT15M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "healthcare-provider-123",
+        "descriptor": {
+          "name": "ABC Healthcare"
+        }
+      },
+      "items": [
+        {
+          "id": "consultation-123",
+          "fulfillment_id": ["fulf_consultation-123"]
+        }
+      ],
+      "billing": {
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "city": {
+          "name": "Bangalore"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
+      },
+      "fulfillment": {
+        "agent": {
+          "person": {
+            "id": "doctor-123",
+            "exp": "gt 5Y",
+            "lang": "kan",
+            "creds": [
+              {
+                "url": "doctor@example.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

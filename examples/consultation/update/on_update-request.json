@@ -1,0 +1,85 @@
+{
+  "context": {
+    "country": "IND",
+    "bpp_uri": "https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f",
+    "domain": "nic2004:85110",
+    "timestamp": "2023-09-23T15:30:00.987Z",
+    "bap_id": "example-bap.com",
+    "bpp_id": "example-bpp.com",
+    "transaction_id": "c1a2n3u4p5d6-12345",
+    "message_id": "on_update-consultation-1",
+    "city": "std:080",
+    "core_version": "1.1.0",
+    "action": "on_update",
+    "bap_uri": "https://api.example-bap.com/pilot/bap/healthcare/v1"
+  },
+  "message": {
+    "update_target": "order.fulfillment",
+    "order": {
+      "id": "consultation-order-1",
+      "provider": {
+        "id": "healthcare-consultation-xyz",
+        "descriptor": {
+          "name": "XYZ Healthcare Consultation"
+        }
+      },
+      "customer": {
+        "id": "customer-ghi",
+        "descriptor": {
+          "name": "Jane Doe"
+        }
+      },
+      "items": [
+        {
+          "id": "consultation-001",
+          "descriptor": {
+            "name": "General Physician Consultation"
+          }
+        }
+      ],
+      "quote": {
+        "value": "500",
+        "currency": "INR"
+      },
+      "fulfillment": {
+        "id": "fulf_consultation-1",
+        "state": {
+          "descriptor": {
+            "code": "CONFIRMED",
+            "name": "Consultation Confirmed"
+          }
+        },
+        "start": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "street": "XYZ Healthcare",
+              "area_code": "560005"
+            }
+          }
+        },
+        "end": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "street": "XYZ Healthcare",
+              "area_code": "560005"
+            }
+          }
+        },
+        "agent": {
+          "name": "Dr. John",
+          "phone": "+91-9876543210",
+          "rateable": true,
+          "rating": "4.5"
+        }
+      }
+    }
+  }
+}

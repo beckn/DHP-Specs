@@ -1,0 +1,56 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "init",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "ambulance-provider-123",
+        "descriptor": {
+          "name": "XYZ Ambulance Service"
+        }
+      },
+      "items": [
+        {
+          "id": "ambulance-123",
+          "fulfillment_id": ["fulf_ambulance-123"]
+        }
+      ],
+      "billing": {
+        "name": "John Doe",
+        "address": "Door 12, Salarpuria Greenage, Street No 7, Hosur Road, 560068",
+        "city": {
+          "name": "Bangalore"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "john.doe@example.com",
+        "phone": "+91-9999999999"
+      },
+      "fulfillment": {
+        "customer": {
+          "person": {
+            "id": "patient-123",
+            "creds": [
+              {
+                "url": "patient@example.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
