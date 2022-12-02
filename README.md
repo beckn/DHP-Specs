@@ -22,4 +22,4 @@ DHP architecture allows someone to setup an open network of consumer side applic
 
 Please see [documentation](https://github.com/dhp-project/DHP-Specs/wiki) for understanding purpose, architecture, and the actual APIs. 
 
-Participate in the [Github discussions](https://github.com/dhp-project/DHP-Specs/discussions) and [Discord Community](https://discord.gg/zcpe9AP6KV) to leverage DHP as well as to contribute towards development of DHP by  providing ideas, reporting issues, contributing to documentation, and contributing code.
+Participate in the [Github discussions](https://github.com/dhp-project/DHP-Specs/discussions) and [Discord Community](https://discord.gg/45pvVWKGRQ) to leverage DHP as well as to contribute towards development of DHP by  providing ideas, reporting issues, contributing to documentation, and contributing code.
