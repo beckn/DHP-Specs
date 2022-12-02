@@ -1,3 +1,3 @@
-# Docs
+# DHP Specification
 
-Contains all human-readable documentation related to DHP Specification.
+This document contains the recommendations for mapping Health-specific entities to the Core Schema
