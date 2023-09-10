@@ -1,89 +1,113 @@
 {
   "context": {
-    "domain": "nic2004:86909",
-    "country": "IND",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_select",
-    "core_version": "1.1.0",
-    "bap_id": "https://ambulance-bap.com",
-    "bap_uri": "https://api.ambulance-bap.com/beckn/",
-    "bpp_id": "https://ambulance-service.com",
-    "bpp_uri": "https://api.ambulance-service.com/beckn/",
-    "transaction_id": "7f9014b1-12a3-47ef-a6c5-5ebc0f189c12",
-    "message_id": "9d734baf-2e9d-4d58-b9e3-8c9c02d06259",
-    "timestamp": "2023-09-15T10:30:00Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "123456",
+      "provider": {
+        "id": "4ab0cbbc-f246-4199-96c9-28a776d46c60",
+        "descriptor": {
+          "name": "Alpha Ambulance Services",
+          "short_desc": "Alpha Ambulance Services Pvt Ltd",
+          "images": [
+            {
+              "url": "https://alphaambulanceservices.in/images/logo.png"
+            }
+          ]
+        }
+      },
       "items": [
         {
-          "id": "101",
+          "id": "35230bc4-b966-43ae-bc01-79593ed49217",
           "descriptor": {
-            "name": "Ambulance Service"
+            "code": "advanced-life-support",
+            "name": "Advanced Life Support"
           },
-          "fulfillment_id": "1",
           "price": {
-            "currency": "INR",
-            "value": "500"
-          }
+            "value": "45000",
+            "currency": "INR"
+          },
+          "add_ons": [
+            {
+              "id": "f31ca7cd-b1f1-4b46-b6b8-7c6432e32261",
+              "descriptor": {
+                "code": "oxygen-suuport",
+                "name": "Basic Oxygen Support"
+              },
+              "price": {
+                "value": "10000",
+                "currency": "INR"
+              }
+            }
+          ]
         }
       ],
-      "provider": {
-        "id": "xyz-ambulance",
-        "descriptor": {
-          "name": "XYZ Ambulance"
-        }
-      },
-      "fulfillment": {
-        "id": "1",
-        "start": {
-          "location": {
-            "descriptor": {
-              "name": "XYZ Ambulance"
-            },
-            "gps": "12.9611159, 77.6388509"
+      "fulfillment": [
+        {
+          "id": "ab-ful-01",
+          "type": "EMERGENCY",
+          "agent": {
+            "person": {
+              "id": "f31ca7cd",
+              "name": "Mr Antony Gonsalves"
+            }
           },
-          "time": {
-            "timestamp": "2023-09-16T10:00:00Z"
-          }
-        },
-        "end": {
-          "location": {
-            "descriptor": {
-              "name": "XYZ Ambulance"
+          "stops": [
+            {
+              "type": "START",
+              "time": {
+                "label": "scheduled-time",
+                "timestamp": "2023-09-15T08:00:00Z"
+              },
+              "location": {
+                "gps": "12.423423,77.325647"
+              }
             },
-            "gps": "12.9611159, 77.6388509"
-          },
-          "time": {
-            "timestamp": "2023-09-16T11:00:00Z"
-          }
-        },
-        "agent": {
-          "name": "John Doe",
-          "rateable": true,
-          "rating": "4.8"
+            {
+              "type": "END",
+              "location": {
+                "gps": "12.423483,77.325697"
+              }
+            }
+          ]
         }
-      },
+      ],
       "quote": {
         "price": {
-          "value": "500",
+          "value": "55000",
           "currency": "INR"
         },
         "breakup": [
           {
-            "title": "Ambulance Service",
+            "title": "advanced-life-support",
             "price": {
               "currency": "INR",
-              "value": "500"
+              "value": "45000"
+            }
+          },
+          {
+            "title": "oxygen-support-add-on",
+            "price": {
+              "currency": "INR",
+              "value": "10000"
             }
           }
         ]
-      },
-      "payment": {
-        "id": "1",
-        "mode": "ONLINE",
-        "status": "PENDING"
       }
     }
   }

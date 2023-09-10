@@ -1,98 +1,122 @@
 {
   "context": {
-    "domain": "nic2004:47112",
-    "action": "on_confirm",
-    "version": "1.0.0",
-    "message_id": "a48b1be2-42a7-4b45-bc4e-2e89b86f7e6d",
-    "timestamp": "2023-08-21T12:30:00.000Z",
-    "ttl": "PT15M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
+      "country": {
+        "code": "IND"
+      }
     },
-    "transaction_id": "e3ddbbec-8a95-4b68-bf2c-3c087b92c3b0"
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_confirm",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "blood-bank-123",
+      "id": "9ff3e9f5-31f7-454e-bbed-e37e8c014404",
       "provider": {
-        "id": "blood-bank-xyz",
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49",
         "descriptor": {
-          "name": "XYZ Blood Bank"
+          "name": "Red Cross",
+          "short_desc": "Red Cross blood bank",
+          "images": [
+            {
+              "url": "https://redcross.in/images/logo.png"
+            }
+          ]
         }
       },
       "items": [
         {
-          "id": "blood-unit-123",
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
           "descriptor": {
-            "name": "Blood Unit"
+            "code": "O+ve",
+            "name": "O +ve blood"
           },
-          "fulfillment_id": "fulf_blood-bank-123",
-          "provider_id": "blood-bank-xyz"
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
         }
       ],
-      "billing": {
-        "name": "Alice Smith",
-        "address": "789 Maple Avenue, Cityville, 56789",
-        "email": "alice.smith@example.com",
-        "phone": "+91-7777777777"
-      },
-      "fulfillment": {
-        "id": "fulf_blood-bank-123",
-        "type": "BLOOD-DONATION",
-        "agent": {
-          "person": {
-            "id": "blood-bank-agent-123",
-            "name": "Blood Bank Representative",
-            "gender": "male",
-            "image": "https://example.com/bloodbankrep.png",
-            "creds": [
-              {
-                "id": "pdc:45678"
-              }
-            ]
-          },
-          "state": {
-            "descriptor": {
-              "code": "CONFIRMED"
+      "fulfillment": [
+        {
+          "id": "bb-ful1",
+          "type": "BLOOD-BANK-SERVICE",
+          "customer": {
+            "person": {
+              "id": "donor-123",
+              "name": "Jane Doe",
+              "creds": [
+                {
+                  "url": "donor@example.com"
+                }
+              ]
             }
           },
           "stops": [
             {
               "type": "start",
               "time": {
-                "timestamp": "T14:00Z"
+                "timestamp": "2023-09-15T08:00:00Z"
               }
             },
             {
               "type": "end",
               "time": {
-                "timestamp": "T14:15Z"
+                "timestamp": "2023-09-15T18:00:00Z"
               }
             }
           ],
-          "customer": {
-            "person": {
-              "id": "donor-123",
-              "creds": [
-                {
-                  "url": "example@bloodbank.com"
-                }
-              ]
+          "state": {
+            "descriptor": {
+              "code": "order-confirmed",
+              "name": "Order has been confirmed"
             }
           }
         }
+      ],
+      "billing": {
+        "name": "Jane Doe",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
+        "email": "jane.doe@example.com",
+        "phone": "+91-8888888888"
       },
       "quote": {
         "price": {
-          "currency": "INR",
-          "value": "0"
-        }
+          "value": "0",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "2 units of O +ve blood",
+            "price": {
+              "currency": "INR",
+              "value": "0"
+            }
+          }
+        ]
       },
-      "payment": {
-        "type": "FREE",
-        "status": "NOT-PAID"
-      }
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "0",
+            "currency": "INR"
+          }
+        }
+      ]
     }
   }
 }

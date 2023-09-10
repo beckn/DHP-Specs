@@ -1,95 +1,104 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "on_init",
-    "version": "0.7.1",
-    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
-    "timestamp": "2023-07-16T16:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_init",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "26492",
-      "state": "PROVISIONALLY_BOOKED",
       "provider": {
-        "id": "1",
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49",
         "descriptor": {
-          "name": "Example Hospitals"
+          "name": "Example Cross",
+          "short_desc": "Example blood bank",
+          "images": [
+            {
+              "url": "https://example.in/images/logo.png"
+            }
+          ]
         }
       },
       "items": [
         {
-          "id": "1",
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
           "descriptor": {
-            "name": "Blood Donation"
+            "code": "O+ve",
+            "name": "O +ve blood"
           },
-          "fulfillment_id": "2",
-          "provider_id": "1",
-          "price": {
-            "currency": "INR",
-            "value": "0"
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
+        }
+      ],
+      "fulfillment": [
+        {
+          "id": "bb-ful1",
+          "type": "BLOOD-BANK-SERVICE",
+          "customer": {
+            "person": {
+              "id": "donor-123",
+              "name": "Jane Doe",
+              "creds": [
+                {
+                  "url": "donor@example.com"
+                }
+              ]
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:00:00Z"
+              }
+            }
+          ],
+          "state": {
+            "descriptor": {
+              "code": "order-initiated",
+              "name": "Order has been initiated"
+            }
           }
         }
       ],
       "billing": {
-        "name": "John Doe",
-        "address": "Door 12, Salarpuria Greenage, Street No 7, Hosur Road, 560068",
-        "email": "john.doe@example.com",
-        "phone": "+91-9999999999"
-      },
-      "fulfillment": {
-        "id": "2",
-        "type": "BLOOD-DONATION",
-        "agent": {
-          "person": {
-            "id": "1",
-            "name": "MAX Blood Bank",
-            "gender": "N/A",
-            "image": "https://image/of/person.png",
-            "creds": [
-              {
-                "id": "smc:13-50839"
-              }
-            ]
-          }
-        },
-        "stops": [
-          {
-            "type": "start",
-            "time": {
-              "timestamp": "T10:15Z"
-            }
-          },
-          {
-            "type": "end",
-            "time": {
-              "timestamp": "T10:30Z"
-            }
-          }
-        ],
-        "customer": {
-          "person": {
-            "id": "61-8787-9274-4422",
-            "creds": [
-              {
-                "url": "example@ndhm"
-              }
-            ]
-          }
-        }
+        "name": "Jane Doe",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
+        "email": "jane.doe@example.com",
+        "phone": "+91-8888888888"
       },
       "quote": {
         "price": {
-          "currency": "INR",
-          "value": "0"
+          "value": "0",
+          "currency": "INR"
         },
         "breakup": [
           {
-            "title": "blood-donation",
+            "title": "2 units of O +ve blood",
             "price": {
               "currency": "INR",
               "value": "0"
@@ -97,11 +106,16 @@
           }
         ]
       },
-      "payment": {
-        "url": "payto://ban/98273982749428?amount=INR:0&ifsc=SBIN0000575&message=blood-donation",
-        "type": "PRE-ORDER",
-        "status": "NOT-PAID"
-      }
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "0",
+            "currency": "INR"
+          }
+        }
+      ]
     }
   }
 }

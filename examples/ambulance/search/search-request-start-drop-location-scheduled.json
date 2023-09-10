@@ -18,18 +18,30 @@
   "message": {
     "intent": {
       "category": {
-        "id": "blood-availability"
-      },
-      "item": {
         "descriptor": {
-          "code": "O+ve"
-        },
-        "quantity": {
-          "available": {
-            "value": "3.0",
-            "unit": "unit"
-          }
+          "code": "ambulance-service"
         }
+      },
+      "fulfillment": {
+        "type": "EMERGENCY",
+        "stops": [
+          {
+            "type": "START",
+            "time": {
+              "label": "scheduled-time",
+              "timestamp": "2023-09-15T08:00:00Z"
+            },
+            "location": {
+              "gps": "12.423423,77.325647"
+            }
+          },
+          {
+            "type": "END",
+            "location": {
+              "gps": "12.423483,77.325697"
+            }
+          }
+        ]
       }
     }
   }

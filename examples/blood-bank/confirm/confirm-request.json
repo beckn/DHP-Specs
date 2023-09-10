@@ -1,57 +1,66 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "confirm",
-    "version": "0.7.1",
-    "bap_id": "https://example-bap.com/",
-    "bap_uri": "https://example-bap.com/dhp.io",
-    "message_id": "d6c578c1-aa43-4f29-9e1e-82c39b02456d",
-    "timestamp": "2023-09-20T08:45:00.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "city": "std:080",
-      "country": "IND"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "confirm",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "blood-donation-confirmation-123",
       "provider": {
-        "id": "blood-bank-xyz",
-        "descriptor": {
-          "name": "XYZ Blood Bank"
-        }
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49"
       },
       "items": [
         {
-          "id": "blood-donation-123",
-          "descriptor": {
-            "name": "Blood Donation",
-            "code": "BLOOD"
-          },
-          "billing": {
-            "name": "Alice Johnson",
-            "address": "456 Oak Street, Townsville, 67890",
-            "city": {
-              "name": "Townsville"
-            },
-            "state": {
-              "name": "Stateland"
-            },
-            "email": "alice.johnson@example.com",
-            "phone": "+1-234-567-8901"
-          },
-          "fulfillment": {
-            "customer": {
-              "person": {
-                "id": "9876-5432-1234-5678",
-                "creds": [
-                  {
-                    "url": "example@bloodbank.com"
-                  }
-                ]
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
               }
             }
+          }
+        }
+      ],
+      "billing": {
+        "name": "Jane Doe",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
+        "email": "jane.doe@example.com",
+        "phone": "+91-8888888888"
+      },
+      "fulfillment": {
+        "customer": {
+          "person": {
+            "id": "patient-123",
+            "name": "Jane Doe",
+            "creds": [
+              {
+                "url": "jane.doe@example.com"
+              }
+            ]
+          }
+        }
+      },
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "0",
+            "currency": "INR"
           }
         }
       ]

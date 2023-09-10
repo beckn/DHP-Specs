@@ -1,102 +1,105 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "on_status",
-    "version": "0.7.1",
-    "message_id": "65b422c4-1867-4d72-b5f5-d31588e2f7c6",
-    "timestamp": "2023-07-16T17:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
+      "country": {
+        "code": "IND"
+      }
     },
-    "transaction_id": "9bd631e4-01e7-44e1-a999-db41ef0ae4f7"
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_status",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "26493",
+      "id": "9ff3e9f5-31f7-454e-bbed-e37e8c014404",
       "provider": {
-        "id": "2",
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49",
         "descriptor": {
-          "name": "LifeLine Blood Bank"
+          "name": "Red Cross",
+          "short_desc": "Red Cross blood bank",
+          "images": [
+            {
+              "url": "https://redcross.in/images/logo.png"
+            }
+          ]
         }
       },
-      "state": "CONFIRMED",
       "items": [
         {
-          "id": "2",
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
           "descriptor": {
-            "name": "Blood Donation"
+            "code": "O+ve",
+            "name": "O +ve blood"
           },
-          "fulfillment_id": "3",
-          "provider_id": "2"
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
+        }
+      ],
+      "fulfillment": [
+        {
+          "id": "bb-ful1",
+          "type": "BLOOD-BANK-SERVICE",
+          "customer": {
+            "person": {
+              "id": "donor-123",
+              "name": "Jane Doe",
+              "creds": [
+                {
+                  "url": "donor@example.com"
+                }
+              ]
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:00:00Z"
+              }
+            }
+          ],
+          "state": {
+            "descriptor": {
+              "code": "order-in-progress",
+              "name": "Order is in progress"
+            }
+          }
         }
       ],
       "billing": {
         "name": "Jane Doe",
-        "address": "Door 14, Salarpuria Greenage, Street No 9, Hosur Road, 560069",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
         "email": "jane.doe@example.com",
         "phone": "+91-8888888888"
       },
-      "fulfillment": {
-        "id": "3",
-        "type": "BLOOD_DONATION",
-        "person": {
-          "id": "2",
-          "name": "Dr Verma",
-          "gender": "female",
-          "image": "https://image/of/person2.png",
-          "creds": [
-            {
-              "id": "smc:13-50840"
-            }
-          ]
-        },
-        "state": {
-          "descriptor": {
-            "code": "DONATION_COMPLETE"
-          }
-        },
-        "stops": [
-          {
-            "type": "start",
-            "time": {
-              "timestamp": "T11:15Z"
-            }
-          },
-          {
-            "type": "end",
-            "time": {
-              "timestamp": "T11:30Z"
-            }
-          }
-        ],
-        "customer": {
-          "person": {
-            "creds": [
-              {
-                "type": "health_id",
-                "id": "71-8787-9274-4423"
-              },
-              {
-                "type": "phr_address",
-                "url": "example2@ndhm"
-              }
-            ]
-          }
-        },
-        "tags": {
-          "donation_url": "https://www.lifelinebloodbank.org/donation"
-        }
-      },
       "quote": {
         "price": {
-          "currency": "INR",
-          "value": "0"
+          "value": "0",
+          "currency": "INR"
         },
         "breakup": [
           {
-            "title": "donation",
+            "title": "2 units of O +ve blood",
             "price": {
               "currency": "INR",
               "value": "0"
@@ -104,11 +107,16 @@
           }
         ]
       },
-      "payment": {
-        "uri": "payto://ban/98273982749429?amount=INR:0&ifsc=SBIN0000576&message=thanks",
-        "type": "ON-ORDER",
-        "status": "NOT-APPLICABLE"
-      }
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "0",
+            "currency": "INR"
+          }
+        }
+      ]
     }
   }
 }

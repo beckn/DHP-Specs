@@ -17,18 +17,9 @@
   },
   "message": {
     "intent": {
-      "category": {
-        "id": "blood-availability"
-      },
-      "item": {
+      "provider": {
         "descriptor": {
-          "code": "O+ve"
-        },
-        "quantity": {
-          "available": {
-            "value": "3.0",
-            "unit": "unit"
-          }
+          "name": "Max Blood Bank"
         }
       }
     }

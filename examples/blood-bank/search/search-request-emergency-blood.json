@@ -30,6 +30,9 @@
             "unit": "unit"
           }
         }
+      },
+      "fulfillment": {
+        "type": "EMERGENCY"
       }
     }
   }

@@ -1,55 +1,180 @@
 {
   "context": {
-    "domain": "nic2004:86909",
-    "action": "on_search",
-    "version": "0.7.1",
-    "message_id": "fbdcd857-0f2a-4939-b9df-f319f3a51884",
-    "timestamp": "2023-07-20T14:20:55.310Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:084"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_search",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order": {
+    "catalog": {
+      "descriptor": {
+        "name": "Available Blood Banks"
+      },
       "provider": {
         "id": "23847572-53a0-49f2-9159-6b89b0168f49",
         "descriptor": {
-          "name": "Local Blood Bank"
+          "name": "Red Cross",
+          "short_desc": "Red Cross blood bank",
+          "images": [
+            {
+              "url": "https://redcross.in/images/logo.png"
+            }
+          ]
         },
         "categories": [
           {
-            "id": "7",
+            "id": "bb-cat01",
             "descriptor": {
+              "code": "blood-bank",
               "name": "Blood Bank"
             }
+          },
+          {
+            "id": "bb-cat02",
+            "descriptor": {
+              "code": "blood-camp",
+              "name": "Blood Camp"
+            }
+          }
+        ],
+        "locations": [
+          {
+            "id": "bb-loc-01",
+            "gps": "12.9164682,77.6089985"
+          },
+          {
+            "id": "bb-loc-02",
+            "gps": "12.91671,77.6092983"
           }
         ],
         "fulfillments": [
           {
-            "id": "1",
+            "id": "bb-ful1",
             "type": "BLOOD-BANK-SERVICE",
-            "agent": {
-              "facility": {
-                "id": "5",
-                "name": "Blood Bank Services"
-              },
-              "schedule": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-09-15T08:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-09-15T18:00:00Z"
-                  }
+            "stops": [
+              {
+                "type": "start",
+                "time": {
+                  "timestamp": "2023-09-15T08:00:00Z"
                 }
-              ]
-            }
+              },
+              {
+                "type": "end",
+                "time": {
+                  "timestamp": "2023-09-15T18:00:00Z"
+                }
+              }
+            ]
+          }
+        ],
+        "items": [
+          {
+            "id": "1686e805-9cae-46c0-9256-c583ac4fdb42",
+            "descriptor": {
+              "code": "A+ve",
+              "name": "A +ve blood"
+            },
+            "quantity": {
+              "available": {
+                "measure": {
+                  "value": "100",
+                  "unit": "units"
+                }
+              }
+            },
+            "category_ids": [
+              "bb-cat01"
+            ],
+            "location_ids": [
+              "bb-loc-01"
+            ],
+            "fulfillment_ids": [
+              "bb-ful1"
+            ]
+          },
+          {
+            "id": "843fff06-80ed-4836-b3dc-7bb5c8e4522e",
+            "descriptor": {
+              "code": "B+ve",
+              "name": "B +ve blood"
+            },
+            "quantity": {
+              "available": {
+                "measure": {
+                  "value": "100",
+                  "unit": "units"
+                }
+              }
+            },
+            "category_ids": [
+              "bb-cat01"
+            ],
+            "location_ids": [
+              "bb-loc-01"
+            ],
+            "fulfillment_ids": [
+              "bb-ful1"
+            ]
+          },
+          {
+            "id": "f8e1d8b2-779f-4106-9c83-a406ef347237",
+            "descriptor": {
+              "code": "A-ve",
+              "name": "A -ve blood"
+            },
+            "quantity": {
+              "available": {
+                "measure": {
+                  "value": "10",
+                  "unit": "units"
+                }
+              }
+            },
+            "category_ids": [
+              "bb-cat01"
+            ],
+            "location_ids": [
+              "bb-loc-01"
+            ],
+            "fulfillment_ids": [
+              "bb-ful1"
+            ]
+          },
+          {
+            "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
+            "descriptor": {
+              "code": "O+ve",
+              "name": "O +ve blood"
+            },
+            "quantity": {
+              "available": {
+                "measure": {
+                  "value": "20",
+                  "unit": "units"
+                }
+              }
+            },
+            "category_ids": [
+              "bb-cat01"
+            ],
+            "location_ids": [
+              "bb-loc-01"
+            ],
+            "fulfillment_ids": [
+              "bb-ful1"
+            ]
           }
         ]
       }

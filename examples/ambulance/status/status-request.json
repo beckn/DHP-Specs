@@ -1,19 +1,23 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "status",
-    "version": "0.7.1",
-    "bap_id": "https://ambulance-bap.com/",
-    "bap_uri": "https://ambulance-bap.com/dhp.io",
-    "message_id": "a1234567-b8c9-0d1e-2f3g-4h5i6j7k8l9m",
-    "timestamp": "2023-09-20T10:00:00.052Z",
-    "ttl": "PT5M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "city": "std:080",
-      "country": "IND"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "status",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order_id": "emergency-transport-456"
+    "order_id": "3210fedcba98"
   }
 }

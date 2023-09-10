@@ -17,6 +17,11 @@
   },
   "message": {
     "intent": {
+      "provider": {
+        "descriptor": {
+          "name": "Max Blood Bank"
+        }
+      },
       "category": {
         "id": "blood-availability"
       },

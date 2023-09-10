@@ -14,39 +14,14 @@
     "timestamp": "2023-09-09T16:00:00.052Z"
   },
   "message": {
-    "update_target": "fulfillment, billing",
+    "update_target": "order.billing",
     "order": {
-      "id": "blood-donation-appointment-order-1",
-      "fulfillment": {
-        "id": "updated-fulfillment-5",
-        "start": {
-          "location": {
-            "gps": "12.9715988, 77.5945627",
-            "address": {
-              "ward": "HSR Layout",
-              "country": "India",
-              "building": "Blood Bank",
-              "state": "Karnataka",
-              "city": "Bengaluru",
-              "locality": "HSR Sector 2",
-              "door": "456",
-              "area_code": "560102",
-              "street": "17th Cross Rd"
-            }
-          }
-        }
-      },
+      "id": "9ff3e9f5-31f7-454e-bbed-e37e8c014404",
       "billing": {
-        "name": "Jane Doe",
-        "address": "456 HSR Layout",
-        "city": {
-          "name": "Bengaluru"
-        },
-        "state": {
-          "name": "Karnataka"
-        },
-        "email": "janedoe@example.com",
-        "phone": "+91-0987654321"
+        "name": "John Doe",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
+        "email": "john.doe@example.com",
+        "phone": "+91-8888888888"
       }
     }
   }

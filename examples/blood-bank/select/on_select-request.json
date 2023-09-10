@@ -1,65 +1,73 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "country": "IND",
-    "city": "std:083",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_select",
-    "core_version": "1.1.0",
-    "bap_id": "https://bloodbank-bap.com",
-    "bap_uri": "https://api.bloodbank-bap.com/beckn/",
-    "bpp_id": "https://bloodbank.com",
-    "bpp_uri": "https://api.bloodbank.com/beckn/",
-    "transaction_id": "6h632d81-92a1-4dbd-8274-7c536f9bdf1e",
-    "message_id": "e57cc72e-7c9d-4bb7-a6df-9a53a32ef1c4",
-    "timestamp": "2023-09-15T14:45:00Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "456123",
+      "provider": {
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49",
+        "descriptor": {
+          "name": "Red Cross",
+          "short_desc": "Red Cross blood bank",
+          "images": [
+            {
+              "url": "https://redcross.in/images/logo.png"
+            }
+          ]
+        }
+      },
       "items": [
         {
-          "id": "401",
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
           "descriptor": {
-            "name": "1 unit of A+ Blood"
+            "code": "O+ve",
+            "name": "O +ve blood"
           },
-          "fulfillment_id": "6",
-          "price": {
-            "currency": "INR",
-            "value": "0"
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
           }
         }
       ],
-      "provider": {
-        "id": "ghi-bloodbank",
-        "descriptor": {
-          "name": "GHI Blood Bank"
-        }
-      },
-      "fulfillment": {
-        "id": "6",
-        "start": {
-          "location": {
-            "descriptor": {
-              "name": "GHI Blood Bank"
+      "fulfillment": [
+        {
+          "id": "bb-ful1",
+          "type": "BLOOD-BANK-SERVICE",
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              }
             },
-            "gps": "12.965365, 77.607297"
-          },
-          "time": {
-            "timestamp": "2023-09-16T09:00:00Z"
-          }
-        },
-        "end": {
-          "location": {
-            "descriptor": {
-              "name": "GHI Blood Bank"
-            },
-            "gps": "12.965365, 77.607297"
-          },
-          "time": {
-            "timestamp": "2023-09-16T18:00:00Z"
-          }
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:00:00Z"
+              }
+            }
+          ]
         }
-      },
+      ],
       "quote": {
         "price": {
           "value": "0",
@@ -67,18 +75,13 @@
         },
         "breakup": [
           {
-            "title": "1 unit of A+ Blood",
+            "title": "2 units of O +ve blood",
             "price": {
               "currency": "INR",
               "value": "0"
             }
           }
         ]
-      },
-      "payment": {
-        "id": "4",
-        "mode": "FREE",
-        "status": "PENDING"
       }
     }
   }

@@ -1,44 +1,37 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "select",
-    "version": "0.7.1",
-    "bap_id": "https://example-bap.com/",
-    "bap_uri": "https://example-bap.com/dhp.io",
-    "transaction_id": "7afe44fd-d947-4a0a-81bc-d286784df2c1",
-    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
-    "timestamp": "2023-07-16T16:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "city": "std:080",
-      "country": "IND"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "select",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
       "provider": {
-        "id": "75a55c66-252b-11e"
+        "id": "23847572-53a0-49f2-9159-6b89b0168f49"
       },
       "items": [
         {
-          "id": "550e8400-e29b-41d4-a716-446655441202",
-          "descriptor": {
-            "name": "B+ blood"
-          },
+          "id": "f47e5d7c-1e9f-414f-a9e2-9359d4434d73",
           "quantity": {
-            "selected": 2
-          },
-          "fulfillment_ids": ["2", "4"],
-          "type": "EMERGENCY",
-          "fulfillment": {
-            "stops": [
-              {
-                "type": "start",
-                "location": {
-                  "gps": "12.910458, 77.543089"
-                }
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
               }
-            ]
+            }
           }
         }
       ]

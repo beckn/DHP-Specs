@@ -18,17 +18,26 @@
   "message": {
     "intent": {
       "category": {
-        "id": "blood-availability"
-      },
-      "item": {
         "descriptor": {
-          "code": "O+ve"
-        },
-        "quantity": {
-          "available": {
-            "value": "3.0",
-            "unit": "unit"
+          "code": "ambulance-service"
+        }
+      },
+      "fulfillment": {
+        "stops": [
+          {
+            "type": "START",
+            "location": {
+              "gps": "12.423423,77.325647",
+              "radius": {
+                "type": "CONSTANT",
+                "value": "5",
+                "unit": "km"
+              }
+            }
           }
+        ],
+        "vehicle": {
+          "category": "pediatric"
         }
       }
     }
