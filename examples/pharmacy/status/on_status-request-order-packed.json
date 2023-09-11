@@ -8,7 +8,7 @@
     },
     "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
     "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
-    "action": "on_cancel",
+    "action": "on_status",
     "timestamp": "2023-05-25T05:23:03.443Z",
     "version": "1.1.0",
     "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
@@ -20,7 +20,6 @@
   "message": {
     "order": {
       "id": "853c7593-f4bf-4557-8832-118a591787ba",
-      "status": "CANCELLED",
       "provider": {
         "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
         "descriptor": {
@@ -99,8 +98,8 @@
           ],
           "state": {
             "descriptor": {
-              "code": "order-cancelled",
-              "name": "Order has been cancelled"
+              "code": "order-packed",
+              "name": "Order has been packed and can be picked up from the store"
             }
           }
         }
@@ -127,13 +126,6 @@
           },
           {
             "title": "delivery charge",
-            "price": {
-              "currency": "INR",
-              "value": "50"
-            }
-          },
-          {
-            "title": "cancellation charge",
             "price": {
               "currency": "INR",
               "value": "50"

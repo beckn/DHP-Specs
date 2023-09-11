@@ -1,65 +1,86 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "country": "IND",
-    "city": "std:084",
-    "action": "on_select",
-    "core_version": "1.1.0",
-    "bap_id": "https://healthconsult-bap.com",
-    "bap_uri": "https://api.healthconsult-bap.com/beckn/",
-    "bpp_id": "https://healthconsult.com",
-    "bpp_uri": "https://api.healthconsult.com/beckn/",
-    "transaction_id": "7i632d81-92a1-4dbd-8274-7c536f9bdf1f",
-    "message_id": "f57cc72e-7c9d-4bb7-a6df-9a53a32ef1c5",
-    "timestamp": "2023-09-15T14:45:00Z"
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "select",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "321654",
+      "provider": {
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
+        "descriptor": {
+          "name": "Example Hospitals",
+          "short_desc": "Example Hospitals Pvt Ltd",
+          "images": [
+            {
+              "url": "https://ExampleHospitals.in/images/logo.png"
+            }
+          ]
+        }
+      },
       "items": [
         {
-          "id": "501",
+          "id": "cons-01",
           "descriptor": {
-            "name": "General Physician Consultation"
+            "code": "consultation",
+            "name": "Consultation"
           },
-          "fulfillment_id": "7",
           "price": {
-            "currency": "INR",
-            "value": "300"
-          }
+            "value": "300",
+            "currency": "INR"
+          },
+          "fulfillment_ids": [
+            "ful-01"
+          ]
         }
       ],
-      "provider": {
-        "id": "jkl-healthconsult",
-        "descriptor": {
-          "name": "JKL Health Consultation"
-        }
-      },
-      "fulfillment": {
-        "id": "7",
-        "start": {
-          "location": {
-            "descriptor": {
-              "name": "Online"
-            },
-            "gps": "12.965365, 77.607297"
+      "fulfillments": [
+        {
+          "id": "ful-01",
+          "type": "OPD",
+          "agent": {
+            "person": {
+              "name": "Dr Asthana",
+              "gender": "male",
+              "creds": {
+                "id": "uhiId:237402938409485039850935"
+              }
+            }
           },
-          "time": {
-            "timestamp": "2023-09-16T10:00:00Z"
-          }
-        },
-        "end": {
-          "location": {
-            "descriptor": {
-              "name": "Online"
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-08-10T11:00:00Z"
+              }
             },
-            "gps": "12.965365, 77.607297"
-          },
-          "time": {
-            "timestamp": "2023-09-16T10:30:00Z"
-          }
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-08-10T11:30:00Z"
+              }
+            },
+            {
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            }
+          ]
         }
-      },
+      ],
       "quote": {
         "price": {
           "value": "300",
@@ -74,11 +95,6 @@
             }
           }
         ]
-      },
-      "payment": {
-        "id": "5",
-        "mode": "ONLINE",
-        "status": "PENDING"
       }
     }
   }

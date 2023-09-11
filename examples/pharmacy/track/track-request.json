@@ -1,20 +1,24 @@
 {
   "context": {
-    "domain": "nic2004:47731",
-    "country": "IND",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "track",
-    "core_version": "1.1.0",
-    "bap_id": "https://example-bap.com/",
-    "bap_uri": "https://example-bap.com/dhp.io",
-    "bpp_id": "https://pharmacy-provider.com",
-    "bpp_uri": "https://pharmacy-provider.com/beckn/",
-    "transaction_id": "p1h2a3r4m5a6c7y8",
-    "message_id": "p1q2r3s4-t5u6v7w8x9y0z1",
-    "timestamp": "2023-09-08T12:30:00.052Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order_id": "medicine-order-012",
-    "callback_url": "https://user-app.com/track/callback"
+    "order_id": "853c7593-f4bf-4557-8832-118a591787ba",
+    "callback_url": "https://dhp-network-bap.becknprotocol.io/track/callback"
   }
 }

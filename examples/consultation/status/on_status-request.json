@@ -1,114 +1,132 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "on_status",
-    "version": "0.7.1",
-    "message_id": "45a422c4-2867-4d72-b5f5-d31588e2f7c7",
-    "timestamp": "2023-07-16T18:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
+      "country": {
+        "code": "IND"
+      }
     },
-    "transaction_id": "7ad631e4-01e7-44e1-a999-db41ef0ae4f8"
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_status",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "26494",
+      "id": "759b905c-5a30-4d18-a6af-0decbac9282f",
       "provider": {
-        "id": "3",
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
         "descriptor": {
-          "name": "HealthFirst Consultation Services"
+          "name": "Example Hospitals",
+          "short_desc": "Example Hospitals Pvt Ltd",
+          "images": [
+            {
+              "url": "https://ExampleHospitals.in/images/logo.png"
+            }
+          ]
         }
       },
-      "state": "ONGOING",
       "items": [
         {
-          "id": "3",
+          "id": "cons-01",
           "descriptor": {
-            "name": "Health Consultation"
+            "code": "consultation",
+            "name": "Consultation"
           },
-          "fulfillment_id": "4",
-          "provider_id": "3"
+          "price": {
+            "value": "300",
+            "currency": "INR"
+          },
+          "fulfillment_ids": [
+            "ful-01"
+          ]
+        }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-01",
+          "type": "OPD",
+          "customer": {
+            "person": {
+              "name": "Rajesh Kumar",
+              "age": "26",
+              "gender": "M",
+              "dob": "1995-09-11"
+            }
+          },
+          "state": {
+            "descriptor": {
+              "code": "appointment-in-progress",
+              "name": "appointment in progress"
+            }
+          },
+          "agent": {
+            "person": {
+              "name": "Dr Asthana",
+              "gender": "male",
+              "creds": {
+                "id": "uhiId:237402938409485039850935"
+              }
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-08-10T11:00:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-08-10T11:30:00Z"
+              }
+            },
+            {
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            }
+          ]
         }
       ],
       "billing": {
-        "name": "Jack Doe",
-        "address": "Door 16, Salarpuria Greenage, Street No 11, Hosur Road, 560070",
-        "email": "jack.doe@example.com",
-        "phone": "+91-7777777777"
-      },
-      "fulfillment": {
-        "id": "4",
-        "type": "DIGITAL-CONSULTATION",
-        "person": {
-          "id": "3",
-          "name": "Dr Gupta",
-          "gender": "male",
-          "image": "https://image/of/person3.png",
-          "creds": [
-            {
-              "id": "smc:13-50841"
-            }
-          ]
-        },
-        "state": {
-          "descriptor": {
-            "code": "CONSULTATION_ONGOING"
-          }
-        },
-        "stops": [
-          {
-            "type": "start",
-            "time": {
-              "timestamp": "T12:15Z"
-            }
-          },
-          {
-            "type": "end",
-            "time": {
-              "timestamp": "T12:30Z"
-            }
-          }
-        ],
-        "customer": {
-          "person": {
-            "creds": [
-              {
-                "type": "health_id",
-                "id": "81-8787-9274-4424"
-              },
-              {
-                "type": "phr_address",
-                "url": "example3@ndhm"
-              }
-            ]
-          }
-        },
-        "tags": {
-          "teleconf_url": "https://www.healthfirst.com/consultation/jackdoe"
-        }
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
       },
       "quote": {
         "price": {
-          "currency": "INR",
-          "value": "500"
+          "value": "300",
+          "currency": "INR"
         },
         "breakup": [
           {
-            "title": "consultation_charge",
+            "title": "General Physician Consultation",
             "price": {
               "currency": "INR",
-              "value": "500"
+              "value": "300"
             }
           }
         ]
       },
-      "payment": {
-        "url": "payto://ban/98273982749430?amount=INR:500&ifsc=SBIN0000577&message=thanks",
-        "type": "PRE-ORDER",
-        "status": "PAID"
-      }
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "300",
+            "currency": "INR"
+          }
+        }
+      ]
     }
   }
 }

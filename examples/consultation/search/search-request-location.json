@@ -18,10 +18,16 @@
   "message": {
     "intent": {
       "category": {
-        "id": "pharmacy"
+        "descriptor": {
+          "name": "cardiology"
+        }
+      },
+      "item": {
+        "descriptor": {
+          "name": "consultation"
+        }
       },
       "fulfillment": {
-        "type": "HOME-DELIVERY",
         "stops": [
           {
             "location": {

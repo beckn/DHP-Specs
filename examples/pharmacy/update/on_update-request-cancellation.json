@@ -107,31 +107,10 @@
       ],
       "quote": {
         "price": {
-          "value": "700",
+          "value": "50",
           "currency": "INR"
         },
         "breakup": [
-          {
-            "title": "Benadryl 2 units",
-            "price": {
-              "currency": "INR",
-              "value": "200"
-            }
-          },
-          {
-            "title": "hycodan 3 units",
-            "price": {
-              "currency": "INR",
-              "value": "450"
-            }
-          },
-          {
-            "title": "delivery charge",
-            "price": {
-              "currency": "INR",
-              "value": "50"
-            }
-          },
           {
             "title": "cancellation charge",
             "price": {
@@ -150,8 +129,9 @@
       "payments": [
         {
           "type": "PRE-FULFILLMENT",
-          "status": "PAID",
+          "status": "NOT-PAID",
           "params": {
+            "url": "payto://ban/1234567890?amount=INR:50&ifsc=ABCD0000123&message=medicine-payment",
             "amount": "700",
             "currency": "INR"
           }

@@ -17,8 +17,10 @@
   },
   "message": {
     "intent": {
-      "category": {
-        "id": "pharmacy"
+      "provider": {
+        "descriptor": {
+          "name": "Mediplus pharmacy"
+        }
       },
       "fulfillment": {
         "type": "HOME-DELIVERY",

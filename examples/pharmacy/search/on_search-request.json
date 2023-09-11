@@ -1,41 +1,63 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "on_search",
-    "version": "0.7.1",
-    "message_id": "fb297256-9d88-488a-89bf-0d9fbf378437",
-    "timestamp": "2023-07-16T16:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
-    }
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_search",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order": {
-      "provider": {
-        "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
-        "descriptor": {
-          "name": "QuickPharma"
-        },
-        "categories": [
-          {
-            "id": "5",
-            "descriptor": {
-              "name": "Pharmacy"
+    "catalog": {
+      "descriptor": {
+        "name": "Available Pharmacy Stores"
+      },
+      "providers": [
+        {
+          "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
+          "descriptor": {
+            "name": "QuickPharma",
+            "short_desc": "QuickPharma Pvt Ltd",
+            "images": [
+              {
+                "url": "https://alphaambulanceservices.in/images/logo.png"
+              }
+            ]
+          },
+          "categories": [
+            {
+              "id": "cat-01",
+              "descriptor": {
+                "code": "pharmacy",
+                "name": "Pharmacy"
+              }
             }
-          }
-        ],
-        "fulfillments": [
-          {
-            "id": "1",
-            "type": "PHARMACY-SERVICE",
-            "agent": {
-              "facility": {
-                "id": "4",
-                "name": "QuickPharma Store"
-              },
-              "schedule": [
+          ],
+          "locations": [
+            {
+              "id": "phr-loc-01",
+              "gps": "12.9164682,77.6089985"
+            },
+            {
+              "id": "phr-loc-02",
+              "gps": "12.91671,77.6092983"
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": "ful-01",
+              "type": "IN-STORE-PICKUP",
+              "stops": [
                 {
                   "type": "start",
                   "time": {
@@ -45,14 +67,32 @@
                 {
                   "type": "end",
                   "time": {
-                    "timestamp": "2023-09-15T20:00:00Z"
+                    "timestamp": "2023-09-15T18:30:00Z"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "ful-02",
+              "type": "HOME-DELIVERY",
+              "stops": [
+                {
+                  "type": "start",
+                  "time": {
+                    "timestamp": "2023-09-15T08:00:00Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "time": {
+                    "timestamp": "2023-09-15T18:30:00Z"
                   }
                 }
               ]
             }
-          }
-        ]
-      }
+          ]
+        }
+      ]
     }
   }
 }

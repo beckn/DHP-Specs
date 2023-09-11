@@ -1,24 +1,27 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "country": "IND",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "cancel",
-    "core_version": "1.1.0",
-    "bap_id": "https://example-bap.com/",
-    "bap_uri": "https://example-bap.com/dhp.io",
-    "bpp_id": "https://lab-service-provider.com",
-    "bpp_uri": "https://lab-service-provider.com/beckn/",
-    "transaction_id": "c1a2n3c4e5l6-12345",
-    "message_id": "lab-test-appointment-xyz",
-    "timestamp": "2023-09-08T22:30:00.052Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order_id": "lab-test-appointment-456",
+    "order_id": "759b905c-5a30-4d18-a6af-0decbac9282f",
     "cancellation_reason_id": "8",
     "descriptor": {
-      "short_desc": "Change in Doctor's Recommendation",
-      "long_desc": "The doctor recommended a change in the lab test, so the appointment is canceled."
+      "short_desc": "Change in Doctor's Recommendation"
     }
   }
 }

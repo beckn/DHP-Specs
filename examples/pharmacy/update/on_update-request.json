@@ -1,89 +1,170 @@
 {
   "context": {
-    "country": "IND",
-    "bpp_uri": "https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f",
-    "domain": "nic2004:85110",
-    "timestamp": "2023-09-23T15:30:00.987Z",
-    "bap_id": "example-bap.com",
-    "bpp_id": "example-bpp.com",
-    "transaction_id": "c1a2n3u4p5d6-12345",
-    "message_id": "on_update-pharmacy-1",
-    "city": "std:080",
-    "core_version": "1.1.0",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_update",
-    "bap_uri": "https://api.example-bap.com/pilot/bap/healthcare/v1"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "update_target": "order.fulfillment",
     "order": {
-      "id": "pharmacy-order-1",
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
       "provider": {
-        "id": "pharmacy-xyz",
+        "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
         "descriptor": {
-          "name": "XYZ Pharmacy"
-        }
-      },
-      "customer": {
-        "id": "customer-mno",
-        "descriptor": {
-          "name": "Jane Doe"
+          "name": "QuickPharma",
+          "short_desc": "QuickPharma Pvt Ltd",
+          "images": [
+            {
+              "url": "https://quickPharma.in/images/logo.png"
+            }
+          ]
         }
       },
       "items": [
         {
-          "id": "medicine-002",
+          "id": "fb0999b7-7755-46d6-a2ed-b286b7c98436",
           "descriptor": {
-            "name": "Aspirin 100mg"
+            "code": "benadryl",
+            "name": "Benadryl cough syrup"
+          },
+          "price": {
+            "value": "100",
+            "currency": "INR"
           },
           "quantity": {
-            "count": "20",
-            "unit": "tablet"
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
+        },
+        {
+          "id": "1cef39d8-72d0-46f7-99ca-3f18f4bda8e3",
+          "descriptor": {
+            "code": "hycodan",
+            "name": "Hycodan"
+          },
+          "price": {
+            "value": "150",
+            "currency": "INR"
+          },
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "3",
+                "unit": "units"
+              }
+            }
+          }
+        }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-02",
+          "type": "HOME-DELIVERY",
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              },
+              "location": {
+                "gps": "12.423423,77.325647"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:30:00Z"
+              },
+              "location": {
+                "gps": "12.423483,77.325697"
+              }
+            }
+          ],
+          "state": {
+            "descriptor": {
+              "code": "drop-location-changed",
+              "name": "The drop location for the order has changed"
+            }
           }
         }
       ],
       "quote": {
-        "value": "100",
-        "currency": "INR"
+        "price": {
+          "value": "700",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Benadryl 2 units",
+            "price": {
+              "currency": "INR",
+              "value": "200"
+            }
+          },
+          {
+            "title": "hycodan 3 units",
+            "price": {
+              "currency": "INR",
+              "value": "450"
+            }
+          },
+          {
+            "title": "delivery charge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
+            }
+          }
+        ]
       },
-      "fulfillment": {
-        "id": "fulf_pharmacy-1",
-        "state": {
-          "descriptor": {
-            "code": "READY_FOR_PICKUP",
-            "name": "Ready for Pickup"
+      "billing": {
+        "name": "Alice Smith",
+        "address": "Apt 303, Maple Towers, Richmond Road, 560001",
+        "email": "alice.smith@example.com",
+        "phone": "+91-7777777777"
+      },
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "700",
+            "currency": "INR"
           }
-        },
-        "start": {
-          "location": {
-            "gps": "12.9715988, 77.5945627",
-            "address": {
-              "country": "India",
-              "state": "Karnataka",
-              "city": "Bengaluru",
-              "street": "XYZ Pharmacy",
-              "area_code": "560008"
-            }
-          }
-        },
-        "end": {
-          "location": {
-            "gps": "12.9715988, 77.5945627",
-            "address": {
-              "country": "India",
-              "state": "Karnataka",
-              "city": "Bengaluru",
-              "street": "XYZ Pharmacy",
-              "area_code": "560008"
-            }
-          }
-        },
-        "agent": {
-          "name": "Agent 3",
-          "phone": "+91-9876543210",
-          "rateable": true,
-          "rating": "4.5"
         }
-      }
+      ],
+      "cancellation_terms": [
+        {
+          "fulfillment_state": {
+            "descriptor": {
+              "code": "in-progress"
+            }
+          },
+          "cancellation_fee": {
+            "percentage": "30%"
+          },
+          "external_ref": {
+            "mimetype": "text/html",
+            "url": "https://quickPharma.in/charge/tnc.html"
+          }
+        }
+      ]
     }
   }
 }

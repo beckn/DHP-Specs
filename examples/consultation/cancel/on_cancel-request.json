@@ -1,95 +1,131 @@
 {
   "context": {
-    "country": "IND",
-    "bpp_uri": "https://api.health-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f",
-    "domain": "nic2004:85110",
-    "timestamp": "2023-09-26T09:45:00.987Z",
-    "bap_id": "health-bap.com",
-    "bpp_id": "healthcare-service-xyz",
-    "transaction_id": "t1c2a3n4c5e6l7-54321",
-    "message_id": "a8n7o6t5h4e3r2-1c0a9n8c7e6l5l4a3t2i1o0n",
-    "city": "std:082",
-    "core_version": "1.1.0",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_cancel",
-    "bap_uri": "https://api.health-bap.com/pilot/bap/healthcare/v1"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "healthcare-123",
+      "id": "759b905c-5a30-4d18-a6af-0decbac9282f",
+      "status": "CANCELLED",
       "provider": {
-        "id": "healthcare-service-xyz",
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
         "descriptor": {
-          "name": "XYZ Healthcare Service"
+          "name": "Example Hospitals",
+          "short_desc": "Example Hospitals Pvt Ltd",
+          "images": [
+            {
+              "url": "https://ExampleHospitals.in/images/logo.png"
+            }
+          ]
         }
       },
-      "patient": {
-        "id": "patient-123",
-        "descriptor": {
-          "name": "John Doe"
+      "items": [
+        {
+          "id": "cons-01",
+          "descriptor": {
+            "code": "consultation",
+            "name": "Consultation"
+          },
+          "price": {
+            "value": "300",
+            "currency": "INR"
+          },
+          "fulfillment_ids": [
+            "ful-01"
+          ]
         }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-01",
+          "type": "OPD",
+          "customer": {
+            "person": {
+              "name": "Rajesh Kumar",
+              "age": "26",
+              "gender": "M",
+              "dob": "1995-09-11"
+            }
+          },
+          "state": {
+            "descriptor": {
+              "code": "slot-cancelled",
+              "name": "Slot has been cancelled"
+            }
+          },
+          "agent": {
+            "person": {
+              "name": "Dr Asthana",
+              "gender": "male",
+              "creds": {
+                "id": "uhiId:237402938409485039850935"
+              }
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-08-10T11:00:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-08-10T11:30:00Z"
+              }
+            },
+            {
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            }
+          ]
+        }
+      ],
+      "billing": {
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
       },
       "quote": {
-        "value": "5000",
-        "currency": "INR"
-      },
-      "fulfillment": {
-        "id": "fulf_healthcare-123",
-        "state": {
-          "descriptor": {
-            "code": "SERVICE_CANCELLED",
-            "name": "Service Cancelled"
-          }
+        "price": {
+          "value": "300",
+          "currency": "INR"
         },
-        "start": {
-          "authorization": {
-            "type": "OTP",
-            "token": "123456"
-          },
-          "location": {
-            "gps": "12.345678, 98.765432",
-            "address": {
-              "country": "India",
-              "state": "Karnataka",
-              "city": "Bangalore",
-              "street": "Hospital Road",
-              "area_code": "560001"
+        "breakup": [
+          {
+            "title": "General Physician Consultation",
+            "price": {
+              "currency": "INR",
+              "value": "300"
             }
           }
-        },
-        "end": {
-          "location": {
-            "gps": "12.345678, 98.765432",
-            "address": {
-              "country": "India",
-              "state": "Karnataka",
-              "city": "Bangalore",
-              "street": "Hospital Road",
-              "area_code": "560001"
-            }
-          }
-        },
-        "agent": {
-          "name": "Dr. Smith",
-          "phone": "+91-9876543210",
-          "rateable": true,
-          "rating": "4.9"
-        }
+        ]
       },
       "payments": [
         {
-          "id": "t1c2a3n4c5e6l7-8p9a0t1i2e3n4t",
-          "type": "POST-FULFILLMENT",
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
           "params": {
-            "amount": "5000",
-            "currency": "INR",
-            "transaction_status": "CANCELLED"
+            "amount": "300",
+            "currency": "INR"
           }
-        }
-      ],
-      "documents": [
-        {
-          "label": "Cancellation Policy",
-          "url": "https://healthcare-service-xyz/cancellation-policy"
         }
       ]
     }

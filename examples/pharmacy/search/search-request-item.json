@@ -20,8 +20,13 @@
       "category": {
         "id": "pharmacy"
       },
+      "item": {
+        "descriptor": {
+          "name": "Dolo 650"
+        }
+      },
       "fulfillment": {
-        "type": "HOME-DELIVERY",
+        "type": "IN-STORE-PICKUP",
         "stops": [
           {
             "location": {

@@ -1,20 +1,24 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "country": "IND",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "cancel",
-    "core_version": "1.1.0",
-    "bap_id": "https://example-bap.com/",
-    "bap_uri": "https://example-bap.com/dhp.io",
-    "bpp_id": "https://pharmacy-service.com",
-    "bpp_uri": "https://pharmacy-service.com/beckn/",
-    "transaction_id": "t1c2a3n4c5e6l7-10101",
-    "message_id": "c1a2n3c4e5l6-20202",
-    "timestamp": "2023-09-08T10:30:00.052Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
-    "order_id": "medication-order-567",
+    "order_id": "853c7593-f4bf-4557-8832-118a591787ba",
     "cancellation_reason_id": "4",
     "descriptor": {
       "short_desc": "Prescription Changed",

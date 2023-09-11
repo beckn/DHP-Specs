@@ -1,114 +1,170 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "action": "on_status",
-    "version": "0.7.1",
-    "message_id": "25b422c4-4867-4d72-b5f5-d31588e2f7c9",
-    "timestamp": "2023-07-16T20:00:24.052Z",
-    "ttl": "PT10M",
+    "domain": "dhp:0.7.3",
     "location": {
-      "country": "IND",
-      "city": "std:080"
+      "country": {
+        "code": "IND"
+      }
     },
-    "transaction_id": "3ed631e4-01e7-44e1-a999-db41ef0ae4fa"
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_status",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "id": "26496",
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
       "provider": {
-        "id": "5",
+        "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
         "descriptor": {
-          "name": "PharmaWell Pharmacy"
-        }
-      },
-      "state": "READY_FOR_PICKUP",
-      "items": [
-        {
-          "id": "5",
-          "descriptor": {
-            "name": "Medicine"
-          },
-          "fulfillment_id": "6",
-          "provider_id": "5"
-        }
-      ],
-      "billing": {
-        "name": "Jim Doe",
-        "address": "Door 20, Salarpuria Greenage, Street No 15, Hosur Road, 560072",
-        "email": "jim.doe@example.com",
-        "phone": "+91-5555555555"
-      },
-      "fulfillment": {
-        "id": "6",
-        "type": "PICKUP",
-        "person": {
-          "id": "5",
-          "name": "Pharmacy Staff",
-          "gender": "female",
-          "image": "https://image/of/person5.png",
-          "creds": [
+          "name": "QuickPharma",
+          "short_desc": "QuickPharma Pvt Ltd",
+          "images": [
             {
-              "id": "pmc:13-50843"
+              "url": "https://quickPharma.in/images/logo.png"
             }
           ]
-        },
-        "state": {
-          "descriptor": {
-            "code": "READY_FOR_PICKUP"
-          }
-        },
-        "stops": [
-          {
-            "type": "start",
-            "time": {
-              "timestamp": "T14:15Z"
-            }
-          },
-          {
-            "type": "end",
-            "time": {
-              "timestamp": "T14:30Z"
-            }
-          }
-        ],
-        "customer": {
-          "person": {
-            "creds": [
-              {
-                "type": "health_id",
-                "id": "101-8787-9274-4426"
-              },
-              {
-                "type": "phr_address",
-                "url": "example5@ndhm"
-              }
-            ]
-          }
-        },
-        "tags": {
-          "pickup_address": "PharmaWell Pharmacy, Street No 15, Hosur Road, 560072"
         }
       },
+      "items": [
+        {
+          "id": "fb0999b7-7755-46d6-a2ed-b286b7c98436",
+          "descriptor": {
+            "code": "benadryl",
+            "name": "Benadryl cough syrup"
+          },
+          "price": {
+            "value": "100",
+            "currency": "INR"
+          },
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
+        },
+        {
+          "id": "1cef39d8-72d0-46f7-99ca-3f18f4bda8e3",
+          "descriptor": {
+            "code": "hycodan",
+            "name": "Hycodan"
+          },
+          "price": {
+            "value": "150",
+            "currency": "INR"
+          },
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "3",
+                "unit": "units"
+              }
+            }
+          }
+        }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-02",
+          "type": "HOME-DELIVERY",
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              },
+              "location": {
+                "gps": "12.423423,77.325647"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:30:00Z"
+              },
+              "location": {
+                "gps": "12.423483,77.325697"
+              }
+            }
+          ],
+          "state": {
+            "descriptor": {
+              "code": "order-picked-up",
+              "name": "Order has been picked up"
+            }
+          }
+        }
+      ],
       "quote": {
         "price": {
-          "currency": "INR",
-          "value": "1000"
+          "value": "700",
+          "currency": "INR"
         },
         "breakup": [
           {
-            "title": "medicine_charge",
+            "title": "Benadryl 2 units",
             "price": {
               "currency": "INR",
-              "value": "1000"
+              "value": "200"
+            }
+          },
+          {
+            "title": "hycodan 3 units",
+            "price": {
+              "currency": "INR",
+              "value": "450"
+            }
+          },
+          {
+            "title": "delivery charge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
             }
           }
         ]
       },
-      "payment": {
-        "url": "payto://ban/98273982749432?amount=INR:1000&ifsc=SBIN0000579&message=thanks",
-        "type": "PRE-ORDER",
-        "status": "PAID"
-      }
+      "billing": {
+        "name": "Alice Smith",
+        "address": "Apt 303, Maple Towers, Richmond Road, 560001",
+        "email": "alice.smith@example.com",
+        "phone": "+91-7777777777"
+      },
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "700",
+            "currency": "INR"
+          }
+        }
+      ],
+      "cancellation_terms": [
+        {
+          "fulfillment_state": {
+            "descriptor": {
+              "code": "in-progress"
+            }
+          },
+          "cancellation_fee": {
+            "percentage": "30%"
+          },
+          "external_ref": {
+            "mimetype": "text/html",
+            "url": "https://quickPharma.in/charge/tnc.html"
+          }
+        }
+      ]
     }
   }
 }

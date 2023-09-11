@@ -1,120 +1,170 @@
 {
-    "context": {
-      "domain": "nic2004:47112",
-      "action": "on_confirm",
-      "version": "1.0.0",
-      "message_id": "a48b1be2-42a7-4b45-bc4e-2e89b86f7e6d",
-      "timestamp": "2023-08-21T12:30:00.000Z",
-      "ttl": "PT15M",
-      "location": {
-        "country": "IND",
-        "city": "std:080"
-      },
-      "transaction_id": "e3ddbbec-8a95-4b68-bf2c-3c087b92c3b0"
+  "context": {
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
     },
-    "message": {
-      "order": {
-        "id": "pharmacy-123",
-        "provider": {
-          "id": "pharmacy-xyz",
-          "descriptor": {
-            "name": "XYZ Pharmacy"
-          }
-        },
-        "items": [
-          {
-            "id": "medication-123",
-            "descriptor": {
-              "name": "Medication"
-            },
-            "fulfillment_id": "fulf_pharmacy-123",
-            "provider_id": "pharmacy-xyz"
-          }
-        ],
-        "billing": {
-          "name": "Jane Doe",
-          "address": "321 Oak Street, Cityville, 54321",
-          "email": "jane.doe@example.com",
-          "phone": "+91-9999999999"
-        },
-        "fulfillment": {
-          "id": "fulf_pharmacy-123",
-          "type": "IN-STORE-PICKUP",
-          "agent": {
-            "person": {
-              "id": "pharmacist-123",
-              "name": "Pharmacist Smith",
-              "gender": "male",
-              "image": "https://example.com/pharmacist.png",
-              "creds": [
-                {
-                  "id": "pdc:23456"
-                }
-              ]
-            },
-            "state": {
-              "descriptor": {
-                "code": "CONFIRMED"
-              }
-            },
-            "stops": [
-              {
-                "type": "start",
-                "time": {
-                  "timestamp": "T14:00Z"
-                }
-              },
-              {
-                "type": "end",
-                "time": {
-                  "timestamp": "T14:15Z"
-                }
-              }
-            ],
-            "customer": {
-              "person": {
-                "id": "patient-123",
-                "creds": [
-                  {
-                    "url": "example@pharmacy.com"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "quote": {
-          "price": {
-            "currency": "INR",
-            "value": "50"
-          },
-          "breakup": [
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_confirm",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
+  },
+  "message": {
+    "order": {
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
+      "provider": {
+        "id": "e92e7a6e-1f20-4a8d-b343-956e0d45a48c",
+        "descriptor": {
+          "name": "QuickPharma",
+          "short_desc": "QuickPharma Pvt Ltd",
+          "images": [
             {
-              "title": "medication",
-              "price": {
-                "currency": "INR",
-                "value": "40"
-              }
-            },
-            {
-              "title": "service_fee",
-              "price": {
-                "currency": "INR",
-                "value": "10"
-              }
+              "url": "https://quickPharma.in/images/logo.png"
             }
           ]
+        }
+      },
+      "items": [
+        {
+          "id": "fb0999b7-7755-46d6-a2ed-b286b7c98436",
+          "descriptor": {
+            "code": "benadryl",
+            "name": "Benadryl cough syrup"
+          },
+          "price": {
+            "value": "100",
+            "currency": "INR"
+          },
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "2",
+                "unit": "units"
+              }
+            }
+          }
         },
-        "payment": {
-          "type": "ON-FULFILLMENT",
-          "status": "PAID",
-          "params": {
-            "amount": "50",
-            "currency": "INR",
-            "transaction_status": "SUCCESS"
+        {
+          "id": "1cef39d8-72d0-46f7-99ca-3f18f4bda8e3",
+          "descriptor": {
+            "code": "hycodan",
+            "name": "Hycodan"
+          },
+          "price": {
+            "value": "150",
+            "currency": "INR"
+          },
+          "quantity": {
+            "selected": {
+              "measure": {
+                "value": "3",
+                "unit": "units"
+              }
+            }
           }
         }
-      }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-02",
+          "type": "HOME-DELIVERY",
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-09-15T08:00:00Z"
+              },
+              "location": {
+                "gps": "12.423423,77.325647"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-09-15T18:30:00Z"
+              },
+              "location": {
+                "gps": "12.423483,77.325697"
+              }
+            }
+          ],
+          "state": {
+            "descriptor": {
+              "code": "order-confirm",
+              "name": "Order has been confirmed"
+            }
+          }
+        }
+      ],
+      "quote": {
+        "price": {
+          "value": "700",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Benadryl 2 units",
+            "price": {
+              "currency": "INR",
+              "value": "200"
+            }
+          },
+          {
+            "title": "hycodan 3 units",
+            "price": {
+              "currency": "INR",
+              "value": "450"
+            }
+          },
+          {
+            "title": "delivery charge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
+            }
+          }
+        ]
+      },
+      "billing": {
+        "name": "Alice Smith",
+        "address": "Apt 303, Maple Towers, Richmond Road, 560001",
+        "email": "alice.smith@example.com",
+        "phone": "+91-7777777777"
+      },
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "PAID",
+          "params": {
+            "amount": "700",
+            "currency": "INR"
+          }
+        }
+      ],
+      "cancellation_terms": [
+        {
+          "fulfillment_state": {
+            "descriptor": {
+              "code": "in-progress"
+            }
+          },
+          "cancellation_fee": {
+            "percentage": "30%"
+          },
+          "external_ref": {
+            "mimetype": "text/html",
+            "url": "https://quickPharma.in/charge/tnc.html"
+          }
+        }
+      ]
     }
   }
-  
+}

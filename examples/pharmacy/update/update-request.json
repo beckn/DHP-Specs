@@ -14,35 +14,26 @@
     "timestamp": "2023-09-09T19:00:00.052Z"
   },
   "message": {
-    "update_target": "fulfillment, item",
+    "update_target": "order.fulfillments[0].stops[0]",
     "order": {
-      "id": "pharmacy-order-1",
-      "fulfillment": {
-        "id": "updated-fulfillment-8",
-        "start": {
-          "location": {
-            "gps": "12.9715988, 77.5945627",
-            "address": {
-              "ward": "Marathahalli",
-              "country": "India",
-              "building": "Pharmacy Store",
-              "state": "Karnataka",
-              "city": "Bengaluru",
-              "locality": "Marathahalli Main Rd",
-              "door": "654",
-              "area_code": "560037",
-              "street": "HAL Old Airport Rd"
-            }
-          }
-        }
-      },
-      "items": [
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
+      "fulfillments": [
         {
-          "id": "updated-item-6",
-          "descriptor": {
-            "name": "Paracetamol Tablets"
-          },
-          "quantity": 10
+          "id": "ful-02",
+          "stops": [
+            {
+              "type": "START",
+              "location": {
+                "gps": "12.423423,77.325647"
+              }
+            },
+            {
+              "type": "END",
+              "location": {
+                "gps": "12.423483,77.325797"
+              }
+            }
+          ]
         }
       ]
     }

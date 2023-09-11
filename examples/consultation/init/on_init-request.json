@@ -1,85 +1,132 @@
 {
   "context": {
-    "domain": "nic2004:85110",
-    "country": "IND",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_init",
-    "core_version": "1.1.0",
-    "bap_id": "https://healthcare-bap.com",
-    "bap_uri": "https://api.healthcare-bap.com/beckn/",
-    "bpp_id": "https://clinic-hospital.com",
-    "bpp_uri": "https://api.clinic-hospital.com/beckn/",
-    "transaction_id": "a1b2c3d4-5678-90e1-2f3g-4h56i7j8k9l0",
-    "message_id": "12345678-abcd-ef90-1234-567890abcdef",
-    "timestamp": "2023-09-15T12:00:00Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "order": {
-      "items": [
-        {
-          "id": "101",
-          "descriptor": {
-            "name": "Appointment with Dr. Smith"
-          },
-          "fulfillment_id": "1",
-          "price": {
-            "currency": "INR",
-            "value": "300"
-          }
-        }
-      ],
       "provider": {
-        "id": "xyz-clinic",
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
         "descriptor": {
-          "name": "XYZ Clinic"
+          "name": "Example Hospitals",
+          "short_desc": "Example Hospitals Pvt Ltd",
+          "images": [
+            {
+              "url": "https://ExampleHospitals.in/images/logo.png"
+            }
+          ]
         }
       },
-      "fulfillment": {
-        "id": "1",
-        "start": {
-          "location": {
-            "descriptor": {
-              "name": "XYZ Clinic"
-            },
-            "gps": "12.9611159, 77.6388509"
+      "items": [
+        {
+          "id": "cons-01",
+          "descriptor": {
+            "code": "consultation",
+            "name": "Consultation"
           },
-          "time": {
-            "timestamp": "2023-09-16T14:00:00Z"
-          }
-        },
-        "end": {
-          "location": {
-            "descriptor": {
-              "name": "XYZ Clinic"
-            },
-            "gps": "12.9611159, 77.6388509"
+          "price": {
+            "value": "300",
+            "currency": "INR"
           },
-          "time": {
-            "timestamp": "2023-09-16T15:00:00Z"
-          }
-        },
-        "agent": {
-          "name": "Dr. John Smith",
-          "rateable": true,
-          "rating": "4.8"
+          "fulfillment_ids": [
+            "ful-01"
+          ]
         }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful-01",
+          "type": "OPD",
+          "customer": {
+            "person": {
+              "name": "Rajesh Kumar",
+              "age": "26",
+              "gender": "M",
+              "dob": "1995-09-11"
+            }
+          },
+          "state": {
+            "descriptor": {
+              "code": "slot-booked",
+              "name": "Slot has been booked"
+            }
+          },
+          "agent": {
+            "person": {
+              "name": "Dr Asthana",
+              "gender": "male",
+              "creds": {
+                "id": "uhiId:237402938409485039850935"
+              }
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "2023-08-10T11:00:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "2023-08-10T11:30:00Z"
+              }
+            },
+            {
+              "location": {
+                "gps": "12.9164682,77.6089985"
+              }
+            }
+          ]
+        }
+      ],
+      "billing": {
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
       },
       "quote": {
         "price": {
           "value": "300",
           "currency": "INR"
-        }
+        },
+        "breakup": [
+          {
+            "title": "General Physician Consultation",
+            "price": {
+              "currency": "INR",
+              "value": "300"
+            }
+          }
+        ]
       },
-      "payment": {
-        "id": "1",
-        "type": "ONLINE",
-        "params": {
-          "url": "payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello",
-          "amount": "300",
-          "currency": "INR",
-          "transaction_status": "NOT-PAID"
+      "payments": [
+        {
+          "type": "PRE-FULFILLMENT",
+          "status": "NOT-PAID",
+          "params": {
+            "url": "payto://ban/98273982749428?amount=INR:300&ifsc=SBIN0000575&message=payment",
+            "amount": "300",
+            "currency": "INR"
+          }
         }
-      }
+      ]
     }
   }
 }

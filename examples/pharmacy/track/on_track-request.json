@@ -1,26 +1,32 @@
 {
   "context": {
-    "country": "IND",
-    "domain": "nic2004:47731",
-    "city": "std:080",
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
     "action": "on_track",
-    "core_version": "1.1.0",
-    "bap_id": "https://example-bap.com/",
-    "bpp_id": "https://pharmacy-provider.com",
-    "message_id": "p1h2a3r4m5a6c7y8",
-    "timestamp": "2023-09-08T12:30:00.052Z"
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
   },
   "message": {
     "tracking": {
-      "content_type": "application/json",
-      "url": "https://pharmacy-provider.com/track/medicine-order-012",
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
+      "url": "https://quickPharma-provider.com/track/3210fedcba98",
       "status": "active",
       "location": {
         "descriptor": {
-          "name": "HealthPlus Pharmacy"
+          "name": "Last location of the delivery"
         },
-        "gps": "12.971598, 77.594566",
-        "address": "012, Health Road, Koramangala, Bangalore, 560034"
+        "gps": "12.971598, 77.594566"
       }
     }
   }
