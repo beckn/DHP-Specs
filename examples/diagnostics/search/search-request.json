@@ -19,12 +19,12 @@
     "intent": {
       "category": {
         "descriptor": {
-          "code": "orthopaedic"
+          "name": "cardiology"
         }
       },
       "item": {
         "descriptor": {
-          "code": "consultation"
+          "name": "ecg"
         }
       }
     }

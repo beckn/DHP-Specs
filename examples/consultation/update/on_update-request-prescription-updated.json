@@ -46,6 +46,43 @@
           "fulfillment_ids": [
             "ful-01"
           ]
+        },
+        {
+          "descriptor": {
+            "code": "prescription-test",
+            "name": "X-Ray scan",
+            "short_desc": "To check for fractures in your right knee"
+          }
+        },
+        {
+          "descriptor": {
+            "code": "prescription-medication",
+            "name": "Paracetamol 650mg",
+            "short_desc": "1 tab X 3 times a day for 7 days"
+          },
+          "quantity": {
+            "available": {
+              "measure": {
+                "value": "3",
+                "unit": "units"
+              }
+            }
+          }
+        },
+        {
+          "descriptor": {
+            "code": "prescription-medication",
+            "name": "Zintac 150mg",
+            "short_desc": "1 tab after dinner for 3 days"
+          },
+          "quantity": {
+            "available": {
+              "measure": {
+                "value": "1",
+                "unit": "units"
+              }
+            }
+          }
         }
       ],
       "fulfillments": [
@@ -62,8 +99,8 @@
           },
           "state": {
             "descriptor": {
-              "code": "billing-updated",
-              "name": "The billing information has been updated"
+              "code": "prescription-updated",
+              "name": "The prescription information has been updated"
             }
           },
           "agent": {

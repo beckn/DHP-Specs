@@ -8,7 +8,7 @@
     },
     "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
     "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
-    "action": "on_update",
+    "action": "on_init",
     "timestamp": "2023-05-25T05:23:03.443Z",
     "version": "1.1.0",
     "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
@@ -19,28 +19,27 @@
   },
   "message": {
     "order": {
-      "id": "759b905c-5a30-4d18-a6af-0decbac9282f",
       "provider": {
         "id": "289edce4-d002-4962-b311-4c025e22b4f6",
         "descriptor": {
-          "name": "Example Hospitals",
-          "short_desc": "Example Hospitals Pvt Ltd",
+          "name": "GioLabs Pvt Ltd",
+          "short_desc": "X-rays, tests and more",
           "images": [
             {
-              "url": "https://ExampleHospitals.in/images/logo.png"
+              "url": "https://giolabs.in/images/logo.png"
             }
           ]
         }
       },
       "items": [
         {
-          "id": "cons-01",
+          "id": "cardiology-01",
           "descriptor": {
-            "code": "consultation",
-            "name": "Consultation"
+            "code": "ecg",
+            "name": "Electrocardiogram test"
           },
           "price": {
-            "value": "300",
+            "value": "3000",
             "currency": "INR"
           },
           "fulfillment_ids": [
@@ -60,14 +59,9 @@
               "dob": "1995-09-11"
             }
           },
-          "state": {
-            "descriptor": {
-              "code": "billing-updated",
-              "name": "The billing information has been updated"
-            }
-          },
           "agent": {
             "person": {
+              "id": "1",
               "name": "Dr Asthana",
               "gender": "male",
               "creds": {
@@ -93,37 +87,67 @@
                 "gps": "12.9164682,77.6089985"
               }
             }
-          ]
+          ],
+          "state": {
+            "descriptor": {
+              "code": "appointment-booked",
+              "name": "Your appointment has been booked"
+            }
+          }
         }
       ],
-      "billing": {
-        "name": "John Doe",
-        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
-        "email": "john.doe@example.com",
-        "phone": "+91-9999999999"
-      },
       "quote": {
         "price": {
-          "value": "300",
+          "value": "3000",
           "currency": "INR"
         },
         "breakup": [
           {
-            "title": "General Physician Consultation",
+            "title": "ECG Procedure",
             "price": {
               "currency": "INR",
-              "value": "300"
+              "value": "3000"
+            }
+          },
+          {
+            "title": "taxes",
+            "price": {
+              "currency": "INR",
+              "value": "30"
             }
           }
         ]
       },
+      "billing": {
+        "name": "Rajesh Kumar",
+        "address": "Villa 5, Green Valley, Malleshwaram, 560012",
+        "email": "rajesh.kumar@example.com",
+        "phone": "+91-9999999999"
+      },
       "payments": [
         {
           "type": "PRE-FULFILLMENT",
-          "status": "PAID",
+          "status": "NOT-PAID",
           "params": {
-            "amount": "300",
+            "url": "payto://ban/98273982749428?amount=INR:3030&ifsc=SBIN0000575&message=payment",
+            "amount": "3030",
             "currency": "INR"
+          }
+        }
+      ],
+      "cancellation_terms": [
+        {
+          "fulfillment_state": {
+            "descriptor": {
+              "code": "in-progress"
+            }
+          },
+          "cancellation_fee": {
+            "percentage": "30%"
+          },
+          "external_ref": {
+            "mimetype": "text/html",
+            "url": "https://giolabs.in/charge/tnc.html"
           }
         }
       ]

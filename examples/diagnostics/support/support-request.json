@@ -8,25 +8,20 @@
     },
     "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
     "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
-    "action": "search",
+    "action": "support",
     "timestamp": "2023-05-25T05:23:03.443Z",
     "version": "1.1.0",
     "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
     "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
     "ttl": "PT10M"
   },
   "message": {
-    "intent": {
-      "category": {
-        "descriptor": {
-          "code": "orthopaedic"
-        }
-      },
-      "item": {
-        "descriptor": {
-          "code": "consultation"
-        }
-      }
+    "support": {
+      "order_id": "be69bb43-8286-48b4-801f-a8c5b41ad450",
+      "phone": "+919876543210",
+      "email": "john.doe@gmail.com"
     }
   }
 }

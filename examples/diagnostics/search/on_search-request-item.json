@@ -1,0 +1,151 @@
+{
+  "context": {
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_search",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
+  },
+  "message": {
+    "catalog": {
+      "descriptor": {
+        "name": "Diagnostic services"
+      },
+      "providers": [
+        {
+          "id": "289edce4-d002-4962-b311-4c025e22b4f6",
+          "descriptor": {
+            "name": "GioLabs Pvt Ltd",
+            "short_desc": "X-rays, tests and more",
+            "images": [
+              {
+                "url": "https://giolabs.in/images/logo.png"
+              }
+            ]
+          },
+          "categories": [
+            {
+              "id": "cat-01",
+              "descriptor": {
+                "code": "cardiology",
+                "name": "Cardiology"
+              }
+            },
+            {
+              "id": "cat-02",
+              "descriptor": {
+                "code": "orthopaedic",
+                "name": "Orthopaedic"
+              }
+            },
+            {
+              "id": "cat-03",
+              "descriptor": {
+                "code": "ent",
+                "name": "ENT"
+              }
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": "ful-01",
+              "type": "OPD",
+              "agent": {
+                "person": {
+                  "id": "1",
+                  "name": "Dr Asthana",
+                  "gender": "male",
+                  "creds": {
+                    "id": "uhiId:237402938409485039850935"
+                  }
+                }
+              },
+              "stops": [
+                {
+                  "type": "start",
+                  "time": {
+                    "timestamp": "2023-08-10T11:00:00Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "time": {
+                    "timestamp": "2023-08-10T11:30:00Z"
+                  }
+                },
+                {
+                  "location": {
+                    "gps": "12.9164682,77.6089985"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "ful-02",
+              "type": "OPD",
+              "agent": {
+                "person": {
+                  "id": "2",
+                  "name": "Dr Bhargava",
+                  "gender": "female",
+                  "creds": {
+                    "id": "uhiId:237402938409485039850935"
+                  }
+                }
+              },
+              "stops": [
+                {
+                  "type": "start",
+                  "time": {
+                    "timestamp": "2023-08-10T11:00:00Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "time": {
+                    "timestamp": "2023-08-10T11:30:00Z"
+                  }
+                },
+                {
+                  "location": {
+                    "gps": "12.9164682,77.6089985"
+                  }
+                }
+              ]
+            }
+          ],
+          "items": [
+            {
+              "id": "cardiology-01",
+              "descriptor": {
+                "code": "ecg",
+                "name": "Electrocardiogram test"
+              },
+              "price": {
+                "value": "3000",
+                "currency": "INR"
+              },
+              "category_ids": [
+                "cat-01"
+              ],
+              "fulfillment_ids": [
+                "ful-01"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

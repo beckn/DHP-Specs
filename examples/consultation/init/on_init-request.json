@@ -118,10 +118,9 @@
       },
       "payments": [
         {
-          "type": "PRE-FULFILLMENT",
+          "type": "ON-FULFILLMENT",
           "status": "NOT-PAID",
           "params": {
-            "url": "payto://ban/98273982749428?amount=INR:300&ifsc=SBIN0000575&message=payment",
             "amount": "300",
             "currency": "INR"
           }

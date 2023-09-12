@@ -26,11 +26,11 @@
         {
           "id": "289edce4-d002-4962-b311-4c025e22b4f6",
           "descriptor": {
-            "name": "Example Hospitals",
-            "short_desc": "Example Hospitals Pvt Ltd",
+            "name": "GioLabs Pvt Ltd",
+            "short_desc": "X-rays, tests and more",
             "images": [
               {
-                "url": "https://ExampleHospitals.in/images/logo.png"
+                "url": "https://giolabs.in/images/logo.png"
               }
             ]
           },
@@ -63,9 +63,12 @@
               "type": "OPD",
               "agent": {
                 "person": {
-                  "id": "237402938409485039850935",
+                  "id": "1",
                   "name": "Dr Asthana",
-                  "gender": "male"
+                  "gender": "male",
+                  "creds": {
+                    "id": "uhiId:237402938409485039850935"
+                  }
                 }
               },
               "stops": [
@@ -73,16 +76,15 @@
                   "type": "start",
                   "time": {
                     "timestamp": "2023-08-10T11:00:00Z"
-                  },
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
                   }
                 },
                 {
                   "type": "end",
                   "time": {
                     "timestamp": "2023-08-10T11:30:00Z"
-                  },
+                  }
+                },
+                {
                   "location": {
                     "gps": "12.9164682,77.6089985"
                   }
@@ -94,39 +96,6 @@
               "type": "OPD",
               "agent": {
                 "person": {
-                  "id": "237402938409485039850935",
-                  "name": "Dr Asthana",
-                  "gender": "male",
-                  "creds": {
-                    "id": "uhiId:"
-                  }
-                }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T09:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T09:30:00Z"
-                  }
-                },
-                {
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "ful-03",
-              "type": "OPD",
-              "agent": {
-                "person": {
                   "id": "2",
                   "name": "Dr Bhargava",
                   "gender": "female",
@@ -146,39 +115,6 @@
                   "type": "end",
                   "time": {
                     "timestamp": "2023-08-10T11:30:00Z"
-                  }
-                },
-                {
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "ful-04",
-              "type": "OPD",
-              "agent": {
-                "person": {
-                  "id": "2",
-                  "name": "Dr Bhargava",
-                  "gender": "female",
-                  "creds": {
-                    "id": "uhiId:237402938409485039850935"
-                  }
-                }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T10:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T10:30:00Z"
                   }
                 },
                 {
@@ -191,30 +127,64 @@
           ],
           "items": [
             {
-              "id": "cons-01",
+              "id": "cardiology-01",
               "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
+                "code": "ecg",
+                "name": "Electrocardiogram test"
               },
               "price": {
-                "value": "300",
+                "value": "3000",
                 "currency": "INR"
               },
               "category_ids": [
-                "cat-02"
+                "cat-01"
               ],
               "fulfillment_ids": [
                 "ful-01"
               ]
             },
             {
-              "id": "cons-02",
+              "id": "cardiology-02",
               "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
+                "code": "echo",
+                "name": "Echo test"
               },
               "price": {
-                "value": "300",
+                "value": "5000",
+                "currency": "INR"
+              },
+              "category_ids": [
+                "cat-01"
+              ],
+              "fulfillment_ids": [
+                "ful-01"
+              ]
+            },
+            {
+              "id": "cardiology-03",
+              "descriptor": {
+                "code": "lipid-profile",
+                "name": "Lipid profile test"
+              },
+              "price": {
+                "value": "1500",
+                "currency": "INR"
+              },
+              "category_ids": [
+                "cat-01"
+              ],
+              "fulfillment_ids": [
+                "ful-01"
+              ]
+            },
+            {
+              "id": "orthopaedic-01",
+              "descriptor": {
+                "code": "x-ray",
+                "name": "X Ray"
+              },
+              "price": {
+                "value": "5000",
                 "currency": "INR"
               },
               "category_ids": [
@@ -222,40 +192,6 @@
               ],
               "fulfillment_ids": [
                 "ful-02"
-              ]
-            },
-            {
-              "id": "cons-03",
-              "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
-              },
-              "price": {
-                "value": "300",
-                "currency": "INR"
-              },
-              "category_ids": [
-                "cat-02"
-              ],
-              "fulfillment_ids": [
-                "ful-03"
-              ]
-            },
-            {
-              "id": "cons-04",
-              "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
-              },
-              "price": {
-                "value": "300",
-                "currency": "INR"
-              },
-              "category_ids": [
-                "cat-02"
-              ],
-              "fulfillment_ids": [
-                "ful-04"
               ]
             }
           ]

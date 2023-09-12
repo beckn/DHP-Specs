@@ -19,12 +19,32 @@
     "intent": {
       "category": {
         "descriptor": {
-          "code": "orthopaedic"
+          "code": "cardiology"
+        }
+      },
+      "location": {
+        "gps": "12.423423,77.325647",
+        "radius": {
+          "type": "CONSTANT",
+          "value": "5",
+          "unit": "km"
         }
       },
       "item": {
         "descriptor": {
-          "code": "consultation"
+          "code": "medical-consultation"
+        }
+      },
+      "fulfillment": {
+        "agent": {
+          "person": {
+            "gender": "female",
+            "languages": [
+              {
+                "code": "kannada"
+              }
+            ]
+          }
         }
       }
     }
