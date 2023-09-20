@@ -1,0 +1,107 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_init",
+    "version": "0.7.1",
+    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    }
+  },
+  "message": {
+    "order": {
+      "id": "26492",
+      "state": "PROVISIONALLY_BOOKED",
+      "provider": {
+        "id": "1",
+        "descriptor": {
+          "name": "MAX Hospitals"
+        }
+      },
+      "items": [
+        {
+          "id": "1",
+          "descriptor": {
+            "name": "Blood Donation"
+          },
+          "fulfillment_id": "2",
+          "provider_id": "1",
+          "price": {
+            "currency": "INR",
+            "value": "0"
+          }
+        }
+      ],
+      "billing": {
+        "name": "John Doe",
+        "address": "Door 12, Salarpuria Greenage, Street No 7, Hosur Road, 560068",
+        "email": "john.doe@example.com",
+        "phone": "+91-9999999999"
+      },
+      "fulfillment": {
+        "id": "2",
+        "type": "BLOOD-DONATION",
+        "agent": {
+          "person": {
+            "id": "1",
+            "name": "MAX Blood Bank",
+            "gender": "N/A",
+            "image": "https://image/of/person.png",
+            "creds": [
+              {
+                "id": "smc:13-50839"
+              }
+            ]
+          }
+        },
+        "stops": [
+          {
+            "type": "start",
+            "time": {
+              "timestamp": "T10:15Z"
+            }
+          },
+          {
+            "type": "end",
+            "time": {
+              "timestamp": "T10:30Z"
+            }
+          }
+        ],
+        "customer": {
+          "person": {
+            "id": "61-8787-9274-4422",
+            "creds": [
+              {
+                "url": "example@ndhm"
+              }
+            ]
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "0"
+        },
+        "breakup": [
+          {
+            "title": "blood-donation",
+            "price": {
+              "currency": "INR",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "url": "payto://ban/98273982749428?amount=INR:0&ifsc=SBIN0000575&message=blood-donation",
+        "type": "PRE-ORDER",
+        "status": "NOT-PAID"
+      }
+    }
+  }
+}

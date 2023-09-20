@@ -1,0 +1,24 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "cancel",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://ambulance-service.com",
+    "bpp_uri": "https://ambulance-service.com/beckn/",
+    "transaction_id": "t1c2a3n4c5e6l7-54321",
+    "message_id": "c1a2n3c4e5l6-98765",
+    "timestamp": "2023-09-08T16:45:00.052Z"
+  },
+  "message": {
+    "order_id": "ambulance-booking-123",
+    "cancellation_reason_id": "2",
+    "descriptor": {
+      "short_desc": "Patient Discharged",
+      "long_desc": "The patient has been discharged and no longer requires the ambulance service."
+    }
+  }
+}

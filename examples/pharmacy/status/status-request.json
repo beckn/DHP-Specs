@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "status",
+    "version": "0.7.1",
+    "bap_id": "https://pharmacy-bap.com/",
+    "bap_uri": "https://pharmacy-bap.com/dhp.io",
+    "message_id": "y1234567-z8a9-0b1c-2d3e-4f5g6h7i8j9k",
+    "timestamp": "2023-09-20T14:00:00.052Z",
+    "ttl": "PT5M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order_id": "pharmacy-order-678"
+  }
+}

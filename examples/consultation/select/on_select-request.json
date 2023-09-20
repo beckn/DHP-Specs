@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:084",
+    "action": "on_select",
+    "core_version": "1.1.0",
+    "bap_id": "https://healthconsult-bap.com",
+    "bap_uri": "https://api.healthconsult-bap.com/beckn/",
+    "bpp_id": "https://healthconsult.com",
+    "bpp_uri": "https://api.healthconsult.com/beckn/",
+    "transaction_id": "7i632d81-92a1-4dbd-8274-7c536f9bdf1f",
+    "message_id": "f57cc72e-7c9d-4bb7-a6df-9a53a32ef1c5",
+    "timestamp": "2023-09-15T14:45:00Z"
+  },
+  "message": {
+    "order": {
+      "id": "321654",
+      "items": [
+        {
+          "id": "501",
+          "descriptor": {
+            "name": "General Physician Consultation"
+          },
+          "fulfillment_id": "7",
+          "price": {
+            "currency": "INR",
+            "value": "300"
+          }
+        }
+      ],
+      "provider": {
+        "id": "jkl-healthconsult",
+        "descriptor": {
+          "name": "JKL Health Consultation"
+        }
+      },
+      "fulfillment": {
+        "id": "7",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "Online"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T10:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "Online"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T10:30:00Z"
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "300",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "General Physician Consultation",
+            "price": {
+              "currency": "INR",
+              "value": "300"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "id": "5",
+        "mode": "ONLINE",
+        "status": "PENDING"
+      }
+    }
+  }
+}

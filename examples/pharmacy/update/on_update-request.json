@@ -1,0 +1,89 @@
+{
+  "context": {
+    "country": "IND",
+    "bpp_uri": "https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f",
+    "domain": "nic2004:85110",
+    "timestamp": "2023-09-23T15:30:00.987Z",
+    "bap_id": "example-bap.com",
+    "bpp_id": "example-bpp.com",
+    "transaction_id": "c1a2n3u4p5d6-12345",
+    "message_id": "on_update-pharmacy-1",
+    "city": "std:080",
+    "core_version": "1.1.0",
+    "action": "on_update",
+    "bap_uri": "https://api.example-bap.com/pilot/bap/healthcare/v1"
+  },
+  "message": {
+    "update_target": "order.fulfillment",
+    "order": {
+      "id": "pharmacy-order-1",
+      "provider": {
+        "id": "pharmacy-xyz",
+        "descriptor": {
+          "name": "XYZ Pharmacy"
+        }
+      },
+      "customer": {
+        "id": "customer-mno",
+        "descriptor": {
+          "name": "Jane Doe"
+        }
+      },
+      "items": [
+        {
+          "id": "medicine-002",
+          "descriptor": {
+            "name": "Aspirin 100mg"
+          },
+          "quantity": {
+            "count": "20",
+            "unit": "tablet"
+          }
+        }
+      ],
+      "quote": {
+        "value": "100",
+        "currency": "INR"
+      },
+      "fulfillment": {
+        "id": "fulf_pharmacy-1",
+        "state": {
+          "descriptor": {
+            "code": "READY_FOR_PICKUP",
+            "name": "Ready for Pickup"
+          }
+        },
+        "start": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "street": "XYZ Pharmacy",
+              "area_code": "560008"
+            }
+          }
+        },
+        "end": {
+          "location": {
+            "gps": "12.9715988, 77.5945627",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bengaluru",
+              "street": "XYZ Pharmacy",
+              "area_code": "560008"
+            }
+          }
+        },
+        "agent": {
+          "name": "Agent 3",
+          "phone": "+91-9876543210",
+          "rateable": true,
+          "rating": "4.5"
+        }
+      }
+    }
+  }
+}

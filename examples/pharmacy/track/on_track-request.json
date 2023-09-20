@@ -1,0 +1,27 @@
+{
+  "context": {
+    "country": "IND",
+    "domain": "nic2004:47731",
+    "city": "std:080",
+    "action": "on_track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bpp_id": "https://pharmacy-provider.com",
+    "message_id": "p1h2a3r4m5a6c7y8",
+    "timestamp": "2023-09-08T12:30:00.052Z"
+  },
+  "message": {
+    "tracking": {
+      "content_type": "application/json",
+      "url": "https://pharmacy-provider.com/track/medicine-order-012",
+      "status": "active",
+      "location": {
+        "descriptor": {
+          "name": "HealthPlus Pharmacy"
+        },
+        "gps": "12.971598, 77.594566",
+        "address": "012, Health Road, Koramangala, Bangalore, 560034"
+      }
+    }
+  }
+}

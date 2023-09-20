@@ -1,0 +1,27 @@
+{
+  "context": {
+    "country": "IND",
+    "domain": "nic2004:85110",
+    "city": "std:080",
+    "action": "on_track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bpp_id": "https://bloodbank-provider.com",
+    "message_id": "b1l2o3o4d5b6a7n8k9",
+    "timestamp": "2023-09-08T10:45:00.052Z"
+  },
+  "message": {
+    "tracking": {
+      "content_type": "application/json",
+      "url": "https://bloodbank-provider.com/track/blood-donation-123",
+      "status": "active",
+      "location": {
+        "descriptor": {
+          "name": "ABC Blood Bank"
+        },
+        "gps": "12.971598, 77.594566",
+        "address": "123, Health Street, Koramangala, Bangalore, 560034"
+      }
+    }
+  }
+}

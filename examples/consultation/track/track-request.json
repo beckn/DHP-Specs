@@ -1,0 +1,20 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://healthcareconsultation-provider.com",
+    "bpp_uri": "https://healthcareconsultation-provider.com/beckn/",
+    "transaction_id": "h1e2a3l4t5h6c7o8n9s0u1l2t3a4t5i6o7n",
+    "message_id": "m1n2o3p4-q5r6s7t8u9v0w1x2y3z4",
+    "timestamp": "2023-09-08T11:30:00.052Z"
+  },
+  "message": {
+    "order_id": "healthcare-consultation-456",
+    "callback_url": "https://user-app.com/track/callback"
+  }
+}

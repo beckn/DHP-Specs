@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:86900",
+    "country": "IND",
+    "city": "std:080",
+    "action": "on_init",
+    "core_version": "1.1.0",
+    "bap_id": "https://healthcare-bap.com",
+    "bap_uri": "https://api.healthcare-bap.com/beckn/",
+    "bpp_id": "https://abc-diagnostics.com",
+    "bpp_uri": "https://api.abc-diagnostics.com/beckn/",
+    "transaction_id": "x1y2z3a4-b5c6-d7e8-f9g0-h1i2j3k4l5m6",
+    "message_id": "98765432-dcba-ed98-7654-3210fedcba98",
+    "timestamp": "2023-09-15T14:30:00Z"
+  },
+  "message": {
+    "order": {
+      "items": [
+        {
+          "id": "201",
+          "descriptor": {
+            "name": "Ambulance Service"
+          },
+          "fulfillment_id": "1",
+          "price": {
+            "currency": "INR",
+            "value": "1000"
+          }
+        }
+      ],
+      "provider": {
+        "id": "abc-ambulance",
+        "descriptor": {
+          "name": "ABC Ambulance Service"
+        }
+      },
+      "fulfillment": {
+        "id": "1",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "ABC Ambulance Service"
+            },
+            "gps": "12.9634567, 77.6401234"
+          },
+          "time": {
+            "timestamp": "2023-09-16T10:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "ABC Ambulance Service"
+            },
+            "gps": "12.9634567, 77.6401234"
+          },
+          "time": {
+            "timestamp": "2023-09-16T11:00:00Z"
+          }
+        },
+        "agent": {
+          "name": "Paramedic John",
+          "rateable": true,
+          "rating": "4.5"
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "1000",
+          "currency": "INR"
+        }
+      },
+      "payment": {
+        "id": "1",
+        "type": "ONLINE",
+        "params": {
+          "url": "payto://ban/1234567890?amount=INR:1000&ifsc=ABCD0000123&message=ambulance-payment",
+          "amount": "1000",
+          "currency": "INR",
+          "transaction_status": "NOT-PAID"
+        }
+      }
+    }
+  }
+}

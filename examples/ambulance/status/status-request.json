@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "status",
+    "version": "0.7.1",
+    "bap_id": "https://ambulance-bap.com/",
+    "bap_uri": "https://ambulance-bap.com/dhp.io",
+    "message_id": "a1234567-b8c9-0d1e-2f3g-4h5i6j7k8l9m",
+    "timestamp": "2023-09-20T10:00:00.052Z",
+    "ttl": "PT5M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order_id": "emergency-transport-456"
+  }
+}

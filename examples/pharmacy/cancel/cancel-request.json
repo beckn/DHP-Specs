@@ -1,0 +1,24 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "cancel",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "bpp_id": "https://pharmacy-service.com",
+    "bpp_uri": "https://pharmacy-service.com/beckn/",
+    "transaction_id": "t1c2a3n4c5e6l7-10101",
+    "message_id": "c1a2n3c4e5l6-20202",
+    "timestamp": "2023-09-08T10:30:00.052Z"
+  },
+  "message": {
+    "order_id": "medication-order-567",
+    "cancellation_reason_id": "4",
+    "descriptor": {
+      "short_desc": "Prescription Changed",
+      "long_desc": "The patient's prescription has been changed, and the medication order is no longer valid."
+    }
+  }
+}

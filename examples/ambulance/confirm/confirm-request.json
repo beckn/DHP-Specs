@@ -1,0 +1,60 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "confirm",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "d6c578c1-aa43-4f29-9e1e-82c39b02456d",
+    "timestamp": "2023-09-20T08:45:00.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "id": "ambulance-order-123",
+      "provider": {
+        "id": "ambulance-xyz",
+        "descriptor": {
+          "name": "XYZ Ambulance Service"
+        }
+      },
+      "items": [
+        {
+          "id": "ambulance-ride-123",
+          "descriptor": {
+            "name": "Ambulance Service",
+            "code": "AMBULANCE"
+          },
+          "billing": {
+            "name": "Mary Johnson",
+            "address": "789 Oak Avenue, Townsville, 56789",
+            "city": {
+              "name": "Townsville"
+            },
+            "state": {
+              "name": "Stateland"
+            },
+            "email": "mary.johnson@example.com",
+            "phone": "+1-987-654-3210"
+          },
+          "fulfillment": {
+            "customer": {
+              "person": {
+                "id": "1234-5678-9876-5432",
+                "creds": [
+                  {
+                    "url": "example@ambulanceservice.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

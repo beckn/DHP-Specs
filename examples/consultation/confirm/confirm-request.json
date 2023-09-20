@@ -1,0 +1,60 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "confirm",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "d6c578c1-aa43-4f29-9e1e-82c39b02456d",
+    "timestamp": "2023-09-20T08:45:00.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "id": "consultation-order-123",
+      "provider": {
+        "id": "healthcare-consultation-xyz",
+        "descriptor": {
+          "name": "XYZ Healthcare Consultation"
+        }
+      },
+      "items": [
+        {
+          "id": "consultation-visit-123",
+          "descriptor": {
+            "name": "Telehealth Consultation",
+            "code": "CONSULT"
+          },
+          "billing": {
+            "name": "John Doe",
+            "address": "123 Elm Street, Cityville, 12345",
+            "city": {
+              "name": "Cityville"
+            },
+            "state": {
+              "name": "Stateland"
+            },
+            "email": "john.doe@example.com",
+            "phone": "+1-234-567-8901"
+          },
+          "fulfillment": {
+            "customer": {
+              "person": {
+                "id": "9876-5432-1234-5678",
+                "creds": [
+                  {
+                    "url": "example@xyzhealthcare.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

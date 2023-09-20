@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "status",
+    "version": "0.7.1",
+    "bap_id": "https://healthcareconsultation-bap.com/",
+    "bap_uri": "https://healthcareconsultation-bap.com/dhp.io",
+    "message_id": "z1234567-a8b9-0c1d-2e3f-4g5h6i7j8k9l",
+    "timestamp": "2023-09-20T12:00:00.052Z",
+    "ttl": "PT5M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order_id": "consultation-appointment-012"
+  }
+}

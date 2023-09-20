@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:085",
+    "action": "on_select",
+    "core_version": "1.1.0",
+    "bap_id": "https://medicalsupply-bap.com",
+    "bap_uri": "https://api.medicalsupply-bap.com/beckn/",
+    "bpp_id": "https://medicalsupply.com",
+    "bpp_uri": "https://api.medicalsupply.com/beckn/",
+    "transaction_id": "8j632d81-92a1-4dbd-8274-7c536f9bdf1g",
+    "message_id": "g57cc72e-7c9d-4bb7-a6df-9a53a32ef1c6",
+    "timestamp": "2023-09-15T14:45:00Z"
+  },
+  "message": {
+    "order": {
+      "id": "789123",
+      "items": [
+        {
+          "id": "601",
+          "descriptor": {
+            "name": "Medical Mask (Pack of 50)"
+          },
+          "fulfillment_id": "8",
+          "price": {
+            "currency": "INR",
+            "value": "500"
+          }
+        }
+      ],
+      "provider": {
+        "id": "mno-medicalsupply",
+        "descriptor": {
+          "name": "MNO Medical Supply"
+        }
+      },
+      "fulfillment": {
+        "id": "8",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "MNO Medical Supply Store"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T11:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "Customer Address"
+            },
+            "gps": "12.965365, 77.607297"
+          },
+          "time": {
+            "timestamp": "2023-09-16T12:00:00Z"
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "500",
+          "currency": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Medical Mask (Pack of 50)",
+            "price": {
+              "currency": "INR",
+              "value": "500"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "id": "6",
+        "mode": "ONLINE",
+        "status": "PENDING"
+      }
+    }
+  }
+}
