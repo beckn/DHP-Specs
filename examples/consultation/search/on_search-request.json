@@ -1,0 +1,87 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_search",
+    "version": "0.7.1",
+    "message_id": "85a422c4-2867-4d72-b5f5-d31588e2f7c5",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "289edce4-d002-4962-b311-4c025e22b4f6",
+        "descriptor": {
+          "name": "MAX Hospitals"
+        },
+        "categories": [
+          {
+            "id": "1",
+            "descriptor": {
+              "name": "OPD"
+            }
+          },
+          {
+            "id": "2",
+            "descriptor": {
+              "name": "Diagnostics"
+            }
+          },
+          {
+            "id": "3",
+            "descriptor": {
+              "name": "Emergency"
+            }
+          }
+        ],
+        "fulfillments": [
+          {
+            "id": "1",
+            "type": "DIGITAL-OPD",
+            "agent": {
+              "person": {
+                "id": "1",
+                "name": "Dr Asthana",
+                "gender": "male",
+                "image": "https://image/of/person.png",
+                "creds": [
+                  {
+                    "id": "uhiId:237402938409485039850935"
+                  }
+                ]
+              }
+            },
+            "stops": [
+              {
+                "type": "start",
+                "time": {
+                  "timestamp": "T10:00Z"
+                }
+              },
+              {
+                "type": "end",
+                "time": {
+                  "timestamp": "T10:15Z"
+                }
+              }
+            ]
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "descriptor": {
+              "name": "Consultation"
+            },
+            "category_ids": ["1"],
+            "fulfillment_ids": ["1"]
+          }
+        ]
+      }
+    }
+  }
+}

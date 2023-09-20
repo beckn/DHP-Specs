@@ -1,0 +1,97 @@
+{
+  "context": {
+    "country": "IND",
+    "bpp_uri": "https://api.health-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f",
+    "domain": "nic2004:85110",
+    "timestamp": "2023-09-26T09:45:00.987Z",
+    "bap_id": "health-bap.com",
+    "bpp_id": "healthcare-service-xyz",
+    "transaction_id": "t1c2a3n4c5e6l7-54321",
+    "message_id": "a8n7o6t5h4e3r2-1c0a9n8c7e6l5l4a3t2i1o0n",
+    "city": "std:082",
+    "core_version": "1.1.0",
+    "action": "on_cancel",
+    "bap_uri": "https://api.health-bap.com/pilot/bap/healthcare/v1"
+  },
+  "message": {
+    "order": {
+      "id": "healthcare-123",
+      "provider": {
+        "id": "healthcare-service-xyz",
+        "descriptor": {
+          "name": "XYZ Healthcare Service"
+        }
+      },
+      "patient": {
+        "id": "patient-123",
+        "descriptor": {
+          "name": "John Doe"
+        }
+      },
+      "quote": {
+        "value": "5000",
+        "currency": "INR"
+      },
+      "fulfillment": {
+        "id": "fulf_healthcare-123",
+        "state": {
+          "descriptor": {
+            "code": "SERVICE_CANCELLED",
+            "name": "Service Cancelled"
+          }
+        },
+        "start": {
+          "authorization": {
+            "type": "OTP",
+            "token": "123456"
+          },
+          "location": {
+            "gps": "12.345678, 98.765432",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bangalore",
+              "street": "Hospital Road",
+              "area_code": "560001"
+            }
+          }
+        },
+        "end": {
+          "location": {
+            "gps": "12.345678, 98.765432",
+            "address": {
+              "country": "India",
+              "state": "Karnataka",
+              "city": "Bangalore",
+              "street": "Hospital Road",
+              "area_code": "560001"
+            }
+          }
+        },
+        "agent": {
+          "name": "Dr. Smith",
+          "phone": "+91-9876543210",
+          "rateable": true,
+          "rating": "4.9"
+        }
+      },
+      "payments": [
+        {
+          "id": "t1c2a3n4c5e6l7-8p9a0t1i2e3n4t",
+          "type": "POST-FULFILLMENT",
+          "params": {
+            "amount": "5000",
+            "currency": "INR",
+            "transaction_status": "CANCELLED"
+          }
+        }
+      ],
+      "documents": [
+        {
+          "label": "Cancellation Policy",
+          "url": "https://healthcare-service-xyz/cancellation-policy"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "search",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "transaction_id": "7afe44fd-d947-4a0a-81bc-d286784df2c1",
+    "message_id": "b0dec6a5-f563-41b3-b298-ef5464fda652",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "intent": {
+      "category": {
+        "id": "pharmacy"
+      },
+      "location": {
+        "gps": "12.423423,77.325647",
+        "radius": {
+          "value": "200",
+          "unit": "m"
+        }
+      }
+    }
+  }
+}

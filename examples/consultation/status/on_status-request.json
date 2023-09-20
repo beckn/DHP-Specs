@@ -1,0 +1,114 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_status",
+    "version": "0.7.1",
+    "message_id": "45a422c4-2867-4d72-b5f5-d31588e2f7c7",
+    "timestamp": "2023-07-16T18:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "7ad631e4-01e7-44e1-a999-db41ef0ae4f8"
+  },
+  "message": {
+    "order": {
+      "id": "26494",
+      "provider": {
+        "id": "3",
+        "descriptor": {
+          "name": "HealthFirst Consultation Services"
+        }
+      },
+      "state": "ONGOING",
+      "items": [
+        {
+          "id": "3",
+          "descriptor": {
+            "name": "Health Consultation"
+          },
+          "fulfillment_id": "4",
+          "provider_id": "3"
+        }
+      ],
+      "billing": {
+        "name": "Jack Doe",
+        "address": "Door 16, Salarpuria Greenage, Street No 11, Hosur Road, 560070",
+        "email": "jack.doe@example.com",
+        "phone": "+91-7777777777"
+      },
+      "fulfillment": {
+        "id": "4",
+        "type": "DIGITAL-CONSULTATION",
+        "person": {
+          "id": "3",
+          "name": "Dr Gupta",
+          "gender": "male",
+          "image": "https://image/of/person3.png",
+          "creds": [
+            {
+              "id": "smc:13-50841"
+            }
+          ]
+        },
+        "state": {
+          "descriptor": {
+            "code": "CONSULTATION_ONGOING"
+          }
+        },
+        "stops": [
+          {
+            "type": "start",
+            "time": {
+              "timestamp": "T12:15Z"
+            }
+          },
+          {
+            "type": "end",
+            "time": {
+              "timestamp": "T12:30Z"
+            }
+          }
+        ],
+        "customer": {
+          "person": {
+            "creds": [
+              {
+                "type": "health_id",
+                "id": "81-8787-9274-4424"
+              },
+              {
+                "type": "phr_address",
+                "url": "example3@ndhm"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "teleconf_url": "https://www.healthfirst.com/consultation/jackdoe"
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "500"
+        },
+        "breakup": [
+          {
+            "title": "consultation_charge",
+            "price": {
+              "currency": "INR",
+              "value": "500"
+            }
+          }
+        ]
+      },
+      "payment": {
+        "url": "payto://ban/98273982749430?amount=INR:500&ifsc=SBIN0000577&message=thanks",
+        "type": "PRE-ORDER",
+        "status": "PAID"
+      }
+    }
+  }
+}

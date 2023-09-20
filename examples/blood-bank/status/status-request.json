@@ -1,0 +1,19 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "status",
+    "version": "0.7.1",
+    "bap_id": "https://bloodbank-bap.com/",
+    "bap_uri": "https://bloodbank-bap.com/dhp.io",
+    "message_id": "n1234567-o8p9-0q1r-2s3t-4u5v6w7x8y9z",
+    "timestamp": "2023-09-20T11:00:00.052Z",
+    "ttl": "PT5M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order_id": "blood-donation-789"
+  }
+}

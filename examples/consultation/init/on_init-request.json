@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "on_init",
+    "core_version": "1.1.0",
+    "bap_id": "https://healthcare-bap.com",
+    "bap_uri": "https://api.healthcare-bap.com/beckn/",
+    "bpp_id": "https://clinic-hospital.com",
+    "bpp_uri": "https://api.clinic-hospital.com/beckn/",
+    "transaction_id": "a1b2c3d4-5678-90e1-2f3g-4h56i7j8k9l0",
+    "message_id": "12345678-abcd-ef90-1234-567890abcdef",
+    "timestamp": "2023-09-15T12:00:00Z"
+  },
+  "message": {
+    "order": {
+      "items": [
+        {
+          "id": "101",
+          "descriptor": {
+            "name": "Appointment with Dr. Smith"
+          },
+          "fulfillment_id": "1",
+          "price": {
+            "currency": "INR",
+            "value": "300"
+          }
+        }
+      ],
+      "provider": {
+        "id": "xyz-clinic",
+        "descriptor": {
+          "name": "XYZ Clinic"
+        }
+      },
+      "fulfillment": {
+        "id": "1",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Clinic"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T14:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Clinic"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T15:00:00Z"
+          }
+        },
+        "agent": {
+          "name": "Dr. John Smith",
+          "rateable": true,
+          "rating": "4.8"
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "300",
+          "currency": "INR"
+        }
+      },
+      "payment": {
+        "id": "1",
+        "type": "ONLINE",
+        "params": {
+          "url": "payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello",
+          "amount": "300",
+          "currency": "INR",
+          "transaction_status": "NOT-PAID"
+        }
+      }
+    }
+  }
+}

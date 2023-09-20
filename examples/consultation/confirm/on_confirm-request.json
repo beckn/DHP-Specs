@@ -1,0 +1,119 @@
+{
+  "context": {
+    "domain": "nic2004:47112",
+    "action": "on_confirm",
+    "version": "1.0.0",
+    "message_id": "a48b1be2-42a7-4b45-bc4e-2e89b86f7e6d",
+    "timestamp": "2023-08-21T12:30:00.000Z",
+    "ttl": "PT15M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    },
+    "transaction_id": "e3ddbbec-8a95-4b68-bf2c-3c087b92c3b0"
+  },
+  "message": {
+    "order": {
+      "id": "healthcare-consultation-789",
+      "provider": {
+        "id": "healthcare-consultation-xyz",
+        "descriptor": {
+          "name": "XYZ Healthcare Consultation"
+        }
+      },
+      "items": [
+        {
+          "id": "telehealth-consultation-123",
+          "descriptor": {
+            "name": "Telehealth Consultation"
+          },
+          "fulfillment_id": "fulf_healthcare-consultation-123",
+          "provider_id": "healthcare-consultation-xyz"
+        }
+      ],
+      "billing": {
+        "name": "John Doe",
+        "address": "123 Elm Street, Cityville, 12345",
+        "email": "john.doe@example.com",
+        "phone": "+91-8888888888"
+      },
+      "fulfillment": {
+        "id": "fulf_healthcare-consultation-123",
+        "type": "DIGITAL",
+        "agent": {
+          "person": {
+            "id": "healthcare-provider-123",
+            "name": "Dr. Smith",
+            "gender": "male",
+            "image": "https://example.com/drsmith.png",
+            "creds": [
+              {
+                "id": "pdc:12345"
+              }
+            ]
+          },
+          "state": {
+            "descriptor": {
+              "code": "CONFIRMED"
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "time": {
+                "timestamp": "T14:00Z"
+              }
+            },
+            {
+              "type": "end",
+              "time": {
+                "timestamp": "T14:15Z"
+              }
+            }
+          ],
+          "customer": {
+            "person": {
+              "id": "patient-123",
+              "creds": [
+                {
+                  "url": "example@healthcareconsultation.com"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "quote": {
+        "price": {
+          "currency": "INR",
+          "value": "120"
+        },
+        "breakup": [
+          {
+            "title": "consultation_fee",
+            "price": {
+              "currency": "INR",
+              "value": 100
+            }
+          },
+          {
+            "title": "service_fee",
+            "price": {
+              "currency": "INR",
+              "value": 20
+            }
+          }
+        ]
+      },
+      "payment": {
+        "type": "PREPAID",
+        "status": "PAID",
+        "params": {
+          "amount": "120",
+          "currency": "INR",
+          "transaction_status": "SUCCESS"
+        }
+      }
+    }
+  }
+}

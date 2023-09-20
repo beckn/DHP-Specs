@@ -1,0 +1,27 @@
+{
+  "context": {
+    "country": "IND",
+    "domain": "nic2004:85110",
+    "city": "std:080",
+    "action": "on_track",
+    "core_version": "1.1.0",
+    "bap_id": "https://example-bap.com/",
+    "bpp_id": "https://healthcareconsultation-provider.com",
+    "message_id": "h1e2a3l4t5h6c7o8n9s0u1l2t3a4t5i6o7n",
+    "timestamp": "2023-09-08T11:30:00.052Z"
+  },
+  "message": {
+    "tracking": {
+      "content_type": "application/json",
+      "url": "https://healthcareconsultation-provider.com/track/healthcare-consultation-456",
+      "status": "active",
+      "location": {
+        "descriptor": {
+          "name": "XYZ Health Consultation"
+        },
+        "gps": "12.971598, 77.594566",
+        "address": "456, Wellness Road, Koramangala, Bangalore, 560034"
+      }
+    }
+  }
+}

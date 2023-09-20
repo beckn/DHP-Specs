@@ -1,0 +1,56 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "init",
+    "version": "0.7.1",
+    "bap_id": "https://example-bap.com/",
+    "bap_uri": "https://example-bap.com/dhp.io",
+    "message_id": "2e1f0ce3-91e3-43f4-b2b6-1a8f64ea7bb1",
+    "timestamp": "2023-07-22T10:45:00.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "city": "std:080",
+      "country": "IND"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "blood-bank-provider-123",
+        "descriptor": {
+          "name": "ABC Blood Bank"
+        }
+      },
+      "items": [
+        {
+          "id": "blood-bag-123",
+          "fulfillment_id": ["fulf_blood-bag-123"]
+        }
+      ],
+      "billing": {
+        "name": "Jane Doe",
+        "address": "Flat 102, Serene Springs, JP Nagar, 560078",
+        "city": {
+          "name": "Bangalore"
+        },
+        "state": {
+          "name": "Karnataka"
+        },
+        "email": "jane.doe@example.com",
+        "phone": "+91-8888888888"
+      },
+      "fulfillment": {
+        "customer": {
+          "person": {
+            "id": "donor-123",
+            "creds": [
+              {
+                "url": "donor@example.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

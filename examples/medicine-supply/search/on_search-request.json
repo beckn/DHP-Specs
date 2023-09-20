@@ -1,0 +1,58 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "action": "on_search",
+    "version": "0.7.1",
+    "message_id": "9ed9a4a2-0f29-4b29-899f-5e8345684eef",
+    "timestamp": "2023-07-16T16:00:24.052Z",
+    "ttl": "PT10M",
+    "location": {
+      "country": "IND",
+      "city": "std:080"
+    }
+  },
+  "message": {
+    "order": {
+      "provider": {
+        "id": "3a27d0df-821c-4ed5-aeb2-450e1e2e28cc",
+        "descriptor": {
+          "name": "MediCare Supplies"
+        },
+        "categories": [
+          {
+            "id": "6",
+            "descriptor": {
+              "name": "Medical Supply"
+            }
+          }
+        ],
+        "fulfillments": [
+          {
+            "id": "1",
+            "type": "MEDICAL-SUPPLY-SERVICE",
+            "agent": {
+              "facility": {
+                "id": "2",
+                "name": "MediCare Supply Store"
+              },
+              "schedule": [
+                {
+                  "type": "start",
+                  "time": {
+                    "timestamp": "2023-09-15T08:00:00Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "time": {
+                    "timestamp": "2023-09-15T18:00:00Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

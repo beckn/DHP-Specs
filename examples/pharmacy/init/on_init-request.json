@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "nic2004:85110",
+    "country": "IND",
+    "city": "std:080",
+    "action": "on_init",
+    "core_version": "1.1.0",
+    "bap_id": "https://healthcare-bap.com",
+    "bap_uri": "https://api.healthcare-bap.com/beckn/",
+    "bpp_id": "https://xyz-pharmacy.com",
+    "bpp_uri": "https://api.xyz-pharmacy.com/beckn/",
+    "transaction_id": "p1h2a3r4m5a6c7y8-12345",
+    "message_id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+    "timestamp": "2023-09-15T15:30:00Z"
+  },
+  "message": {
+    "order": {
+      "items": [
+        {
+          "id": "301",
+          "descriptor": {
+            "name": "Medicine - Aspirin"
+          },
+          "fulfillment_id": "1",
+          "price": {
+            "currency": "INR",
+            "value": "50"
+          }
+        }
+      ],
+      "provider": {
+        "id": "xyz-pharmacy",
+        "descriptor": {
+          "name": "XYZ Pharmacy"
+        }
+      },
+      "fulfillment": {
+        "id": "1",
+        "start": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Pharmacy"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T16:00:00Z"
+          }
+        },
+        "end": {
+          "location": {
+            "descriptor": {
+              "name": "XYZ Pharmacy"
+            },
+            "gps": "12.9611159, 77.6388509"
+          },
+          "time": {
+            "timestamp": "2023-09-16T17:00:00Z"
+          }
+        },
+        "agent": {
+          "name": "Pharmacist Jane",
+          "rateable": true,
+          "rating": "4.5"
+        }
+      },
+      "quote": {
+        "price": {
+          "value": "50",
+          "currency": "INR"
+        }
+      },
+      "payment": {
+        "id": "1",
+        "type": "ONLINE",
+        "params": {
+          "url": "payto://ban/7890123456?amount=INR:50&ifsc=ABCD0000123&message=pharmacy-payment",
+          "amount": "50",
+          "currency": "INR",
+          "transaction_status": "NOT-PAID"
+        }
+      }
+    }
+  }
+}
