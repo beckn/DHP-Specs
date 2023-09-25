@@ -70,7 +70,18 @@
         "address": "Apt 303, Maple Towers, Richmond Road, 560001",
         "email": "alice.smith@example.com",
         "phone": "+91-7777777777"
-      }
+      },
+      "docs": [
+        {
+          "descriptor": {
+            "code": "prescription",
+            "name": "Medicine prescription",
+            "short_desc": "Prescription uploaded here"
+          },
+          "mime_type": "application/json",
+          "url": "https://quickpharma.in/prescription/04389d8c-6a50-4664-9c08-4ee45fef44e8.json"
+        }
+      ]
     }
   }
 }

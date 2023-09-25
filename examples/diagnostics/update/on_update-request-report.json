@@ -91,8 +91,8 @@
           ],
           "state": {
             "descriptor": {
-              "code": "billing-updated",
-              "name": "The billing details have been updated"
+              "code": "report-updated",
+              "name": "The report has been updated"
             }
           }
         }
@@ -149,6 +149,17 @@
             "mimetype": "text/html",
             "url": "https://giolabs.in/charge/tnc.html"
           }
+        }
+      ],
+      "docs": [
+        {
+          "descriptor": {
+            "code": "diagnostic-report",
+            "name": "Diagnostic",
+            "short_desc": "Download your report here"
+          },
+          "mime_type": "application/json",
+          "url": "https://giolabs.in/report/04389d8c-6a50-4664-9c08-4ee45fef44e8.json"
         }
       ]
     }

@@ -65,29 +65,40 @@
                 "person": {
                   "id": "237402938409485039850935",
                   "name": "Dr Asthana",
-                  "gender": "male"
+                  "gender": "male",
+                  "creds": [
+                    {
+                      "id": "237402938409485039850935",
+                      "type": "VerifiableCredential",
+                      "url": "https://www.aiims.com/honours/237402938409485039850935"
+                    }
+                  ],
+                  "languages": [
+                    {
+                      "code": "hindi",
+                      "name": "Hindi"
+                    },
+                    {
+                      "code": "english",
+                      "name": "English"
+                    },
+                    {
+                      "code": "kannada",
+                      "name": "Kannada"
+                    }
+                  ],
+                  "skills": [
+                    {
+                      "code": "mbbs",
+                      "name": "MBBS"
+                    },
+                    {
+                      "code": "md",
+                      "name": "MD"
+                    }
+                  ]
                 }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T11:00:00Z"
-                  },
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T11:30:00Z"
-                  },
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
+              }
             },
             {
               "id": "ful-02",
@@ -95,98 +106,41 @@
               "agent": {
                 "person": {
                   "id": "237402938409485039850935",
-                  "name": "Dr Asthana",
-                  "gender": "male",
-                  "creds": {
-                    "id": "uhiId:"
-                  }
-                }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T09:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T09:30:00Z"
-                  }
-                },
-                {
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "ful-03",
-              "type": "OPD",
-              "agent": {
-                "person": {
-                  "id": "2",
                   "name": "Dr Bhargava",
                   "gender": "female",
-                  "creds": {
-                    "id": "uhiId:237402938409485039850935"
-                  }
+                  "creds": [
+                    {
+                      "id": "237402938409485039850935",
+                      "type": "VerifiableCredential",
+                      "url": "https://www.aiims.com/honours/237402938409485039850935"
+                    }
+                  ],
+                  "languages": [
+                    {
+                      "code": "hindi",
+                      "name": "Hindi"
+                    },
+                    {
+                      "code": "english",
+                      "name": "English"
+                    },
+                    {
+                      "code": "kannada",
+                      "name": "Kannada"
+                    }
+                  ],
+                  "skills": [
+                    {
+                      "code": "mbbs",
+                      "name": "MBBS"
+                    },
+                    {
+                      "code": "md",
+                      "name": "MD"
+                    }
+                  ]
                 }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T11:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T11:30:00Z"
-                  }
-                },
-                {
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "ful-04",
-              "type": "OPD",
-              "agent": {
-                "person": {
-                  "id": "2",
-                  "name": "Dr Bhargava",
-                  "gender": "female",
-                  "creds": {
-                    "id": "uhiId:237402938409485039850935"
-                  }
-                }
-              },
-              "stops": [
-                {
-                  "type": "start",
-                  "time": {
-                    "timestamp": "2023-08-10T10:00:00Z"
-                  }
-                },
-                {
-                  "type": "end",
-                  "time": {
-                    "timestamp": "2023-08-10T10:30:00Z"
-                  }
-                },
-                {
-                  "location": {
-                    "gps": "12.9164682,77.6089985"
-                  }
-                }
-              ]
+              }
             }
           ],
           "items": [
@@ -194,7 +148,9 @@
               "id": "cons-01",
               "descriptor": {
                 "code": "consultation",
-                "name": "Consultation"
+                "name": "Dr Asthana",
+                "short_desc": "Orthopaedic Surgeon",
+                "long_desc": "About the Doctor: With over 20 years of experience in Orthopaedics"
               },
               "price": {
                 "value": "300",
@@ -211,7 +167,9 @@
               "id": "cons-02",
               "descriptor": {
                 "code": "consultation",
-                "name": "Consultation"
+                "name": "Dr Bhargava",
+                "short_desc": "Orthopaedic Surgeon",
+                "long_desc": "About the Doctor: With over 10 years of experience in Orthopaedics"
               },
               "price": {
                 "value": "300",
@@ -222,40 +180,6 @@
               ],
               "fulfillment_ids": [
                 "ful-02"
-              ]
-            },
-            {
-              "id": "cons-03",
-              "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
-              },
-              "price": {
-                "value": "300",
-                "currency": "INR"
-              },
-              "category_ids": [
-                "cat-02"
-              ],
-              "fulfillment_ids": [
-                "ful-03"
-              ]
-            },
-            {
-              "id": "cons-04",
-              "descriptor": {
-                "code": "consultation",
-                "name": "Consultation"
-              },
-              "price": {
-                "value": "300",
-                "currency": "INR"
-              },
-              "category_ids": [
-                "cat-02"
-              ],
-              "fulfillment_ids": [
-                "ful-04"
               ]
             }
           ]

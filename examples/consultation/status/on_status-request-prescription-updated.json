@@ -37,7 +37,9 @@
           "id": "cons-01",
           "descriptor": {
             "code": "consultation",
-            "name": "Consultation"
+            "name": "Dr Asthana",
+            "short_desc": "Orthopaedic Surgeon",
+            "long_desc": "About the Doctor: With over 20 years of experience in Orthopaedics"
           },
           "price": {
             "value": "300",
@@ -68,11 +70,16 @@
           },
           "agent": {
             "person": {
+              "id": "237402938409485039850935",
               "name": "Dr Asthana",
               "gender": "male",
-              "creds": {
-                "id": "uhiId:237402938409485039850935"
-              }
+              "creds": [
+                {
+                  "id": "237402938409485039850935",
+                  "type": "VerifiableCredential",
+                  "url": "https://www.aiims.com/honours/237402938409485039850935"
+                }
+              ]
             }
           },
           "stops": [
@@ -80,15 +87,16 @@
               "type": "start",
               "time": {
                 "timestamp": "2023-08-10T11:00:00Z"
+              },
+              "location": {
+                "gps": "12.9164682,77.6089985"
               }
             },
             {
               "type": "end",
               "time": {
-                "timestamp": "2023-08-10T11:30:00Z"
-              }
-            },
-            {
+                "timestamp": "2023-08-10T11:59:00Z"
+              },
               "location": {
                 "gps": "12.9164682,77.6089985"
               }
@@ -104,7 +112,7 @@
       },
       "quote": {
         "price": {
-          "value": "300",
+          "value": "350",
           "currency": "INR"
         },
         "breakup": [
@@ -114,15 +122,22 @@
               "currency": "INR",
               "value": "300"
             }
+          },
+          {
+            "title": "Slot surcharge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
+            }
           }
         ]
       },
       "payments": [
         {
-          "type": "PRE-FULFILLMENT",
-          "status": "PAID",
+          "type": "ON-FULFILLMENT",
+          "status": "NOT-PAID",
           "params": {
-            "amount": "300",
+            "amount": "350",
             "currency": "INR"
           }
         }

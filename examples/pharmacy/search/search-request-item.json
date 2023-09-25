@@ -25,20 +25,16 @@
           "name": "Dolo 650"
         }
       },
+      "location": {
+        "gps": "12.423423,77.325647",
+        "radius": {
+          "type": "CONSTANT",
+          "value": "5",
+          "unit": "km"
+        }
+      },
       "fulfillment": {
-        "type": "IN-STORE-PICKUP",
-        "stops": [
-          {
-            "location": {
-              "gps": "12.423423,77.325647",
-              "radius": {
-                "type": "CONSTANT",
-                "value": "5",
-                "unit": "km"
-              }
-            }
-          }
-        ]
+        "type": "IN-STORE-PICKUP"
       }
     }
   }

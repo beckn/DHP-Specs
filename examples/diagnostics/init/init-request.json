@@ -35,6 +35,7 @@
       },
       "fulfillments": [
         {
+          "id": "ful-01",
           "customer": {
             "person": {
               "name": "Rajesh Kumar",

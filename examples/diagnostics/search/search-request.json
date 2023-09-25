@@ -21,11 +21,6 @@
         "descriptor": {
           "name": "cardiology"
         }
-      },
-      "item": {
-        "descriptor": {
-          "name": "ecg"
-        }
       }
     }
   }

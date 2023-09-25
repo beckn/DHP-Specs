@@ -37,7 +37,9 @@
           "id": "cons-01",
           "descriptor": {
             "code": "consultation",
-            "name": "Consultation"
+            "name": "Dr Asthana",
+            "short_desc": "Orthopaedic Surgeon",
+            "long_desc": "About the Doctor: With over 20 years of experience in Orthopaedics"
           },
           "price": {
             "value": "300",
@@ -46,43 +48,6 @@
           "fulfillment_ids": [
             "ful-01"
           ]
-        },
-        {
-          "descriptor": {
-            "code": "prescription-test",
-            "name": "X-Ray scan",
-            "short_desc": "To check for fractures in your right knee"
-          }
-        },
-        {
-          "descriptor": {
-            "code": "prescription-medication",
-            "name": "Paracetamol 650mg",
-            "short_desc": "1 tab X 3 times a day for 7 days"
-          },
-          "quantity": {
-            "available": {
-              "measure": {
-                "value": "3",
-                "unit": "units"
-              }
-            }
-          }
-        },
-        {
-          "descriptor": {
-            "code": "prescription-medication",
-            "name": "Zintac 150mg",
-            "short_desc": "1 tab after dinner for 3 days"
-          },
-          "quantity": {
-            "available": {
-              "measure": {
-                "value": "1",
-                "unit": "units"
-              }
-            }
-          }
         }
       ],
       "fulfillments": [
@@ -105,11 +70,16 @@
           },
           "agent": {
             "person": {
+              "id": "237402938409485039850935",
               "name": "Dr Asthana",
               "gender": "male",
-              "creds": {
-                "id": "uhiId:237402938409485039850935"
-              }
+              "creds": [
+                {
+                  "id": "237402938409485039850935",
+                  "type": "VerifiableCredential",
+                  "url": "https://www.aiims.com/honours/237402938409485039850935"
+                }
+              ]
             }
           },
           "stops": [
@@ -117,15 +87,16 @@
               "type": "start",
               "time": {
                 "timestamp": "2023-08-10T11:00:00Z"
+              },
+              "location": {
+                "gps": "12.9164682,77.6089985"
               }
             },
             {
               "type": "end",
               "time": {
-                "timestamp": "2023-08-10T11:30:00Z"
-              }
-            },
-            {
+                "timestamp": "2023-08-10T11:59:00Z"
+              },
               "location": {
                 "gps": "12.9164682,77.6089985"
               }
@@ -141,7 +112,7 @@
       },
       "quote": {
         "price": {
-          "value": "300",
+          "value": "350",
           "currency": "INR"
         },
         "breakup": [
@@ -151,17 +122,35 @@
               "currency": "INR",
               "value": "300"
             }
+          },
+          {
+            "title": "Slot surcharge",
+            "price": {
+              "currency": "INR",
+              "value": "50"
+            }
           }
         ]
       },
       "payments": [
         {
-          "type": "PRE-FULFILLMENT",
+          "type": "ON-FULFILLMENT",
           "status": "PAID",
           "params": {
-            "amount": "300",
+            "amount": "350",
             "currency": "INR"
           }
+        }
+      ],
+      "docs": [
+        {
+          "descriptor": {
+            "code": "prescription",
+            "name": "Doctor's prescription",
+            "short_desc": "Download your prescription here"
+          },
+          "mime_type": "application/json",
+          "url": "https://maxhospitals.com/prescription/04389d8c-6a50-4664-9c08-4ee45fef44e8.json"
         }
       ]
     }

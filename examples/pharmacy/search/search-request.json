@@ -20,20 +20,13 @@
       "category": {
         "id": "pharmacy"
       },
-      "fulfillment": {
-        "type": "HOME-DELIVERY",
-        "stops": [
-          {
-            "location": {
-              "gps": "12.423423,77.325647",
-              "radius": {
-                "type": "CONSTANT",
-                "value": "5",
-                "unit": "km"
-              }
-            }
-          }
-        ]
+      "location": {
+        "gps": "12.423423,77.325647",
+        "radius": {
+          "type": "CONSTANT",
+          "value": "5",
+          "unit": "km"
+        }
       }
     }
   }
