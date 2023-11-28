@@ -1,6 +1,6 @@
 [submodule "protocol-specifications/beckn-core"]
 	path = protocol-specifications/beckn-core
 	url = https://github.com/beckn/protocol-specifications
-[submodule "api/protocol-specifications"]
-	path = api/protocol-specifications
+[submodule "api/core"]
+	path = api/core
 	url = https://github.com/beckn/protocol-specifications
