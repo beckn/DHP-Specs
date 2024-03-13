@@ -10,27 +10,34 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 The following recommendations need to be considered when implementing discovery functionality for a DHP BPP
 
 - REQUIRED. The BPP MUST implement the `search` endpoint to receive an `Intent` object sent by BAPs
-- REQUIRED. The BPP MUST return a catalog of DHP products on the `on_search` callback endpoint specified in the `context.bap_uri` field of the `search` request body.
-- REQUIRED. The BPP MUST map its OPD & consultation service to the `Item` schema.
-- REQUIRED. Any DHP service provider-related information like name, logo, short description must be mapped to the `Provider.descriptor` schema
+- REQUIRED. The BPP MUST return a catalog of OPD consultations on the `on_search` callback endpoint specified in the `context.bap_uri` field of the `search` request body.
+- REQUIRED. The BPP MUST map its OPD consultation service to the `Item` schema.
+- REQUIRED. Any OPD Consultant provider-related information like name, logo, short description must be mapped to the `Provider.descriptor` schema
 - REQUIRED. Any form that must be filled before receiving a quotation must be mapped to the `XInput` schema
-- REQUIRED. If the platform wants to group its products under a specific category, it must map each category to the `Category` schema
+- REQUIRED. If the platform wants to group its services under a specific category, it must map each category to the `Category` schema
 - REQUIRED. Any service fulfillment-related information MUST be mapped to the `Fulfillment` schema.
 - REQUIRED. If the BPP does not want to respond to a search request, it MUST return a `ack.status` value equal to `NACK`
 - RECOMMENDED. Upon receiving a `search` request, the BPP SHOULD return a catalog that best matches the intent. This can be done by indexing the catalog against the various probable paths in the `Intent` schema relevant to typical DHP use cases
 
 ### 1.1.2 Recommendations for BAPs
 - REQUIRED. The BAP MUST call the `search` endpoint of the BG to discover multiple BPPs on a network
-- REQUIRED. The BAP MUST implement the `on_search` endpoint to consume the `Catalog` objects containing DHP Products sent by BPPs.
+- REQUIRED. The BAP MUST implement the `on_search` endpoint to consume the `Catalog` objects containing consultation services sent by BPPs.
 - REQUIRED. The BAP MUST expect multiple catalogs sent by the respective DHP Providers on the network
-- REQUIRED. The DHP products can be found in the `Catalog.providers[].items[]` array in the `on_search` request
+- REQUIRED. The consultation services can be found in the `Catalog.providers[].items[]` array in the `on_search` request
 - REQUIRED. If the `catalog.providers[].items[].xinput` object is present, then the BAP MUST redirect the user to, or natively render the form present on the link specified on the `items[].xinput.form.url` field.
 - REQUIRED. If the `catalog.providers[].items[].xinput.required` field is set to `"true"` , then the BAP MUST NOT fire a `select`, `init` or `confirm` call until the form is submitted and a successful response is received
 - RECOMMENDED. If the `catalog.providers[].items[].xinput.required` field is set to `"false"` , then the BAP SHOULD allow the user to skip filling the form
 
+### Discovery Flow
+1. A User log-in to the BAP and make a search request by type of consultation service, category, location or provider
+2. BAP Translate the user's search into /search request and hit the gateway endpoint of search.
+3. Gateway broadcast the search request to different BPPs.
+4. BPP translate the search intent, and send the filtered catalogue to the BAP using /on_search request.
+5. BAP render the result in the UI, so that it becomes visible to the users.
 
-### Example
-A search request for a consultation/OPD service may look like this
+
+### Discovery Example
+A search request for a consultation service may look like this
 ```
 {
     "context": {
@@ -64,7 +71,7 @@ A search request for a consultation/OPD service may look like this
 }
 ```
 
-An example catalog of consultation/OPD service may look like this
+An example catalog of consultation service may look like this
 ```
 {
   "context": {
@@ -205,40 +212,55 @@ An example catalog of consultation/OPD service may look like this
 }
 ```
 
-## 1.2 Application for DHP(Consultation) 
-This section provides recommendations for implementing the APIs related to booking a consultation/OPD service.
+## 1.2 Application for Consultation service 
+This section provides recommendations for implementing the APIs related to booking a consultation service.
 
 ### 1.2.1 Recommendations for BPPs
 
-#### 1.2.1.1 Selecting a DHP service from the catalog
+#### 1.2.1.1 Selecting a consultation service from the catalog
 - REQUIRED. The BPP MUST implement the `select` endpoint on the url specified in the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry.
 - REQUIRED. If the DHP provider has returned a successful acknowledgement to a `select` request, it MUST send the offer encapsulated in an `Order` object
 
-#### 1.2.1.2 Initializing Appointmnet for the consultation
+#### 1.2.1.2 Initializing Appointment for the consultation
 - REQUIRED. The BPP MUST implement the `init` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 - REQUIRED. If the DHP provider has returned a successful acknowledgement to the first `init` request, it MUST send the Xinput form in `on_init`.
 - REQUIRED. The BPP MUST check for a form submission at the URL specified on the `xinput.form.url` before initiating 2nd `on_init` request.
 
 
-#### 1.2.1.3 Confirming the Appointmnet for the consultation
+#### 1.2.1.3 Confirming the Appointment for the consultation
 - REQUIRED. The BPP MUST implement the `confirm` endpoint on the url specified in URL specified in the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 1.2.2 Recommendations for BAPs
 
-#### 1.2.2.1 Selecting a DHP service from the catalog
+#### 1.2.2.1 Selecting a consultation service from the catalog
 - REQUIRED. The BAP MUST implement the `on_select` endpoint on the url specified in the `context.bap_uri` field sent during `select`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
-#### 1.2.2.2  Initializing Appointmnet for the consultation
+#### 1.2.2.2  Initializing Appointment for the consultation
 - REQUIRED. The BAP MUST hit the `init` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. 
 - REQUIRED. The BAP MUST implement the `on_init` endpoint on the url specified in  the `context.bap_uri` field sent during `init`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 - REQUIRED. The BAP user MUST submit the form on the url received from  `on_init`  under `xinput.form.url`.
 
 
-#### 1.2.2.3 Confirming the Appointmnet for the consultation
+#### 1.2.2.3 Confirming the Appointment for the consultation
 - REQUIRED. The BAP MUST hit the `confirm` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. 
 - REQUIRED. The BAP MUST implement the `on_confirm` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `confirm`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 1.2.3 Example Workflow
+1. User select a consultancy service from the catalog.
+2. BAP send /select call to the BPP with product id, provider id and fulfilment id.
+3. BPP returns the detailed information about the service like consultant details, Available time slots, rate card etc, in /on_select.
+4. BAP render the complete information in the service detail page.
+5. User selects the billing details, enter patient details, and select preferred time slot.
+6. BAP send /init call to the BPP with the provided details.
+7. BPP return Xinput form schema in the first /on_init request.
+8. BAP renders the form in the UI and ask user to fill the form.
+9. User fills the form and submit it.
+10. Step 7 ,8 & 9 is only required, if the consultant need some additional details from the patient like previous medical history, etc.
+11. BPP return draft order object which include payment terms, final quotation in the Second /on_init request.
+12. BAP renders the information in the UI.
+13. User complete the payment, if required. ( Payment.type = pre order)
+14. BAP send /confirm call to the BPP with the payment details and order confirmation.
+15. BPP return the confirmed order with order id, using /on_confirm call.
 
 ### 1.2.3 Example Requests
 
@@ -1228,8 +1250,8 @@ Below is an example of an `on_confirm` callback
 }
 ```
 
-## 1.3 Fulfillment of DHP Services
-This section contains recommendations for implementing the APIs related to fulfilling a DHP service
+## 1.3 Fulfillment of Consultation Services
+This section contains recommendations for implementing the APIs related to fulfilling a consultation service
 
 ### 1.3.1 Recommendations for BPPs
 
@@ -1262,6 +1284,24 @@ This section contains recommendations for implementing the APIs related to fulfi
 - REQUIRED. The BAP MUST implement the `on_track` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `track`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 1.3.3 Example Workflow
+#### 1.3.3.1 Status Workflow
+1. The BAP receives new updates on the order status from unsolicted /on_status call.
+2. The User requested for a status update.
+3. The BAP calls /status endpoint of the BPP.
+4. The BPP provides the updated order object in /on_status call.
+
+#### 1.3.3.2 Update Workflow
+1. The User choose to update the order ( For eg. Update Timeslot or Update patient detail).
+2. The BAP calls /update endpoint of the BPP.
+3. The BPP update the order and return updated order object in /on_update call.
+
+#### 1.3.3.3 Cancel Workflow
+1. The User choose to cancel the Order.
+2. The BAP call /get_cancellation_reason endpoint of the BPP.
+3. The BPP respond with cancellation reasons using /cancellation_reason endpoint.
+4. The BAP renders the reasons and user chooses one and proceed with cancellation.
+5. The BAP calls /cancel endpoint of the BPP.
+6. The BPP cancels the order and sends cancellation confirmation in /on_cancel endpoint.
 
 ### 1.3.4 Example Requests
 
@@ -1911,8 +1951,8 @@ Below is an example of an `on_update` callback
 }
 ```
 
-## 1.4 Post-fulfillment of DHP Services
-This section contains recommendations for implementing the APIs after fulfilling a DHP service
+## 1.4 Post-fulfillment of Consultation service
+This section contains recommendations for implementing the APIs after fulfilling a consultation service.
 
 ### 1.4.1 Recommendations for BPPs
 
@@ -1933,6 +1973,21 @@ This section contains recommendations for implementing the APIs after fulfilling
 - REQUIRED. The BAP MUST implement the `on_support` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `support`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 1.4.3 Example Workflow
+#### 1.4.3.1 Rating & Feedback Workflow
+1. User wants to give rating to the doctor.
+2. BAP calls /get_rating_categories API.
+3. BPP provides the available rating categories using /rating_categories API to the BAP.
+4. BAP render the rating category.
+5. BAP provide the rating on a particular category (i.e, Service, Doctor etc).
+6. BAP send the rating to the BPP using /rating API.
+7. BPP acknowledge the rating and provide feedback link to the BAP using /on_rating API.
+8. User might choose to fill the feedback form.
+
+#### 1.4.3.2 Support Workflow
+1. User faces any issue w.r.t to the order or service fulfilment.
+2. User creates a support request.
+3. BAP send /support call to the BPP.
+4. BAP acknowledge the support request and send support contact details using /on_support API call.
 
 ### 1.4.4 Example Requests
 

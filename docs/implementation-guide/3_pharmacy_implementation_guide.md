@@ -4,33 +4,33 @@ This document contains the REQUIRED and RECOMMENDED standard functionality that 
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 [RFC2119].
 
-## 3.1 Discovery of Pharmacy Products
+## 3.1 Discovery of Pharmacy Products (Drugs)
 
 ### 3.1.1 Recommendations for BPPs
 The following recommendations need to be considered when implementing discovery functionality for a DHP BPP
 
 - REQUIRED. The BPP MUST implement the `search` endpoint to receive an `Intent` object sent by BAPs
-- REQUIRED. The BPP MUST return a catalog of DHP products on the `on_search` callback endpoint specified in the `context.bap_uri` field of the `search` request body.
-- REQUIRED. The BPP MUST map its pharmacy items (medicines) to the `Item` schema.
-- REQUIRED. Any DHP service provider-related information like name, logo, short description must be mapped to the `Provider.descriptor` schema
+- REQUIRED. The BPP MUST return a catalog of drugs on the `on_search` callback endpoint specified in the `context.bap_uri` field of the `search` request body.
+- REQUIRED. The BPP MUST map its drugs to the `Item` schema.
+- REQUIRED. Any Pharmacy/Medical Store related information like name, logo, short description must be mapped to the `Provider.descriptor` schema
 - REQUIRED. Any form that must be filled before receiving a quotation must be mapped to the `XInput` schema
-- REQUIRED. If the platform wants to group its products under a specific category, it must map each category to the `Category` schema
-- REQUIRED. Any service fulfillment-related information MUST be mapped to the `Fulfillment` schema.
+- REQUIRED. If the platform wants to group its drugs under a specific category, it must map each category to the `Category` schema
+- REQUIRED. Any delivery related information MUST be mapped to the `Fulfillment` schema.
 - REQUIRED. If the BPP does not want to respond to a search request, it MUST return a `ack.status` value equal to `NACK`
 - RECOMMENDED. Upon receiving a `search` request, the BPP SHOULD return a catalog that best matches the intent. This can be done by indexing the catalog against the various probable paths in the `Intent` schema relevant to typical DHP use cases
 
 ### 3.1.2 Recommendations for BAPs
 - REQUIRED. The BAP MUST call the `search` endpoint of the BG to discover multiple BPPs on a network
-- REQUIRED. The BAP MUST implement the `on_search` endpoint to consume the `Catalog` objects containing DHP Products sent by BPPs.
-- REQUIRED. The BAP MUST expect multiple catalogs sent by the respective DHP Providers on the network
-- REQUIRED. The DHP products can be found in the `Catalog.providers[].items[]` array in the `on_search` request
+- REQUIRED. The BAP MUST implement the `on_search` endpoint to consume the `Catalog` objects containing drugs sent by BPPs.
+- REQUIRED. The BAP MUST expect multiple catalogs sent by the respective pharmacies on the network
+- REQUIRED. The Drugs can be found in the `Catalog.providers[].items[]` array in the `on_search` request
 - REQUIRED. If the `catalog.providers[].items[].xinput` object is present, then the BAP MUST redirect the user to, or natively render the form present on the link specified on the `items[].xinput.form.url` field.
 - REQUIRED. If the `catalog.providers[].items[].xinput.required` field is set to `"true"` , then the BAP MUST NOT fire a `select`, `init` or `confirm` call until the form is submitted and a successful response is received
 - RECOMMENDED. If the `catalog.providers[].items[].xinput.required` field is set to `"false"` , then the BAP SHOULD allow the user to skip filling the form
 
 
 ### Example
-A search request for a pharmacy item may look like this
+A search request for a drugs may look like this
 ```
 {
     "context": {
@@ -75,7 +75,7 @@ A search request for a pharmacy item may look like this
 }
 ```
 
-An example catalog of pharmacy product may look like this
+An example catalog of drugs may look like this
 ```
 {
   "context": {
@@ -333,38 +333,48 @@ An example catalog of pharmacy product may look like this
 }
 ```
 
-## 3.2 Ordering for DHP(Pharmacy) 
-This section provides recommendations for implementing the APIs related to ordering a pharmacy product.
+## 3.2 Ordering for Drugs 
+This section provides recommendations for implementing the APIs related to ordering a drug from a pharmacy.
 
 ### 3.2.1 Recommendations for BPPs
 
-#### 3.2.1.1 Selecting a medicine (pharmacy product) from the catalog
+#### 3.2.1.1 Selecting a drug from the catalog
 - REQUIRED. The BPP MUST implement the `select` endpoint on the url specified in the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry.
-- REQUIRED. If the DHP provider has returned a successful acknowledgement to a `select` request, it MUST send the offer encapsulated in an `Order` object
+- REQUIRED. If the provider has returned a successful acknowledgement to a `select` request, it MUST send the offer encapsulated in an `Order` object
 
-#### 3.2.1.2 Initializing Order for the medicine (pharmacy product)
+#### 3.2.1.2 Initializing Order for the Drug
 - REQUIRED. The BPP MUST implement the `init` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry.
 
-#### 3.2.1.3 Confirming Order for the medicine (pharmacy product)
+#### 3.2.1.3 Confirming Order for the Drug
 - REQUIRED. The BPP MUST implement the `confirm` endpoint on the url specified in URL specified in the `context.bpp_uri` field sent during `on_search`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 3.2.2 Recommendations for BAPs
 
-#### 3.2.2.1 Selecting a medicine (pharmacy product) from the catalog
+#### 3.2.2.1  Selecting a drug from the catalog
 - REQUIRED. The BAP MUST implement the `on_select` endpoint on the url specified in the `context.bap_uri` field sent during `select`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
-#### 3.2.2.2  Initializing Order for the medicine (pharmacy product)
+#### 3.2.2.2  Initializing Order for the Drug
 - REQUIRED. The BAP MUST hit the `init` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. 
 - REQUIRED. The BAP MUST implement the `on_init` endpoint on the url specified in  the `context.bap_uri` field sent during `init`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
-
-#### 3.2.2.3 Confirming the Order for the medicine (pharmacy product)
-- REQUIRED. The BAP MUST hit the `confirm` endpoint on the url specified in  the `context.bpp_uri` field sent during `on_search`. 
+#### 3.2.2.3 Confirming Order for the Drug
+- REQUIRED. The BAP MUST hit the `confirm` endpoint on the url specified in the `context.bpp_uri` field sent during `on_search`. 
 - REQUIRED. The BAP MUST implement the `on_confirm` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `confirm`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 3.2.3 Example Workflow
+1. User Clicks on "Add to Cart" button for selected drugs from the catalog.
+2. BAP send /select call to the BPP with product ids, provider id.
+3. BPP returns the detailed information about the drug, quote & breakup and delivery method in /on_select.
+4. BAP render the complete information in the Cart Page.
+5. User selects the billing address, shipping address and fulfilment type(delivery type).
+6. BAP send /init call to the BPP with the provided details.
+7. BPP return draft order object which include payment terms, final quotation in the /on_init request.
+8. BAP renders the information in the UI.
+9. User complete the payment, if required. ( Payment.type = pre order)
+10. BAP send /confirm call to the BPP with the payment details and order confirmation.
+11. BPP return the confirmed order with order id, using /on_confirm call.
 
-### 3.2.3 Example Requests
+### 3.2.4 Example Requests
 
 Below is an example of a `select` request
 ```
@@ -1174,8 +1184,8 @@ Below is an example of an `on_confirm` callback
 }
 ```
 
-## 3.3 Fulfillment of medicine (pharmacy product)
-This section contains recommendations for implementing the APIs related to fulfilling medicine (pharmacy product)
+## 3.3 Fulfillment of Drugs
+This section contains recommendations for implementing the APIs related to delivering drugs.
 
 ### 3.3.1 Recommendations for BPPs
 
@@ -1208,6 +1218,33 @@ This section contains recommendations for implementing the APIs related to fulfi
 - REQUIRED. The BAP MUST implement the `on_track` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `track`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 3.3.3 Example Workflow
+
+#### 3.3.3.1 Status Workflow
+1. The BAP receives new updates on the order status from unsolicted /on_status call.
+2. The User requested for a status update.
+3. The BAP calls /status endpoint of the BPP.
+4. The BPP provides the updated order object in /on_status call.
+
+#### 3.3.3.2 Cancel Workflow
+1. The User choose to cancel the Order.
+2. The BAP call /get_cancellation_reason endpoint of the BPP.
+3. The BPP respond with cancellation reasons using /cancellation_reason endpoint.
+4. The BAP renders the reasons and user chooses one and proceed with cancellation.
+5. The BAP calls /cancel endpoint of the BPP.
+6. The BPP cancels the order and sends cancellation confirmation in /on_cancel endpoint.
+
+#### 3.3.3.3 Update Workflow
+1. The User choose to update the order ( For eg. Update shipping address or drug quantity).
+2. The BAP calls /update endpoint of the BPP.
+3. The BPP update the order and return updated order object in /on_update call.
+4. User gets the refund , if total order amount is reduced or is required to pay additional amount if total order amount is increased.
+
+#### 3.3.3.4 Tracking Workflow
+1. The User requested to track the delivery of the drug.
+2. The BAP calls /track endpoint of the BPP.
+3. The BPP respond with the tracking url / gps co-ordinate of the delivery agent using /on_track endpoint.
+4. The BAP render the live-location in the UI.
+5. The User is able to track the delivery person.
 
 ### 3.3.4 Example Requests
 
@@ -1921,9 +1958,75 @@ Below is an example of an `on_update` callback
   }
 }
 ```
+Below is an example of an `track` request
 
-## 3.4 Post-fulfillment of medicine (pharmacy product)
-This section contains recommendations for implementing the APIs after fulfilling a medicine (pharmacy product).
+```
+{
+  "context": {
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "track",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
+  },
+  "message": {
+    "order_id": "853c7593-f4bf-4557-8832-118a591787ba",
+    "callback_url": "https://dhp-network-bap.becknprotocol.io/track/callback"
+  }
+}
+```
+Below is an example of an `on_track` callback
+
+```
+{
+  "context": {
+    "domain": "dhp:0.7.3",
+    "location": {
+      "country": {
+        "code": "IND"
+      }
+    },
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62196",
+    "message_id": "$bb579fb8-cb82-4824-be12-fcbc405b6608",
+    "action": "on_track",
+    "timestamp": "2023-05-25T05:23:03.443Z",
+    "version": "1.1.0",
+    "bap_uri": "https://dhp-network-bap.becknprotocol.io/",
+    "bap_id": "dhp-bap.becknprotocol.io",
+    "bpp_uri": "https://dhp-network-bpp.becknprotocol.io/",
+    "bpp_id": "dhp-bpp.becknprotocol.io",
+    "ttl": "PT10M"
+  },
+  "message": {
+    "tracking": {
+      "id": "853c7593-f4bf-4557-8832-118a591787ba",
+      "url": "https://quickPharma-provider.com/track/3210fedcba98",
+      "status": "active",
+      "location": {
+        "descriptor": {
+          "name": "Last location of the delivery"
+        },
+        "gps": "12.971598, 77.594566"
+      }
+    }
+  }
+}
+```
+
+
+## 3.4 Post-fulfillment of Drugs
+This section contains recommendations for implementing the APIs after delivering a drugs.
 
 ### 3.4.1 Recommendations for BPPs
 
@@ -1944,6 +2047,22 @@ This section contains recommendations for implementing the APIs after fulfilling
 - REQUIRED. The BAP MUST implement the `on_support` endpoint on the url specified in URL specified in the `context.bap_uri` field sent during `support`. In case of permissioned networks, this URL MUST match the `Subscriber.url` present on the respective entry in the Network Registry
 
 ### 3.4.3 Example Workflow
+#### 3.4.3.1 Rating & Feedback Workflow
+1. User wants to give rating to the Drug/Pharmacy.
+2. BAP calls /get_rating_categories API.
+3. BPP provides the available rating categories using /rating_categories API to the BAP.
+4. BAP render the rating category.
+5. BAP provide the rating on a particular category (i.e, Drug, Pharmacy etc).
+6. BAP send the rating to the BPP using /rating API.
+7. BPP acknowledge the rating and provide feedback link to the BAP using /on_rating API.
+8. User might choose to fill the feedback form.
+
+#### 3.4.3.2 Support Workflow
+1. User faces any issue w.r.t to the drug, order or delivery.
+2. User creates a support request.
+3. BAP send /support call to the BPP.
+4. BAP acknowledge the support request and send support contact details using /on_support API call.
+
 
 ### 3.4.4 Example Requests
 
