@@ -1,0 +1,136 @@
+{
+  "id": "uc1-onhs-dev-env-v2",
+  "name": "ONHS Dev",
+  "_postman_variable_scope": "environment",
+  "values": [
+    {
+      "key": "bpp_uri",
+      "value": "",
+      "enabled": true,
+      "description": "BPP sandbox endpoint — set before running"
+    },
+    {
+      "key": "bap_uri",
+      "value": "",
+      "enabled": true,
+      "description": "BAP sandbox callback endpoint — set before running"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "enabled": true,
+      "description": "Network-issued JWT — set before running"
+    },
+    {
+      "key": "domain",
+      "value": "onhs:health",
+      "enabled": true
+    },
+    {
+      "key": "network_id",
+      "value": "onhs.in/health",
+      "enabled": true,
+      "description": "Confirm exact value with network registry team"
+    },
+    {
+      "key": "seeker_np_id",
+      "value": "seeker-np-arogyalink-001",
+      "enabled": true
+    },
+    {
+      "key": "provider_np_id",
+      "value": "provider-np-swaasa-001",
+      "enabled": true
+    },
+    {
+      "key": "transaction_id_a",
+      "value": "550e8400-e29b-41d4-a716-446655440010",
+      "enabled": true,
+      "description": "Scenario A transaction UUID"
+    },
+    {
+      "key": "contract_id_a",
+      "value": "550e8400-e29b-41d4-a716-446655440011",
+      "enabled": true,
+      "description": "Scenario A contract UUID (BPP assigns at on_select)"
+    },
+    {
+      "key": "transaction_id_b",
+      "value": "550e8400-e29b-41d4-a716-446655440012",
+      "enabled": true,
+      "description": "Scenario B transaction UUID"
+    },
+    {
+      "key": "contract_id_b",
+      "value": "550e8400-e29b-41d4-a716-446655440013",
+      "enabled": true,
+      "description": "Scenario B contract UUID (BPP assigns at on_select)"
+    },
+    {
+      "key": "resource_id",
+      "value": "res-swaasa-cough-v2",
+      "enabled": true
+    },
+    {
+      "key": "offer_id_single_event",
+      "value": "offer-swaasa-single-event",
+      "enabled": true
+    },
+    {
+      "key": "catalog_id",
+      "value": "catalog-swaasa-001",
+      "enabled": true
+    },
+    {
+      "key": "consideration_id_a",
+      "value": "cons-uc1a-001",
+      "enabled": true
+    },
+    {
+      "key": "consideration_id_b",
+      "value": "cons-uc1b-001",
+      "enabled": true
+    },
+    {
+      "key": "patient_participant_id",
+      "value": "participant-patient-ramesh-001",
+      "enabled": true
+    },
+    {
+      "key": "flw_participant_id",
+      "value": "participant-flw-meena-001",
+      "enabled": true
+    },
+    {
+      "key": "agency_participant_id",
+      "value": "participant-agency-swk-001",
+      "enabled": true
+    },
+    {
+      "key": "payment_ref",
+      "value": "UPI-TXN-20260601-001",
+      "enabled": true
+    },
+    {
+      "key": "entitlement_id",
+      "value": "ent-550e8400-e29b-41d4-a716-446655440000",
+      "enabled": true,
+      "description": "Set to the value issued at UC0 on_confirm before running Scenario A"
+    },
+    {
+      "key": "consent_id",
+      "value": "c3f8a1b2-7d4e-4a2f-9c01-5e6f7a8b9c0d",
+      "enabled": true
+    },
+    {
+      "key": "audio_artifact_ref",
+      "value": "cough-audio-ramesh-001",
+      "enabled": true
+    },
+    {
+      "key": "report_doc_ref",
+      "value": "swaasa-report-ramesh-001",
+      "enabled": true
+    }
+  ]
+}

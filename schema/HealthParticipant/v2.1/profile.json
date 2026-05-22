@@ -1,0 +1,21 @@
+{
+  "id": "https://schema.beckn.io/HealthParticipant/v2.1",
+  "name": "HealthParticipant",
+  "version": "2.1.0",
+  "protocol_version": "2.0",
+  "semantic_model": "generalised",
+  "included_schemas": ["HealthParticipant"],
+  "discovery_fields": ["participantRole"],
+  "indexable_paths": ["participantRole", "healthIds.system"],
+  "filterable_paths": ["participantRole", "gender", "primaryLanguage"],
+  "sortable_paths": [],
+  "list_fields": ["participantRole"],
+  "detail_fields": ["participantRole", "healthIds", "gender", "primaryLanguage", "specialistAccreditation", "credentialRefs"],
+  "privacy_notes": [
+    "healthIds values are sector-specific identifiers (ABHA, NMC, PMJAY etc.) — treat as sensitive PII, never expose in list views",
+    "dateOfBirth is PII — restrict to contract parties",
+    "gender is PII — restrict to contract parties",
+    "specialistAccreditation.registrationNumber is professional PII",
+    "credentialRefs may contain W3C VCs with PII in credentialSubject — access-control document URLs"
+  ]
+}
