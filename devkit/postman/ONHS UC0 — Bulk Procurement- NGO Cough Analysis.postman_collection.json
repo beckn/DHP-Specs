@@ -1,0 +1,432 @@
+{
+  "info": {
+    "_postman_id": "02a00599-7862-4d4b-a049-77f2243cd79b",
+    "name": "ONHS UC0 — Bulk Procurement: NGO Cough Analysis",
+    "description": "### Quick-start: environment setup\n\n1. Import **ONHS_Dev_Environment.json** into Postman (Environments → Import).\n2. Select the **ONHS Dev** environment from the environment picker.\n3. Set `bpp_adapter_url` and `bap_adapter_url` to your sandbox endpoints before running.\n4. All UUID-format variable defaults are pre-filled — they are unique per session;\n   regenerate UUIDs for separate test runs if needed.\n5. `networkId` is currently `onhs.in/health` — confirm with the ONHS registry team\n   before running against the production network.\n\n## ONHS UC0 — Bulk Procurement\n\n**Scenario:** Swastha Karnataka Foundation (NGO) pre-purchases 1,000 AI cough analysis units from Swaasa Health Platform at the NGO discount rate.\n\n**Protocol:** Beckn v2.0.0 (core spec) + Health* schema pack v2.1\n**healthServiceType:** DIAGNOSTIC_ANALYTICS | **Quantity:** 1,000 units\n\n### Discount model\n\nThe catalog carries two offers for the same resource:\n\n| Offer ID | Rate | Eligibility |\n|---|---|---|\n| offer-swaasa-bulk-standard | ₹250/unit | All registered agencies |\n| **offer-swaasa-bulk-ngo** | **₹200/unit** | NGOs with valid district MOU |\n\ndiscountRef `NGO-DISCOUNT-20PCT-2026` is **pre-published in the catalog offer**.\ntotalAmount = netAmount = ₹2,00,000 (discount is baked into the NGO offer price).\n\n### Eligibility verification\n\nThe BAP asserts NGO identity in `participants[]` at `select` via two fields:\n- `healthIds: [{system: \"NGO_DARPAN\", value: \"NGO-KA-2019-00142\"}]` — the registration ID\n- `credentialRefs` — a Document-branch `Credential/v2.0` entry pointing to the NGO-Darpan\n  certificate (URL + SHA-256 checksum), enabling runtime verification\n\n### Consideration lifecycle\n\n| Call | status.code | pricePerUnit | totalAmount | netAmount |\n|---|---|---|---|---|\n| catalog (on_discover) | *(none)* | 200 | — | — |\n| on_select | *(none)* | 200 | 200,000 | 200,000 |\n| on_init | QUOTED | 200 | 200,000 | 200,000 |\n| confirm | ACTIVE | 200 | 200,000 | 200,000 |\n| on_confirm / on_status | ACTIVE | 200 | 200,000 | 200,000 |\n\n### Key output\nHealthEntitlement `{{entitlement_id}}`:\n- lockedTermsSnapshot.offerId = offer-swaasa-bulk-ngo\n- lockedTermsSnapshot.pricePerUnit = 200 | discountRef = NGO-DISCOUNT-20PCT-2026\n- totalCapacity: 1,000 | state: ACTIVE | validUntil: 2027-04-30\n- entitlementId feeds UC1 single-patient drawdown and UC2 camp collections.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32536226"
+  },
+  "item": [
+    {
+      "name": "catalog/publish",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"action\": \"catalog/publish\",\n    \"version\": \"{{version}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"message\": {\n    \"catalogs\": [\n      {\n        \"id\": \"{{catalog_id}}\",\n        \"descriptor\": {\n          \"name\": \"Swaasa Health Services Catalog\",\n          \"shortDesc\": \"AI-driven diagnostic analytics by Swaasa Health Pvt. Ltd.\"\n        },\n        \"provider\": {\n          \"id\": \"{{provider_np_id}}\",\n          \"descriptor\": {\n            \"name\": \"Swaasa Health Platform\",\n            \"shortDesc\": \"Swaasa Health Pvt. Ltd. — Provider NP\"\n          }\n        },\n        \"resources\": [\n          {\n            \"id\": \"{{resource_id}}\",\n            \"descriptor\": {\n              \"name\": \"Swaasa AI Cough Analysis\",\n              \"shortDesc\": \"AI-driven cough audio analysis — TB, COPD, COVID-19 risk stratification.\",\n              \"longDesc\": \"CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.\",\n              \"thumbnailImage\": \"https://swaasa.ai/assets/logo.png\"\n            },\n            \"resourceAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n              \"@type\": \"hr:HealthResource\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"clinicalDeliveryUnit\": \"ANALYSIS\",\n              \"clinicalValidation\": {\n                \"accreditationBody\": \"CDSCO\",\n                \"registrationNumber\": \"MD-AI-2024-SWAASA-001\",\n                \"specialty\": \"AI Diagnostics — Respiratory\",\n                \"validUntil\": \"2027-12-31\"\n              },\n              \"analyticsEngineSpecs\": {\n                \"modelName\": \"Swaasa-CoughAI-v2\",\n                \"modelVersion\": \"2.3.1\",\n                \"confidenceThreshold\": 0.85,\n                \"supportedInputFormats\": [\n                  \"audio/wav\",\n                  \"audio/mp4\",\n                  \"audio/mpeg\"\n                ],\n                \"regulatoryApproval\": \"CDSCO-MD-AI-2024-001\"\n              },\n              \"servicePrerequisites\": [\n                {\n                  \"prerequisiteType\": \"DEVICE\",\n                  \"description\": \"Smartphone with functioning microphone (Android 8+ or iOS 13+)\",\n                  \"mandatory\": true\n                },\n                {\n                  \"prerequisiteType\": \"SAMPLE\",\n                  \"description\": \"3 cough audio samples, each 5–10 seconds, quiet environment\",\n                  \"mandatory\": true\n                },\n                {\n                  \"prerequisiteType\": \"DOCUMENT\",\n                  \"description\": \"Patient ABHA ID or government photo ID\",\n                  \"mandatory\": false\n                }\n              ],\n              \"serviceUnit\": \"PER_UNIT\",\n              \"capacityPerDay\": 500,\n              \"minimumBookingAdvanceHours\": 0,\n              \"languagesSupported\": [\n                \"en\",\n                \"kn\",\n                \"hi\"\n              ]\n            }\n          }\n        ],\n        \"offers\": [\n          {\n            \"id\": \"offer-swaasa-bulk-standard\",\n            \"resourceIds\": [\n              \"{{resource_id}}\"\n            ],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis — Bulk Procurement (Standard)\",\n              \"shortDesc\": \"Standard rate ₹250/unit. Open to all registered implementing agencies.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": false,\n              \"eligibilityCriteria\": [\n                \"Any registered implementing agency or government department\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-standard-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 250,\n                  \"currency\": \"INR\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\n                    \"BANK_TRANSFER\",\n                    \"NEFT\",\n                    \"RTGS\"\n                  ]\n                }\n              }\n            ]\n          },\n          {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\n              \"{{resource_id}}\"\n            ],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis — Bulk Procurement (NGO Rate)\",\n              \"shortDesc\": \"20% NGO discount ₹200/unit. Registered NGOs with valid district-level MOU only.\",\n              \"longDesc\": \"Pre-purchased AI cough analysis units at the NGO rate. Eligibility: registered NGO with a current district-level MOU with an ONHS participant. BPP verifies NGO registration ID at select before confirming this rate. Refund and forfeiture terms are specified in the issued HealthEntitlement.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": true,\n              \"eligibilityCriteria\": [\n                \"Registered NGO with valid district-level MOU with ONHS network participant\",\n                \"NGO registration ID verified by BPP at select\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-ngo-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 200,\n                  \"currency\": \"INR\",\n                  \"discountRef\": \"{{discount_ref}}\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\n                    \"BANK_TRANSFER\",\n                    \"NEFT\",\n                    \"RTGS\"\n                  ]\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/publish",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "publish"
+          ]
+        },
+        "description": "POST to CDS. Expect HTTP 200 ACK on acceptance.\nHTTP 409 AckNoCallback = CDS accepted but will not send on_publish callback.\nHTTP 400/401/500 = rejected — check error object in response body.\naction enum: 'catalog/publish' (slash form). CDS also accepts 'catalog_publish' (underscore)."
+      },
+      "response": []
+    },
+    {
+      "name": "discover",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"discover\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n      \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"intent\": {\n      \"textSearch\": \"Karnataka\",\n      \"filters\": {\n        \"type\": \"jsonpath\",\n        \"expression\": \"$.catalogs[*].offers[*] ? (@.offerAttributes.offerType == \\\"BULK_PROCUREMENT\\\" && @.offerAttributes.healthServiceType == \\\"DIAGNOSTIC_ANALYTICS\\\")\"\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bap_adapter_url}}/discover",
+          "host": [
+            "{{bap_adapter_url}}"
+          ],
+          "path": [
+            "discover"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "on_discover",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"on_discover\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n      \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"catalogs\": [\n      {\n        \"id\": \"{{catalog_id}}\",\n        \"descriptor\": {\n          \"name\": \"Swaasa Health Services Catalog\",\n          \"shortDesc\": \"AI-driven diagnostic analytics by Swaasa Health Pvt. Ltd.\"\n        },\n        \"provider\": {\n          \"id\": \"{{bppId}}\",\n          \"descriptor\": {\n            \"name\": \"Swaasa Health Platform\",\n            \"shortDesc\": \"Swaasa Health Pvt. Ltd. \\u2014 Provider NP\"\n          }\n        },\n        \"resources\": [\n          {\n            \"id\": \"{{resource_id}}\",\n            \"descriptor\": {\n              \"name\": \"Swaasa AI Cough Analysis\",\n              \"shortDesc\": \"AI-driven cough audio analysis \\u2014 TB, COPD, COVID-19 risk stratification.\",\n              \"longDesc\": \"CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.\",\n              \"thumbnailImage\": \"https://swaasa.ai/assets/logo.png\"\n            },\n            \"resourceAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n              \"@type\": \"hr:HealthResource\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"clinicalDeliveryUnit\": \"ANALYSIS\",\n              \"clinicalValidation\": {\n                \"accreditationBody\": \"CDSCO\",\n                \"registrationNumber\": \"MD-AI-2024-SWAASA-001\",\n                \"specialty\": \"AI Diagnostics \\u2014 Respiratory\",\n                \"validUntil\": \"2027-12-31\"\n              },\n              \"analyticsEngineSpecs\": {\n                \"modelName\": \"Swaasa-CoughAI-v2\",\n                \"modelVersion\": \"2.3.1\",\n                \"confidenceThreshold\": 0.85,\n                \"supportedInputFormats\": [\n                  \"audio/wav\",\n                  \"audio/mp4\",\n                  \"audio/mpeg\"\n                ],\n                \"regulatoryApproval\": \"CDSCO-MD-AI-2024-001\"\n              },\n              \"servicePrerequisites\": [\n                {\n                  \"prerequisiteType\": \"DEVICE\",\n                  \"description\": \"Smartphone with functioning microphone (Android 8+ or iOS 13+)\",\n                  \"mandatory\": true\n                },\n                {\n                  \"prerequisiteType\": \"SAMPLE\",\n                  \"description\": \"3 cough audio samples, each 5\\u201310 seconds, quiet environment\",\n                  \"mandatory\": true\n                },\n                {\n                  \"prerequisiteType\": \"DOCUMENT\",\n                  \"description\": \"Patient ABHA ID or government photo ID\",\n                  \"mandatory\": false\n                }\n              ],\n              \"serviceUnit\": \"PER_UNIT\",\n              \"capacityPerDay\": 500,\n              \"minimumBookingAdvanceHours\": 0,\n              \"languagesSupported\": [\"en\", \"kn\", \"hi\"]\n            }\n          }\n        ],\n        \"offers\": [\n          {\n            \"id\": \"{{offer_id_standard}}\",\n            \"resourceIds\": [\"{{resource_id}}\"],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis \\u2014 Bulk Procurement (Standard)\",\n              \"shortDesc\": \"Standard rate \\u20b9250/unit. Open to all registered implementing agencies.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": false,\n              \"eligibilityCriteria\": [\"Any registered implementing agency or government department\"],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-standard-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 250,\n                  \"currency\": \"INR\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n                }\n              }\n            ]\n          },\n          {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\"{{resource_id}}\"],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis \\u2014 Bulk Procurement (NGO Rate)\",\n              \"shortDesc\": \"20% NGO discount \\u20b9200/unit. Registered NGOs with valid district-level MOU only.\",\n              \"longDesc\": \"Pre-purchased AI cough analysis units at the NGO rate. Eligibility: registered NGO with a current district-level MOU with an ONHS participant. BPP verifies NGO registration ID at select before confirming this rate. Refund and forfeiture terms are specified in the issued HealthEntitlement.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": true,\n              \"eligibilityCriteria\": [\n                \"Registered NGO with valid district-level MOU with ONHS network participant\",\n                \"NGO registration ID verified by BPP at select\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-ngo-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 200,\n                  \"currency\": \"INR\",\n                  \"discountRef\": \"{{discount_ref}}\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/on_discover",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "on_discover"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "select",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"select\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"status\": {\n        \"code\": \"DRAFT\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"{{resource_id}}\",\n              \"quantity\": {\n                \"count\": 1000\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\"{{resource_id}}\"]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"healthIds\": [\n              {\n                \"system\": \"NGO_DARPAN\",\n                \"value\": \"NGO-KA-2019-00142\"\n              }\n            ],\n            \"credentialRefs\": [\n              {\n                \"label\": \"NGO-Darpan Registration Certificate\",\n                \"url\": \"https://ngodarpan.gov.in/index.php/home/singleview/NGO-KA-2019-00142\",\n                \"mimeType\": \"application/pdf\",\n                \"standard\": \"NGO_DARPAN\",\n                \"security\": {\n                  \"checksum\": \"{{agency_cert_checksum}}\",\n                  \"checksumAlgorithm\": \"SHA256\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bap_adapter_url}}/select",
+          "host": [
+            "{{bap_adapter_url}}"
+          ],
+          "path": [
+            "select"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "on_select",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"on_select\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"status\": {\n        \"code\": \"DRAFT\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"{{resource_id}}\",\n              \"descriptor\": {\n                \"name\": \"Swaasa AI Cough Analysis\",\n                \"shortDesc\": \"AI-driven cough audio analysis \\u2014 TB, COPD, COVID-19 risk stratification.\",\n                \"longDesc\": \"CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.\",\n                \"thumbnailImage\": \"https://swaasa.ai/assets/logo.png\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n                \"@type\": \"hr:HealthResource\",\n                \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n                \"clinicalDeliveryUnit\": \"ANALYSIS\",\n                \"clinicalValidation\": {\n                  \"accreditationBody\": \"CDSCO\",\n                  \"registrationNumber\": \"MD-AI-2024-SWAASA-001\",\n                  \"specialty\": \"AI Diagnostics \\u2014 Respiratory\",\n                  \"validUntil\": \"2027-12-31\"\n                },\n                \"analyticsEngineSpecs\": {\n                  \"modelName\": \"Swaasa-CoughAI-v2\",\n                  \"modelVersion\": \"2.3.1\",\n                  \"confidenceThreshold\": 0.85,\n                  \"supportedInputFormats\": [\"audio/wav\", \"audio/mp4\", \"audio/mpeg\"],\n                  \"regulatoryApproval\": \"CDSCO-MD-AI-2024-001\"\n                },\n                \"servicePrerequisites\": [\n                  {\"prerequisiteType\": \"DEVICE\", \"description\": \"Smartphone with functioning microphone (Android 8+ or iOS 13+)\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"SAMPLE\", \"description\": \"3 cough audio samples, each 5\\u201310 seconds, quiet environment\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"DOCUMENT\", \"description\": \"Patient ABHA ID or government photo ID\", \"mandatory\": false}\n                ],\n                \"serviceUnit\": \"PER_UNIT\",\n                \"capacityPerDay\": 500,\n                \"minimumBookingAdvanceHours\": 0,\n                \"languagesSupported\": [\"en\", \"kn\", \"hi\"]\n              },\n              \"quantity\": {\"count\": 1000}\n            }\n          ],\n          \"offer\": {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\"{{resource_id}}\"],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis \\u2014 Bulk Procurement (NGO Rate)\",\n              \"shortDesc\": \"20% NGO discount \\u20b9200/unit. Registered NGOs with valid district-level MOU only.\",\n              \"longDesc\": \"Pre-purchased AI cough analysis units at the NGO rate. Eligibility: registered NGO with a current district-level MOU with an ONHS participant. BPP verifies NGO registration ID at select before confirming this rate. Refund and forfeiture terms are specified in the issued HealthEntitlement.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": true,\n              \"eligibilityCriteria\": [\n                \"Registered NGO with valid district-level MOU with ONHS network participant\",\n                \"NGO registration ID verified by BPP at select\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-ngo-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 200,\n                  \"currency\": \"INR\",\n                  \"discountRef\": \"{{discount_ref}}\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n          },\n          \"status\": {\"code\": \"PENDING\"}\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}],\n            \"credentialRefs\": [\n              {\n                \"label\": \"NGO-Darpan Registration Certificate\",\n                \"url\": \"https://ngodarpan.gov.in/index.php/home/singleview/NGO-KA-2019-00142\",\n                \"mimeType\": \"application/pdf\",\n                \"standard\": \"NGO_DARPAN\",\n                \"security\": {\"checksum\": \"{{agency_cert_checksum}}\", \"checksumAlgorithm\": \"SHA256\"}\n              }\n            ]\n          }\n        }\n      ],\n      \"contractAttributes\": {\n        \"@context\": \"https://schema.beckn.io/HealthEntitlement/v2.1/context.jsonld\",\n        \"@type\": \"he:HealthEntitlement\",\n        \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n        \"serviceScope\": [\"{{resource_id}}\"],\n        \"totalCapacity\": 1000,\n        \"validFrom\": \"2026-05-01\",\n        \"validUntil\": \"2027-04-30\",\n        \"geographyScope\": [\"IN-KA-BLR\", \"IN-KA-MYS\"],\n        \"counterpartyScope\": [\"{{bppId}}\"],\n        \"redemptionRules\": {\"minPerRedemption\": 1, \"maxPerRedemption\": 50, \"cooldownHours\": 0},\n        \"refundRules\": \"Unused capacity refundable at 80% of face value within 30 days of expiry\",\n        \"forfeitureRules\": \"Capacity not redeemed by 2027-04-30 is forfeited\"\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/on_select",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "on_select"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "init",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"init\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"DRAFT\"}},\n          \"resources\": [{\"id\": \"{{resource_id}}\", \"quantity\": {\"count\": 1000}}],\n          \"offer\": {\"id\": \"{{offer_id}}\", \"resourceIds\": [\"{{resource_id}}\"]}\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"descriptor\": {\n            \"name\": \"Swastha Karnataka Foundation\",\n            \"shortDesc\": \"Implementing agency \\u2014 district-level NGO, Karnataka\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        },\n        {\n          \"id\": \"{{payer_participant_id}}\",\n          \"descriptor\": {\n            \"name\": \"Swastha Karnataka Foundation\",\n            \"shortDesc\": \"Payer \\u2014 NGO finance department\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"PAYER\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n          },\n          \"status\": {\"code\": \"PENDING\"}\n        }\n      ]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bap_adapter_url}}/init",
+          "host": [
+            "{{bap_adapter_url}}"
+          ],
+          "path": [
+            "init"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "on_init",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"on_init\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"status\": {\"code\": \"DRAFT\"},\n      \"descriptor\": {\n        \"name\": \"Bulk Procurement Contract \\u2014 Swaasa Cough Analysis (NGO Rate)\",\n        \"shortDesc\": \"1,000 units @ \\u20b9200/unit (NGO rate). Net payable \\u20b92,00,000. Awaiting payment.\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"DRAFT\"}},\n          \"resources\": [\n            {\n              \"id\": \"{{resource_id}}\",\n              \"descriptor\": {\n                \"name\": \"Swaasa AI Cough Analysis\",\n                \"shortDesc\": \"AI-driven cough audio analysis \\u2014 TB, COPD, COVID-19 risk stratification.\",\n                \"longDesc\": \"CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.\",\n                \"thumbnailImage\": \"https://swaasa.ai/assets/logo.png\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n                \"@type\": \"hr:HealthResource\",\n                \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n                \"clinicalDeliveryUnit\": \"ANALYSIS\",\n                \"clinicalValidation\": {\n                  \"accreditationBody\": \"CDSCO\",\n                  \"registrationNumber\": \"MD-AI-2024-SWAASA-001\",\n                  \"specialty\": \"AI Diagnostics \\u2014 Respiratory\",\n                  \"validUntil\": \"2027-12-31\"\n                },\n                \"analyticsEngineSpecs\": {\n                  \"modelName\": \"Swaasa-CoughAI-v2\",\n                  \"modelVersion\": \"2.3.1\",\n                  \"confidenceThreshold\": 0.85,\n                  \"supportedInputFormats\": [\"audio/wav\", \"audio/mp4\", \"audio/mpeg\"],\n                  \"regulatoryApproval\": \"CDSCO-MD-AI-2024-001\"\n                },\n                \"servicePrerequisites\": [\n                  {\"prerequisiteType\": \"DEVICE\", \"description\": \"Smartphone with functioning microphone (Android 8+ or iOS 13+)\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"SAMPLE\", \"description\": \"3 cough audio samples, each 5\\u201310 seconds, quiet environment\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"DOCUMENT\", \"description\": \"Patient ABHA ID or government photo ID\", \"mandatory\": false}\n                ],\n                \"serviceUnit\": \"PER_UNIT\",\n                \"capacityPerDay\": 500,\n                \"minimumBookingAdvanceHours\": 0,\n                \"languagesSupported\": [\"en\", \"kn\", \"hi\"]\n              },\n              \"quantity\": {\"count\": 1000}\n            }\n          ],\n          \"offer\": {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\"{{resource_id}}\"],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis \\u2014 Bulk Procurement (NGO Rate)\",\n              \"shortDesc\": \"20% NGO discount \\u20b9200/unit. Registered NGOs with valid district-level MOU only.\",\n              \"longDesc\": \"Pre-purchased AI cough analysis units at the NGO rate.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": true,\n              \"eligibilityCriteria\": [\n                \"Registered NGO with valid district-level MOU with ONHS network participant\",\n                \"NGO registration ID verified by BPP at select\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-ngo-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 200,\n                  \"currency\": \"INR\",\n                  \"discountRef\": \"{{discount_ref}}\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Implementing agency \\u2014 district-level NGO, Karnataka\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        },\n        {\n          \"id\": \"{{payer_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Payer \\u2014 NGO finance department\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"PAYER\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"status\": {\"code\": \"QUOTED\"},\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"],\n            \"selectedPaymentMethod\": \"NEFT\"\n          }\n        }\n      ],\n      \"contractAttributes\": {\n        \"@context\": \"https://schema.beckn.io/HealthEntitlement/v2.1/context.jsonld\",\n        \"@type\": \"he:HealthEntitlement\",\n        \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n        \"serviceScope\": [\"{{resource_id}}\"],\n        \"totalCapacity\": 1000,\n        \"validFrom\": \"2026-05-01\",\n        \"validUntil\": \"2027-04-30\",\n        \"geographyScope\": [\"IN-KA-BLR\", \"IN-KA-MYS\"],\n        \"counterpartyScope\": [\"{{bppId}}\"],\n        \"redemptionRules\": {\"minPerRedemption\": 1, \"maxPerRedemption\": 50, \"cooldownHours\": 0},\n        \"refundRules\": \"Unused capacity refundable at 80% of face value within 30 days of expiry\",\n        \"forfeitureRules\": \"Capacity not redeemed by 2027-04-30 is forfeited\"\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/on_init",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "on_init"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "confirm",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"confirm\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"ACTIVE\"}},\n          \"resources\": [{\"id\": \"{{resource_id}}\", \"quantity\": {\"count\": 1000}}],\n          \"offer\": {\"id\": \"{{offer_id}}\", \"resourceIds\": [\"{{resource_id}}\"]}\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Implementing agency \\u2014 district-level NGO, Karnataka\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        },\n        {\n          \"id\": \"{{payer_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Payer \\u2014 NGO finance department\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"PAYER\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"status\": {\"code\": \"ACTIVE\"},\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"],\n            \"selectedPaymentMethod\": \"NEFT\",\n            \"transactionRef\": \"{{payment_ref}}\",\n            \"paymentAuthorisation\": {\n              \"authCode\": \"{{payment_ref}}\",\n              \"authProvider\": \"HDFC_BANK\",\n              \"authTimestamp\": \"{{$isoTimestamp}}\",\n              \"authAmount\": 200000\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bap_adapter_url}}/confirm",
+          "host": [
+            "{{bap_adapter_url}}"
+          ],
+          "path": [
+            "confirm"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "on_confirm",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"on_confirm\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"status\": {\"code\": \"ACTIVE\"},\n      \"descriptor\": {\n        \"name\": \"Bulk Procurement Contract \\u2014 Swaasa Cough Analysis (NGO Rate)\",\n        \"shortDesc\": \"ACTIVE. 1,000 units @ \\u20b9200/unit (NGO rate, offer-swaasa-bulk-ngo). HealthEntitlement {{entitlement_id}} issued.\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"ACTIVE\"}},\n          \"resources\": [\n            {\n              \"id\": \"{{resource_id}}\",\n              \"descriptor\": {\n                \"name\": \"Swaasa AI Cough Analysis\",\n                \"shortDesc\": \"AI-driven cough audio analysis \\u2014 TB, COPD, COVID-19 risk stratification.\",\n                \"longDesc\": \"CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.\",\n                \"thumbnailImage\": \"https://swaasa.ai/assets/logo.png\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/HealthResource/v2.1/context.jsonld\",\n                \"@type\": \"hr:HealthResource\",\n                \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n                \"clinicalDeliveryUnit\": \"ANALYSIS\",\n                \"clinicalValidation\": {\n                  \"accreditationBody\": \"CDSCO\",\n                  \"registrationNumber\": \"MD-AI-2024-SWAASA-001\",\n                  \"specialty\": \"AI Diagnostics \\u2014 Respiratory\",\n                  \"validUntil\": \"2027-12-31\"\n                },\n                \"analyticsEngineSpecs\": {\n                  \"modelName\": \"Swaasa-CoughAI-v2\",\n                  \"modelVersion\": \"2.3.1\",\n                  \"confidenceThreshold\": 0.85,\n                  \"supportedInputFormats\": [\"audio/wav\", \"audio/mp4\", \"audio/mpeg\"],\n                  \"regulatoryApproval\": \"CDSCO-MD-AI-2024-001\"\n                },\n                \"servicePrerequisites\": [\n                  {\"prerequisiteType\": \"DEVICE\", \"description\": \"Smartphone with functioning microphone (Android 8+ or iOS 13+)\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"SAMPLE\", \"description\": \"3 cough audio samples, each 5\\u201310 seconds, quiet environment\", \"mandatory\": true},\n                  {\"prerequisiteType\": \"DOCUMENT\", \"description\": \"Patient ABHA ID or government photo ID\", \"mandatory\": false}\n                ],\n                \"serviceUnit\": \"PER_UNIT\",\n                \"capacityPerDay\": 500,\n                \"minimumBookingAdvanceHours\": 0,\n                \"languagesSupported\": [\"en\", \"kn\", \"hi\"]\n              },\n              \"quantity\": {\"count\": 1000}\n            }\n          ],\n          \"offer\": {\n            \"id\": \"{{offer_id}}\",\n            \"resourceIds\": [\"{{resource_id}}\"],\n            \"descriptor\": {\n              \"name\": \"Swaasa Cough Analysis \\u2014 Bulk Procurement (NGO Rate)\",\n              \"shortDesc\": \"20% NGO discount \\u20b9200/unit. Registered NGOs with valid district-level MOU only.\",\n              \"longDesc\": \"Pre-purchased AI cough analysis units at the NGO rate.\"\n            },\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/HealthOffer/v2.1/context.jsonld\",\n              \"@type\": \"hof:HealthOffer\",\n              \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n              \"offerType\": \"BULK_PROCUREMENT\",\n              \"minimumQuantity\": 100,\n              \"maximumQuantity\": 10000,\n              \"requiresAdvanceBooking\": false,\n              \"bulkDiscountAvailable\": true,\n              \"eligibilityCriteria\": [\n                \"Registered NGO with valid district-level MOU with ONHS network participant\",\n                \"NGO registration ID verified by BPP at select\"\n              ],\n              \"validityPeriodDays\": 365\n            },\n            \"considerations\": [\n              {\n                \"id\": \"cons-ngo-cat-001\",\n                \"considerationAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n                  \"@type\": \"hcn:HealthConsideration\",\n                  \"pricePerUnit\": 200,\n                  \"currency\": \"INR\",\n                  \"discountRef\": \"{{discount_ref}}\",\n                  \"payerArchetype\": \"NGO\",\n                  \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"]\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Implementing agency \\u2014 district-level NGO, Karnataka\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        },\n        {\n          \"id\": \"{{payer_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Payer \\u2014 NGO finance department\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"PAYER\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"status\": {\"code\": \"ACTIVE\"},\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"],\n            \"selectedPaymentMethod\": \"NEFT\",\n            \"transactionRef\": \"{{payment_ref}}\",\n            \"paymentAuthorisation\": {\n              \"authCode\": \"{{payment_ref}}\",\n              \"authProvider\": \"HDFC_BANK\",\n              \"authTimestamp\": \"{{$isoTimestamp}}\",\n              \"authAmount\": 200000\n            }\n          }\n        }\n      ],\n      \"contractAttributes\": {\n        \"@context\": \"https://schema.beckn.io/HealthEntitlement/v2.1/context.jsonld\",\n        \"@type\": \"he:HealthEntitlement\",\n        \"entitlementId\": \"{{entitlement_id}}\",\n        \"issuerId\": \"{{bppId}}\",\n        \"holderId\": \"{{agency_participant_id}}\",\n        \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n        \"serviceScope\": [\"{{resource_id}}\"],\n        \"totalCapacity\": 1000,\n        \"validFrom\": \"2026-05-01\",\n        \"validUntil\": \"2027-04-30\",\n        \"geographyScope\": [\"IN-KA-BLR\", \"IN-KA-MYS\"],\n        \"counterpartyScope\": [\"{{bppId}}\"],\n        \"redemptionRules\": {\"minPerRedemption\": 1, \"maxPerRedemption\": 50, \"cooldownHours\": 0},\n        \"refundRules\": \"Unused capacity refundable at 80% of face value within 30 days of expiry\",\n        \"forfeitureRules\": \"Capacity not redeemed by 2027-04-30 is forfeited\",\n        \"usedCapacity\": 0,\n        \"remainingCapacity\": 1000,\n        \"lockedTermsSnapshot\": {\n          \"offerId\": \"{{offer_id}}\",\n          \"catalogConsiderationId\": \"cons-ngo-cat-001\",\n          \"pricePerUnit\": 200,\n          \"currency\": \"INR\",\n          \"discountRef\": \"{{discount_ref}}\",\n          \"validFrom\": \"2026-05-01\",\n          \"validUntil\": \"2027-04-30\",\n          \"geographyScope\": [\"IN-KA-BLR\", \"IN-KA-MYS\"],\n          \"lockedAt\": \"{{$isoTimestamp}}\"\n        },\n        \"state\": \"ACTIVE\"\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/on_confirm",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "on_confirm"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "status",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"status\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"ACTIVE\"}},\n          \"resources\": [{\"id\": \"{{resource_id}}\", \"quantity\": {\"count\": 1000}}],\n          \"offer\": {\"id\": \"{{offer_id}}\", \"resourceIds\": [\"{{resource_id}}\"]}\n        }\n      ]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bap_adapter_url}}/status",
+          "host": [
+            "{{bap_adapter_url}}"
+          ],
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "on_status",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"context\": {\n    \"networkId\": \"{{networkId}}\",\n    \"action\": \"on_status\",\n    \"version\": \"{{version}}\",\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"bppId\": \"{{bppId}}\",\n    \"bppUri\": \"{{bppUri}}\"\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"{{contract_id}}\",\n      \"status\": {\"code\": \"ACTIVE\"},\n      \"descriptor\": {\n        \"name\": \"Bulk Procurement Contract \\u2014 Swaasa Cough Analysis (NGO Rate)\",\n        \"shortDesc\": \"Settled. Entitlement active \\u2014 1,000 units ready for drawdown.\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-uc0-001\",\n          \"status\": {\"descriptor\": {\"code\": \"ACTIVE\"}},\n          \"resources\": [{\"id\": \"{{resource_id}}\", \"quantity\": {\"count\": 1000}}],\n          \"offer\": {\"id\": \"{{offer_id}}\", \"resourceIds\": [\"{{resource_id}}\"]}\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"{{agency_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Implementing agency \\u2014 district-level NGO, Karnataka\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"IMPLEMENTING_AGENCY\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        },\n        {\n          \"id\": \"{{payer_participant_id}}\",\n          \"descriptor\": {\"name\": \"Swastha Karnataka Foundation\", \"shortDesc\": \"Payer \\u2014 NGO finance department\"},\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld\",\n            \"@type\": \"hpa:HealthParticipant\",\n            \"participantRole\": \"PAYER\",\n            \"primaryLanguage\": \"kn\",\n            \"healthIds\": [{\"system\": \"NGO_DARPAN\", \"value\": \"NGO-KA-2019-00142\"}]\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"{{consideration_id}}\",\n          \"status\": {\"code\": \"ACTIVE\"},\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld\",\n            \"@type\": \"hcn:HealthConsideration\",\n            \"pricePerUnit\": 200,\n            \"currency\": \"INR\",\n            \"totalAmount\": 200000,\n            \"discountRef\": \"{{discount_ref}}\",\n            \"netAmount\": 200000,\n            \"payerArchetype\": \"NGO\",\n            \"paymentMethodsAccepted\": [\"BANK_TRANSFER\", \"NEFT\", \"RTGS\"],\n            \"selectedPaymentMethod\": \"NEFT\",\n            \"transactionRef\": \"{{payment_ref}}\",\n            \"paymentAuthorisation\": {\n              \"authCode\": \"{{payment_ref}}\",\n              \"authProvider\": \"HDFC_BANK\",\n              \"authTimestamp\": \"{{$isoTimestamp}}\",\n              \"authAmount\": 200000\n            }\n          }\n        }\n      ],\n      \"contractAttributes\": {\n        \"@context\": \"https://schema.beckn.io/HealthEntitlement/v2.1/context.jsonld\",\n        \"@type\": \"he:HealthEntitlement\",\n        \"entitlementId\": \"{{entitlement_id}}\",\n        \"issuerId\": \"{{bppId}}\",\n        \"holderId\": \"{{agency_participant_id}}\",\n        \"healthServiceType\": \"DIAGNOSTIC_ANALYTICS\",\n        \"serviceScope\": [\"{{resource_id}}\"],\n        \"totalCapacity\": 1000,\n        \"validFrom\": \"2026-05-01\",\n        \"validUntil\": \"2027-04-30\",\n        \"geographyScope\": [\"IN-KA-BLR\", \"IN-KA-MYS\"],\n        \"counterpartyScope\": [\"{{bppId}}\"],\n        \"redemptionRules\": {\"minPerRedemption\": 1, \"maxPerRedemption\": 50, \"cooldownHours\": 0},\n        \"refundRules\": \"Unused capacity refundable at 80% of face value within 30 days of expiry\",\n        \"forfeitureRules\": \"Capacity not redeemed by 2027-04-30 is forfeited\",\n        \"usedCapacity\": 0,\n        \"remainingCapacity\": 1000,\n        \"state\": \"ACTIVE\"\n      },\n      \"settlements\": [\n        {\n          \"id\": \"settlement-uc0-swk-001\",\n          \"considerationId\": \"{{consideration_id}}\",\n          \"status\": \"COMPLETE\",\n          \"settlementAttributes\": {\n            \"@context\": \"https://schema.beckn.io/HealthSettlement/v2.1/context.jsonld\",\n            \"@type\": \"hst:HealthSettlement\",\n            \"paymentReceivedByProvider\": true,\n            \"paymentRecordedAt\": \"{{$isoTimestamp}}\",\n            \"receiptRef\": \"{{payment_ref}}\",\n            \"paymentNotes\": \"NEFT received. NGO rate (offer-swaasa-bulk-ngo): \\u20b9200/unit \\u00d7 1,000 units = \\u20b92,00,000. discountRef: NGO-DISCOUNT-20PCT-2026.\",\n            \"entitlementRef\": \"{{entitlement_id}}\"\n          }\n        }\n      ]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{bpp_adapter_url}}/on_status",
+          "host": [
+            "{{bpp_adapter_url}}"
+          ],
+          "path": [
+            "on_status"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "cds_url",
+      "value": "",
+      "description": "CDS (Catalog Discovery Service) base URL — confirm with ONHS network team"
+    },
+    {
+      "key": "version",
+      "value": "2.0.0"
+    },
+    {
+      "key": "domain",
+      "value": "nfh.global/testnet/onhs-uc0"
+    },
+    {
+      "key": "networkId",
+      "value": "nfh.global/testnet/onhs-uc0",
+      "description": "ONHS network identifier. Confirm exact value with ONHS registry team before going live."
+    },
+    {
+      "key": "bapId",
+      "value": "bap.example.com"
+    },
+    {
+      "key": "bapUri",
+      "value": "http://onix-bap:8081/bap/receiver"
+    },
+    {
+      "key": "bppId",
+      "value": "bpp.example.com"
+    },
+    {
+      "key": "bppUri",
+      "value": "http://onix-bpp:8082/bpp/receiver"
+    },
+    {
+      "key": "transaction_id",
+      "value": "a1b2c3d4-e5f6-7890-ab12-cd3456789ef0"
+    },
+    {
+      "key": "bap_adapter_url",
+      "value": "http://localhost:8081/bap/caller"
+    },
+    {
+      "key": "bpp_adapter_url",
+      "value": "http://localhost:8082/bpp/caller"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "description": "ONHS network-issued JWT"
+    },
+    {
+      "key": "contract_id",
+      "value": "b2c3d4e5-f6a7-8901-bc23-de4567890fa1"
+    },
+    {
+      "key": "entitlement_id",
+      "value": "f7a8b9c0-d1e2-3456-fa78-bc9012345ef6",
+      "description": "Issued at on_confirm. Used as entitlementRef in UC1 + UC2 collections."
+    },
+    {
+      "key": "resource_id",
+      "value": "res-swaasa-cough-v2"
+    },
+    {
+      "key": "offer_id",
+      "value": "offer-swaasa-bulk-ngo",
+      "description": "NGO-rate offer (₹200/unit). Selected by BAP in this scenario."
+    },
+    {
+      "key": "offer_id_standard",
+      "value": "offer-swaasa-bulk-standard",
+      "description": "Standard-rate offer (₹250/unit). Present in catalog; not selected here."
+    },
+    {
+      "key": "consideration_id",
+      "value": "cons-uc0-001"
+    },
+    {
+      "key": "catalog_id",
+      "value": "catalog-swaasa-001"
+    },
+    {
+      "key": "provider_np_id",
+      "value": "test-provider-001"
+    },
+    {
+      "key": "agency_participant_id",
+      "value": "participant-agency-swk-001"
+    },
+    {
+      "key": "payer_participant_id",
+      "value": "participant-payer-swk-001"
+    },
+    {
+      "key": "discount_ref",
+      "value": "NGO-DISCOUNT-20PCT-2026",
+      "description": "Pre-published in catalog offer cons-ngo-cat-001."
+    },
+    {
+      "key": "payment_ref",
+      "value": "NEFT-UTR-SWK-20260501-001"
+    },
+    {
+      "key": "agency_cert_checksum",
+      "value": "",
+      "description": "SHA-256 checksum of the NGO-Darpan registration certificate submitted in credentialRefs at select."
+    }
+  ]
+}

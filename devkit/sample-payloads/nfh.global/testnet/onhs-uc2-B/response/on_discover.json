@@ -1,0 +1,140 @@
+{
+  "context": {
+    "domain": "{{domain}}",
+    "networkId": "{{network_id}}",
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "{{bap_uri}}",
+    "transactionId": "{{transaction_id_b}}",
+    "messageId": "2f3a4b5c-d6e7-8901-f2a3-b4c5d6e78901",
+    "timestamp": "2026-06-15T08:00:05+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "{{bpp_uri}}",
+    "schemaContext": [
+      "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+      "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "{{catalog_id}}",
+        "descriptor": {
+          "name": "Swaasa Health Analytics Catalog",
+          "shortDesc": "Swaasa AI diagnostic services available on ONHS."
+        },
+        "provider": {
+          "id": "{{provider_np_id}}",
+          "descriptor": {
+            "name": "Swaasa Technologies Pvt Ltd",
+            "shortDesc": "AI-powered respiratory diagnostics."
+          }
+        },
+        "resources": [
+          {
+            "id": "{{resource_id}}",
+            "descriptor": {
+              "name": "Swaasa AI Cough Analysis",
+              "shortDesc": "AI-driven cough audio analysis — TB, COPD, COVID-19 risk stratification.",
+              "longDesc": "CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.",
+              "thumbnailImage": "https://swaasa.ai/assets/logo.png"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "clinicalDeliveryUnit": "ANALYSIS",
+              "clinicalValidation": {
+                "accreditationBody": "CDSCO",
+                "registrationNumber": "MD-AI-2024-SWAASA-001",
+                "specialty": "AI Diagnostics — Respiratory",
+                "validUntil": "2027-12-31"
+              },
+              "analyticsEngineSpecs": {
+                "modelName": "Swaasa-CoughAI-v2",
+                "modelVersion": "2.3.1",
+                "confidenceThreshold": 0.85,
+                "supportedInputFormats": [
+                  "audio/wav",
+                  "audio/mp4",
+                  "audio/mpeg"
+                ],
+                "regulatoryApproval": "CDSCO-MD-AI-2024-001"
+              },
+              "servicePrerequisites": [
+                {
+                  "prerequisiteType": "DEVICE",
+                  "description": "Smartphone with functioning microphone (Android 8+ or iOS 13+)",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "SAMPLE",
+                  "description": "3 cough audio samples, each 5–10 seconds, quiet environment",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "DOCUMENT",
+                  "description": "Patient ABHA ID or government photo ID",
+                  "mandatory": false
+                }
+              ],
+              "serviceUnit": "PER_UNIT",
+              "capacityPerDay": 500,
+              "minimumBookingAdvanceHours": 0,
+              "languagesSupported": [
+                "en",
+                "kn",
+                "hi"
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "{{offer_id_camp}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ],
+            "descriptor": {
+              "name": "Swaasa Cough Analysis — Camp Engagement",
+              "shortDesc": "Multi-patient AI cough analysis camp. Batch booking for 10–100 patients on a single scheduled date.",
+              "longDesc": "Fixed-date, on-site, multi-patient cough analysis camp. FLW coordinates patient flow; Swaasa provides a dedicated technician and device for the camp duration. Results delivered per-patient within 2 minutes of audio capture. Advance booking and camp date confirmation required."
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "offerType": "CAMP",
+              "minimumQuantity": 10,
+              "maximumQuantity": 100,
+              "requiresAdvanceBooking": true,
+              "eligibilityCriteria": [
+                "Implementing agency with verified FLW credential and NGO registration",
+                "Camp location within Swaasa service geography (IN-KA)"
+              ],
+              "validityPeriodDays": 1
+            },
+            "considerations": [
+              {
+                "id": "cons-camp-cat-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 250,
+                  "currency": "INR",
+                  "payerArchetype": "NGO",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT",
+                    "RTGS"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

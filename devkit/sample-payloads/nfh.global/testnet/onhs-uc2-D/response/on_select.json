@@ -1,0 +1,51 @@
+{
+  "context": {
+    "domain": "{{domain}}",
+    "networkId": "{{network_id}}",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "{{bap_uri}}",
+    "transactionId": "{{transaction_id_d}}",
+    "messageId": "2c3d4e5f-a6b7-8901-c2d3-e4f5a6b78901",
+    "timestamp": "2026-06-15T08:30:08+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "{{bpp_uri}}"
+  },
+  "message": {
+    "contract": {
+      "id": "{{contract_id_d}}",
+      "status": {
+        "code": "CANCELLED"
+      },
+      "descriptor": {
+        "name": "Camp Booking Rejected — Insufficient Entitlement Capacity",
+        "shortDesc": "Entitlement has only 20 units remaining; requested camp size of 30 exceeds available capacity. Reduce camp size or procure additional capacity under UC0."
+      },
+      "commitments": [
+        {
+          "id": "commitment-uc2d-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "{{resource_id}}",
+              "quantity": {
+                "count": 30
+              }
+            }
+          ],
+          "offer": {
+            "id": "{{offer_id_camp}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
