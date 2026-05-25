@@ -1,0 +1,64 @@
+{
+  "context": {
+    "domain": "{{domain}}",
+    "networkId": "{{network_id}}",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "{{bap_uri}}",
+    "transactionId": "{{transaction_id_a}}",
+    "messageId": "b0c1d2e3-f4a5-6789-bc01-de2345678fa9",
+    "timestamp": "2026-06-01T10:10:02+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "{{bpp_uri}}"
+  },
+  "message": {
+    "contract": {
+      "status": {
+        "code": "CANCELLED"
+      },
+      "descriptor": {
+        "name": "Entitlement Exhausted — Service Unavailable",
+        "shortDesc": "HealthEntitlement {{entitlement_id}} has no remaining capacity. No new engagements can be drawn down."
+      },
+      "commitments": [
+        {
+          "id": "commitment-uc1d-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "{{resource_id}}",
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "{{offer_id_single_event}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "{{consideration_id_a}}",
+          "status": {
+            "code": "CANCELLED"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "payerArchetype": "NGO",
+            "entitlementRef": "{{entitlement_id}}"
+          }
+        }
+      ]
+    }
+  }
+}

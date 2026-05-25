@@ -1,0 +1,169 @@
+{
+  "context": {
+    "domain": "onhs:health",
+    "networkId": "{{network_id}}",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "https://arogyalink.onhs.in/beckn",
+    "transactionId": "{{transaction_id}}",
+    "messageId": "f2a3b4c5-d6e7-8901-fa23-bc4567890de1",
+    "timestamp": "2026-05-02T09:00:04+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "https://swaasa.onhs.in/beckn"
+  },
+  "message": {
+    "contract": {
+      "id": "{{contract_id}}",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "descriptor": {
+        "name": "Bulk Procurement Contract — Swaasa Cough Analysis (NGO Rate)",
+        "shortDesc": "Settled. Entitlement active — 1,000 units ready for drawdown."
+      },
+      "commitments": [
+        {
+          "id": "commitment-uc0-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "{{resource_id}}",
+              "quantity": {
+                "count": 1000
+              }
+            }
+          ],
+          "offer": {
+            "id": "{{offer_id}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ]
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "{{agency_participant_id}}",
+          "descriptor": {
+            "name": "Swastha Karnataka Foundation",
+            "shortDesc": "Implementing agency — district-level NGO, Karnataka"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "IMPLEMENTING_AGENCY",
+            "primaryLanguage": "kn",
+            "healthIds": [
+              {
+                "system": "NGO_DARPAN",
+                "value": "NGO-KA-2019-00142"
+              }
+            ]
+          }
+        },
+        {
+          "id": "{{payer_participant_id}}",
+          "descriptor": {
+            "name": "Swastha Karnataka Foundation",
+            "shortDesc": "Payer — NGO finance department"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "PAYER",
+            "primaryLanguage": "kn",
+            "healthIds": [
+              {
+                "system": "NGO_DARPAN",
+                "value": "NGO-KA-2019-00142"
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "{{consideration_id}}",
+          "status": {
+            "code": "ACTIVE"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 200,
+            "currency": "INR",
+            "totalAmount": 200000,
+            "discountRef": "{{discount_ref}}",
+            "netAmount": 200000,
+            "payerArchetype": "NGO",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT",
+              "RTGS"
+            ],
+            "selectedPaymentMethod": "NEFT",
+            "transactionRef": "{{payment_ref}}",
+            "paymentAuthorisation": {
+              "authCode": "{{payment_ref}}",
+              "authProvider": "HDFC_BANK",
+              "authTimestamp": "2026-05-01T11:28:44+05:30",
+              "authAmount": 200000
+            }
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthEntitlement/v2.1/context.jsonld",
+        "@type": "he:HealthEntitlement",
+        "entitlementId": "{{entitlement_id}}",
+        "issuerId": "{{provider_np_id}}",
+        "holderId": "{{agency_participant_id}}",
+        "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+        "serviceScope": [
+          "{{resource_id}}"
+        ],
+        "totalCapacity": 1000,
+        "validFrom": "2026-05-01",
+        "validUntil": "2027-04-30",
+        "geographyScope": [
+          "IN-KA-BLR",
+          "IN-KA-MYS"
+        ],
+        "counterpartyScope": [
+          "{{provider_np_id}}"
+        ],
+        "redemptionRules": {
+          "minPerRedemption": 1,
+          "maxPerRedemption": 50,
+          "cooldownHours": 0
+        },
+        "refundRules": "Unused capacity refundable at 80% of face value within 30 days of expiry",
+        "forfeitureRules": "Capacity not redeemed by 2027-04-30 is forfeited",
+        "usedCapacity": 0,
+        "remainingCapacity": 1000,
+        "state": "ACTIVE"
+      },
+      "settlements": [
+        {
+          "id": "settlement-uc0-swk-001",
+          "considerationId": "{{consideration_id}}",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://schema.beckn.io/HealthSettlement/v2.1/context.jsonld",
+            "@type": "hst:HealthSettlement",
+            "paymentReceivedByProvider": true,
+            "paymentRecordedAt": "2026-05-01T14:05:22+05:30",
+            "receiptRef": "{{payment_ref}}",
+            "paymentNotes": "NEFT received. NGO rate (offer-swaasa-bulk-ngo): ₹200/unit × 1,000 units = ₹2,00,000. discountRef: NGO-DISCOUNT-20PCT-2026.",
+            "entitlementRef": "{{entitlement_id}}"
+          }
+        }
+      ]
+    }
+  }
+}

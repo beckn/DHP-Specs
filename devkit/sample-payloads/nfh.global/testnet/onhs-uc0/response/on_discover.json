@@ -1,0 +1,183 @@
+{
+  "context": {
+    "domain": "onhs:health",
+    "networkId": "{{network_id}}",
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "https://arogyalink.onhs.in/beckn",
+    "transactionId": "{{transaction_id}}",
+    "messageId": "d4e5f6a7-b8c9-0123-de45-fa6789012bc3",
+    "timestamp": "2026-05-01T09:00:03+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "https://swaasa.onhs.in/beckn",
+    "schemaContext": [
+      "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+      "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "{{catalog_id}}",
+        "descriptor": {
+          "name": "Swaasa Health Services Catalog",
+          "shortDesc": "AI-driven diagnostic analytics by Swaasa Health Pvt. Ltd."
+        },
+        "provider": {
+          "id": "{{provider_np_id}}",
+          "descriptor": {
+            "name": "Swaasa Health Platform",
+            "shortDesc": "Swaasa Health Pvt. Ltd. — Provider NP"
+          }
+        },
+        "resources": [
+          {
+            "id": "{{resource_id}}",
+            "descriptor": {
+              "name": "Swaasa AI Cough Analysis",
+              "shortDesc": "AI-driven cough audio analysis — TB, COPD, COVID-19 risk stratification.",
+              "longDesc": "CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.",
+              "thumbnailImage": "https://swaasa.ai/assets/logo.png"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "clinicalDeliveryUnit": "ANALYSIS",
+              "clinicalValidation": {
+                "accreditationBody": "CDSCO",
+                "registrationNumber": "MD-AI-2024-SWAASA-001",
+                "specialty": "AI Diagnostics — Respiratory",
+                "validUntil": "2027-12-31"
+              },
+              "analyticsEngineSpecs": {
+                "modelName": "Swaasa-CoughAI-v2",
+                "modelVersion": "2.3.1",
+                "confidenceThreshold": 0.85,
+                "supportedInputFormats": [
+                  "audio/wav",
+                  "audio/mp4",
+                  "audio/mpeg"
+                ],
+                "regulatoryApproval": "CDSCO-MD-AI-2024-001"
+              },
+              "servicePrerequisites": [
+                {
+                  "prerequisiteType": "DEVICE",
+                  "description": "Smartphone with functioning microphone (Android 8+ or iOS 13+)",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "SAMPLE",
+                  "description": "3 cough audio samples, each 5–10 seconds, quiet environment",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "DOCUMENT",
+                  "description": "Patient ABHA ID or government photo ID",
+                  "mandatory": false
+                }
+              ],
+              "serviceUnit": "PER_UNIT",
+              "capacityPerDay": 500,
+              "minimumBookingAdvanceHours": 0,
+              "languagesSupported": [
+                "en",
+                "kn",
+                "hi"
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "offer-swaasa-bulk-standard",
+            "resourceIds": [
+              "{{resource_id}}"
+            ],
+            "descriptor": {
+              "name": "Swaasa Cough Analysis — Bulk Procurement (Standard)",
+              "shortDesc": "Standard rate ₹250/unit. Open to all registered implementing agencies."
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "offerType": "BULK_PROCUREMENT",
+              "minimumQuantity": 100,
+              "maximumQuantity": 10000,
+              "requiresAdvanceBooking": false,
+              "bulkDiscountAvailable": false,
+              "eligibilityCriteria": [
+                "Any registered implementing agency or government department"
+              ],
+              "validityPeriodDays": 365
+            },
+            "considerations": [
+              {
+                "id": "cons-standard-cat-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 250,
+                  "currency": "INR",
+                  "payerArchetype": "NGO",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT",
+                    "RTGS"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "{{offer_id}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ],
+            "descriptor": {
+              "name": "Swaasa Cough Analysis — Bulk Procurement (NGO Rate)",
+              "shortDesc": "20% NGO discount ₹200/unit. Registered NGOs with valid district-level MOU only.",
+              "longDesc": "Pre-purchased AI cough analysis units at the NGO rate. Eligibility: registered NGO with a current district-level MOU with an ONHS participant. BPP verifies NGO registration ID at select before confirming this rate. Refund and forfeiture terms are specified in the issued HealthEntitlement."
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "offerType": "BULK_PROCUREMENT",
+              "minimumQuantity": 100,
+              "maximumQuantity": 10000,
+              "requiresAdvanceBooking": false,
+              "bulkDiscountAvailable": true,
+              "eligibilityCriteria": [
+                "Registered NGO with valid district-level MOU with ONHS network participant",
+                "NGO registration ID verified by BPP at select"
+              ],
+              "validityPeriodDays": 365
+            },
+            "considerations": [
+              {
+                "id": "cons-ngo-cat-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 200,
+                  "currency": "INR",
+                  "discountRef": "{{discount_ref}}",
+                  "payerArchetype": "NGO",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT",
+                    "RTGS"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

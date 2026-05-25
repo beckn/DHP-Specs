@@ -1,0 +1,214 @@
+{
+  "context": {
+    "domain": "{{domain}}",
+    "networkId": "{{network_id}}",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "{{bap_uri}}",
+    "transactionId": "{{transaction_id_b}}",
+    "messageId": "4b5c6d7e-f8a9-0123-b4c5-d6e7f8a90123",
+    "timestamp": "2026-06-15T08:05:10+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "{{bpp_uri}}"
+  },
+  "message": {
+    "contract": {
+      "id": "{{contract_id_b}}",
+      "status": {
+        "code": "DRAFT"
+      },
+      "descriptor": {
+        "name": "Swaasa Camp Cough Analysis — 30 Patients",
+        "shortDesc": "Camp engagement priced at Rs.250/patient × 30 patients = Rs.7500. Standard on-the-spot rate."
+      },
+      "commitments": [
+        {
+          "id": "commitment-uc2b-001",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT"
+            }
+          },
+          "resources": [
+            {
+              "id": "{{resource_id}}",
+              "descriptor": {
+                "name": "Swaasa AI Cough Analysis",
+                "shortDesc": "AI-driven cough audio analysis — TB, COPD, COVID-19 risk stratification.",
+                "longDesc": "CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.",
+                "thumbnailImage": "https://swaasa.ai/assets/logo.png"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+                "clinicalDeliveryUnit": "ANALYSIS",
+                "clinicalValidation": {
+                  "accreditationBody": "CDSCO",
+                  "registrationNumber": "MD-AI-2024-SWAASA-001",
+                  "specialty": "AI Diagnostics — Respiratory",
+                  "validUntil": "2027-12-31"
+                },
+                "analyticsEngineSpecs": {
+                  "modelName": "Swaasa-CoughAI-v2",
+                  "modelVersion": "2.3.1",
+                  "confidenceThreshold": 0.85,
+                  "supportedInputFormats": [
+                    "audio/wav",
+                    "audio/mp4",
+                    "audio/mpeg"
+                  ],
+                  "regulatoryApproval": "CDSCO-MD-AI-2024-001"
+                },
+                "servicePrerequisites": [
+                  {
+                    "prerequisiteType": "DEVICE",
+                    "description": "Smartphone with functioning microphone (Android 8+ or iOS 13+)",
+                    "mandatory": true
+                  },
+                  {
+                    "prerequisiteType": "SAMPLE",
+                    "description": "3 cough audio samples, each 5–10 seconds, quiet environment",
+                    "mandatory": true
+                  },
+                  {
+                    "prerequisiteType": "DOCUMENT",
+                    "description": "Patient ABHA ID or government photo ID",
+                    "mandatory": false
+                  }
+                ],
+                "serviceUnit": "PER_UNIT",
+                "capacityPerDay": 500,
+                "minimumBookingAdvanceHours": 0,
+                "languagesSupported": [
+                  "en",
+                  "kn",
+                  "hi"
+                ]
+              },
+              "quantity": {
+                "count": 30
+              }
+            }
+          ],
+          "offer": {
+            "id": "{{offer_id_camp}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ],
+            "descriptor": {
+              "name": "Swaasa Cough Analysis — Camp Engagement",
+              "shortDesc": "Multi-patient AI cough analysis camp. Batch booking for 10–100 patients on a single scheduled date.",
+              "longDesc": "Fixed-date, on-site, multi-patient cough analysis camp. FLW coordinates patient flow; Swaasa provides a dedicated technician and device for the camp duration. Results delivered per-patient within 2 minutes of audio capture. Advance booking and camp date confirmation required."
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "offerType": "CAMP",
+              "minimumQuantity": 10,
+              "maximumQuantity": 100,
+              "requiresAdvanceBooking": true,
+              "eligibilityCriteria": [
+                "Implementing agency with verified FLW credential and NGO registration",
+                "Camp location within Swaasa service geography (IN-KA)"
+              ],
+              "validityPeriodDays": 1
+            },
+            "considerations": [
+              {
+                "id": "cons-camp-cat-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 250,
+                  "currency": "INR",
+                  "payerArchetype": "NGO",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT",
+                    "RTGS"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "{{agency_participant_id}}",
+          "descriptor": {
+            "name": "Swastha Karnataka Foundation",
+            "shortDesc": "Implementing agency — NGO camp organiser"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "IMPLEMENTING_AGENCY",
+            "primaryLanguage": "kn",
+            "healthIds": [
+              {
+                "system": "NGO_DARPAN",
+                "value": "NGO-KA-2019-00142"
+              }
+            ]
+          }
+        },
+        {
+          "id": "{{camp_coordinator_id}}",
+          "descriptor": {
+            "name": "Meena Devi",
+            "shortDesc": "ASHA camp coordinator — on-site lead"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "FIELD_WORKER",
+            "primaryLanguage": "kn",
+            "healthIds": [
+              {
+                "system": "ASHA-ID",
+                "value": "KA-2021-0042"
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "{{consideration_id_b}}",
+          "status": {
+            "code": "PENDING"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 250,
+            "currency": "INR",
+            "perPatientAmount": 250,
+            "payerArchetype": "NGO",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT",
+              "RTGS"
+            ],
+            "totalAmount": 7500,
+            "netAmount": 7500
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthContract/v2.1/context.jsonld",
+        "@type": "hct:HealthContract",
+        "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+        "campId": "{{camp_id}}",
+        "bookingChannel": "APP",
+        "facilitatorId": "{{camp_coordinator_id}}",
+        "clientNotes": "Camp scheduled for 15 June 2026, Kanakapur Village Hall. 30 patients mobilised by FLW collective.",
+        "artifactAccessEndpoint": "https://swaasa.ai/camp/{{camp_id}}/upload"
+      }
+    }
+  }
+}

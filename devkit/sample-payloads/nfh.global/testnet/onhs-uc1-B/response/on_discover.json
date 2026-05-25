@@ -1,0 +1,138 @@
+{
+  "context": {
+    "domain": "{{domain}}",
+    "networkId": "{{network_id}}",
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "{{seeker_np_id}}",
+    "bapUri": "{{bap_uri}}",
+    "transactionId": "{{transaction_id_b}}",
+    "messageId": "d0e1f2a3-b4c5-6789-de01-fa2345678bc9",
+    "timestamp": "2026-06-01T09:40:02+05:30",
+    "bppId": "{{provider_np_id}}",
+    "bppUri": "{{bpp_uri}}",
+    "schemaContext": [
+      "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+      "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "{{catalog_id}}",
+        "descriptor": {
+          "name": "Swaasa AI Health Services",
+          "shortDesc": "AI-powered cough analysis and respiratory diagnostics."
+        },
+        "provider": {
+          "id": "{{provider_np_id}}",
+          "descriptor": {
+            "name": "Swaasa Health Tech Pvt Ltd"
+          }
+        },
+        "resources": [
+          {
+            "id": "{{resource_id}}",
+            "descriptor": {
+              "name": "Swaasa AI Cough Analysis",
+              "shortDesc": "AI-driven cough audio analysis — TB, COPD, COVID-19 risk stratification.",
+              "longDesc": "CDSCO-registered AI diagnostic service. Accepts 3 cough audio samples; returns risk scores and clinical findings within minutes. Model: Swaasa-CoughAI-v2.",
+              "thumbnailImage": "https://swaasa.ai/assets/logo.png"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "clinicalDeliveryUnit": "ANALYSIS",
+              "clinicalValidation": {
+                "accreditationBody": "CDSCO",
+                "registrationNumber": "MD-AI-2024-SWAASA-001",
+                "specialty": "AI Diagnostics — Respiratory",
+                "validUntil": "2027-12-31"
+              },
+              "analyticsEngineSpecs": {
+                "modelName": "Swaasa-CoughAI-v2",
+                "modelVersion": "2.3.1",
+                "confidenceThreshold": 0.85,
+                "supportedInputFormats": [
+                  "audio/wav",
+                  "audio/mp4",
+                  "audio/mpeg"
+                ],
+                "regulatoryApproval": "CDSCO-MD-AI-2024-001"
+              },
+              "servicePrerequisites": [
+                {
+                  "prerequisiteType": "DEVICE",
+                  "description": "Smartphone with functioning microphone (Android 8+ or iOS 13+)",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "SAMPLE",
+                  "description": "3 cough audio samples, each 5–10 seconds, quiet environment",
+                  "mandatory": true
+                },
+                {
+                  "prerequisiteType": "DOCUMENT",
+                  "description": "Patient ABHA ID or government photo ID",
+                  "mandatory": false
+                }
+              ],
+              "serviceUnit": "PER_UNIT",
+              "capacityPerDay": 500,
+              "minimumBookingAdvanceHours": 0,
+              "languagesSupported": [
+                "en",
+                "kn",
+                "hi"
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "{{offer_id_single_event}}",
+            "resourceIds": [
+              "{{resource_id}}"
+            ],
+            "descriptor": {
+              "name": "Swaasa Cough Analysis — Single Engagement",
+              "shortDesc": "AI cough analysis per patient, Rs.250 per engagement. Immediate booking.",
+              "longDesc": "Per-patient AI cough analysis. FLW records 3 cough audio samples; result delivered within 2 minutes. No prior procurement required."
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "DIAGNOSTIC_ANALYTICS",
+              "offerType": "SINGLE_EVENT",
+              "minimumQuantity": 1,
+              "maximumQuantity": 1,
+              "requiresAdvanceBooking": false,
+              "eligibilityCriteria": [
+                "Any individual patient with FLW-mediated or self-consent"
+              ],
+              "validityPeriodDays": 1
+            },
+            "considerations": [
+              {
+                "id": "cons-single-cat-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 250,
+                  "currency": "INR",
+                  "payerArchetype": "SELF",
+                  "paymentMethodsAccepted": [
+                    "UPI",
+                    "BANK_TRANSFER",
+                    "CASH_VIA_FLW"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
