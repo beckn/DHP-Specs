@@ -1,0 +1,7 @@
+{
+  "@context": {
+    "code": "@id",
+    "display": "http://www.w3.org/2000/01/rdf-schema#label"
+  },
+  "_comment": "DevKit validation stub for CodedValue @types used in the referral reference flows. Sibling attributes.yaml carries a code-enum class per @type. Temporary shim \u2014 not a normative schema."
+}
