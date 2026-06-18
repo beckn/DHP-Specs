@@ -1,0 +1,291 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-doctor-t1",
+    "action": "on_confirm",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "a6929fe7-b003-43c8-9c6c-41dc81360ec6",
+    "messageId": "d26bc205-8582-5220-a119-1f12582a9e2c",
+    "timestamp": "2026-06-14T09:16:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "8fab86de-cf27-4fb3-924e-be332346000f",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "descriptor": {
+        "name": "Referral — GP -> Cardiologist",
+        "docs": [
+          {
+            "label": "Referral Note — Ravi Kumar",
+            "url": "https://docs.example.org/referral/referralnote-specialist-001.pdf",
+            "mimeType": "application/pdf",
+            "standard": "FHIR/ServiceRequest"
+          },
+          {
+            "label": "Patient Consent — Referral",
+            "url": "https://docs.example.org/consent/consent-specialist-001.pdf",
+            "mimeType": "application/pdf"
+          }
+        ]
+      },
+      "commitments": [
+        {
+          "id": "commitment-t1-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-coord-specialist",
+              "descriptor": {
+                "name": "Nashik Referral Coordination Desk",
+                "shortDesc": "Care coordination desk — referral handling",
+                "longDesc": "Standing care-coordination capability: discovers and books downstream targets, manages referral lifecycle and handover."
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+                "@type": "scres:ServiceCoordinationResource",
+                "coordinationScope": {
+                  "referralCategories": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "ReferralCategory",
+                      "code": "CLINICAL",
+                      "display": "Clinical"
+                    }
+                  ],
+                  "targetServiceTypes": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "TargetServiceType",
+                      "code": "CONSULTATION",
+                      "display": "Consultation"
+                    }
+                  ],
+                  "geographyScope": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "LGDDistrict",
+                      "code": "507",
+                      "display": "Nashik"
+                    }
+                  ]
+                },
+                "acceptanceMode": "MANUAL_REVIEW",
+                "supportedUrgencyTiers": [
+                  "ROUTINE",
+                  "URGENT",
+                  "EMERGENCY"
+                ]
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-coord-specialist",
+            "resourceIds": [
+              "res-coord-specialist"
+            ],
+            "descriptor": {
+              "name": "Referral coordination engagement",
+              "shortDesc": "Per-referral coordination service"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-coord-specialist-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 200,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-coord-specialist-001",
+          "status": {
+            "code": "ACTIVE"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 200,
+            "currency": "INR",
+            "totalAmount": 200,
+            "netAmount": 200,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ],
+            "selectedPaymentMethod": "NEFT",
+            "transactionRef": "NEFT-SPECIALIST-20260614"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "participant-referrer-specialist",
+          "descriptor": {
+            "name": "Dr. Priya Anand",
+            "shortDesc": "General Practitioner (Nominator)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "GENERAL_PRACTITIONER",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "HFR",
+                "value": "HFR-GP-0001"
+              }
+            ]
+          }
+        },
+        {
+          "id": "participant-patient-specialist",
+          "descriptor": {
+            "name": "Ravi Kumar",
+            "shortDesc": "Patient (Subject)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "PATIENT",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "ABHA",
+                "value": "91-1234-5678-9012"
+              }
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthReferral/v2.1/context.jsonld",
+        "@type": "hrf:HealthReferral",
+        "lifecycleState": "ACTIVE",
+        "clinicalUrgencyTier": "URGENT",
+        "targetCriteria": {
+          "specialty": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "Specialty",
+            "code": "CARDIOLOGY",
+            "display": "Cardiology"
+          },
+          "subSpecialty": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "SubSpecialty",
+            "code": "INTERVENTIONAL_CARDIOLOGY",
+            "display": "Interventional Cardiology"
+          },
+          "equipmentNeeds": [
+            "ECHO",
+            "CATH_LAB"
+          ],
+          "consultationModality": "IN_PERSON"
+        },
+        "coordinationId": "8fab86de-cf27-4fb3-924e-be332346000f",
+        "schemeRef": {
+          "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+          "@type": "Scheme",
+          "code": "PMJAY",
+          "display": "Ayushman Bharat PM-JAY"
+        },
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "c3f84391-eb8d-4ae5-9e03-6e066859cfa8",
+          "consentDocRef": "consent-specialist-001",
+          "patientParticipantId": "participant-patient-specialist",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "consentedBy": "participant-referrer-specialist",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ],
+          "originatingConsentRef": "treatment-rel-participant-referrer-specialist"
+        },
+        "referralNote": {
+          "artifactRef": "referralnote-specialist-001",
+          "credentialScope": "did:example:provider:participant-provider-specialist",
+          "accessWindowStart": "2026-06-14T09:15:00+05:30",
+          "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+          "revocationStatus": "ACTIVE",
+          "specialty": "Cardiology",
+          "urgency": "URGENT",
+          "priorResultRefs": []
+        },
+        "notificationRoster": [
+          {
+            "partyRef": "participant-referrer-specialist",
+            "partyRole": "NOMINATOR",
+            "notificationScope": "FULL",
+            "channelRef": "sms:+910000000010"
+          },
+          {
+            "partyRef": "participant-patient-specialist",
+            "partyRole": "SUBJECT",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000011"
+          },
+          {
+            "partyRef": "participant-observer-specialist",
+            "partyRole": "OBSERVER",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000012"
+          }
+        ],
+        "recommendedTargetRef": {
+          "targetProviderId": "participant-provider-specialist",
+          "targetResourceRef": "res-target-specialist",
+          "targetOfferRef": "offer-target-specialist",
+          "termsSnapshot": {
+            "outcomeCommitment": {
+              "attendanceToOutcomeSlaHours": 48,
+              "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+              "mandatory": true
+            }
+          },
+          "snapshotAt": "2026-06-14T09:06:00+05:30"
+        }
+      }
+    }
+  }
+}

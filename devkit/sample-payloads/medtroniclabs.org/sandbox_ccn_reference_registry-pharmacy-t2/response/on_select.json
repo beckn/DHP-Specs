@@ -1,0 +1,148 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-pharmacy-t2",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "51099d3d-dff3-4dec-ba68-1570e765b7b7",
+    "messageId": "5941bf61-d66c-5082-aa74-d3dabb03567f",
+    "timestamp": "2026-06-14T09:31:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "73742aa9-df28-400d-a67f-8eb131067127",
+      "status": {
+        "code": "DRAFT"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-pharmacy",
+              "descriptor": {
+                "name": "Specialty drug dispensing",
+                "shortDesc": "Cold-chain specialty drug, scheme-covered"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "PHARMACY_DISPENSING",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Pharmacy"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-pharmacy",
+            "resourceIds": [
+              "res-target-pharmacy"
+            ],
+            "descriptor": {
+              "name": "Pharmacy dispensing (specialty drug)"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHARMACY_DISPENSING",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/MedicationDispense",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-pharmacy-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 0,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-appt-pharmacy-001",
+          "status": {
+            "code": "PENDING"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 0,
+            "currency": "INR",
+            "totalAmount": 0,
+            "netAmount": 0,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthContract/v2.1/context.jsonld",
+        "@type": "hct:HealthContract",
+        "healthServiceType": "PHARMACY_DISPENSING",
+        "coordinationRef": "cac02ba1-2e7d-4553-9ee4-f749f8b435f4",
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "2d2ddb3c-2d0e-47fa-8a0d-864067c8dc17",
+          "consentDocRef": "consent-pharmacy-001",
+          "patientParticipantId": "participant-patient-pharmacy",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ]
+        },
+        "inputArtifacts": [
+          {
+            "artifactRef": "referralnote-pharmacy-001",
+            "artifactType": "REFERRAL",
+            "mimeType": "application/pdf",
+            "sourceCoordinationRef": "cac02ba1-2e7d-4553-9ee4-f749f8b435f4",
+            "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+            "revocationStatus": "ACTIVE"
+          }
+        ]
+      }
+    }
+  }
+}

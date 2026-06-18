@@ -1,0 +1,192 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-diagnostic-t1",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "d4d72443-2000-4b02-8b60-2210d060eafb",
+    "messageId": "2045adeb-0c67-54b4-928c-0f7f291025c8",
+    "timestamp": "2026-06-14T11:30:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "7a1ac527-8093-4b3c-b3cc-596421bfa311",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t1-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-coord-diagnostic",
+              "descriptor": {
+                "name": "Pune Diagnostic Coordination Desk",
+                "shortDesc": "Care coordination desk — referral handling",
+                "longDesc": "Standing care-coordination capability: discovers and books downstream targets, manages referral lifecycle and handover."
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+                "@type": "scres:ServiceCoordinationResource",
+                "coordinationScope": {
+                  "referralCategories": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "ReferralCategory",
+                      "code": "DIAGNOSTIC",
+                      "display": "Diagnostic"
+                    }
+                  ],
+                  "targetServiceTypes": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "TargetServiceType",
+                      "code": "INVESTIGATION",
+                      "display": "Investigation"
+                    }
+                  ],
+                  "geographyScope": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "LGDDistrict",
+                      "code": "521",
+                      "display": "Pune"
+                    }
+                  ]
+                },
+                "acceptanceMode": "AUTO_ACCEPT",
+                "supportedUrgencyTiers": [
+                  "ROUTINE",
+                  "URGENT"
+                ]
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-coord-diagnostic",
+            "resourceIds": [
+              "res-coord-diagnostic"
+            ],
+            "descriptor": {
+              "name": "Referral coordination engagement",
+              "shortDesc": "Per-referral coordination service"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "LAB_TEST",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-coord-diagnostic-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 150,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthReferral/v2.1/context.jsonld",
+        "@type": "hrf:HealthReferral",
+        "lifecycleState": "BOOKING_CONFIRMED",
+        "clinicalUrgencyTier": "ROUTINE",
+        "targetCriteria": {
+          "serviceCategory": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ServiceCategory",
+            "code": "INVESTIGATION",
+            "display": "Investigation"
+          },
+          "procedureNeeds": [
+            "LIPID_PANEL"
+          ],
+          "consultationModality": "IN_PERSON"
+        },
+        "coordinationId": "7a1ac527-8093-4b3c-b3cc-596421bfa311",
+        "schemeRef": {
+          "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+          "@type": "Scheme",
+          "code": "PMJAY",
+          "display": "Ayushman Bharat PM-JAY"
+        },
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "646b842b-ea43-4df6-a240-40dca4cd98b4",
+          "consentDocRef": "consent-diagnostic-001",
+          "patientParticipantId": "participant-patient-diagnostic",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "consentedBy": "participant-referrer-diagnostic",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ],
+          "originatingConsentRef": "treatment-rel-participant-referrer-diagnostic"
+        },
+        "referralNote": {
+          "artifactRef": "referralnote-diagnostic-001",
+          "credentialScope": "did:example:provider:participant-provider-diagnostic",
+          "accessWindowStart": "2026-06-14T09:15:00+05:30",
+          "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+          "revocationStatus": "ACTIVE",
+          "specialty": "Pathology",
+          "urgency": "ROUTINE",
+          "priorResultRefs": []
+        },
+        "notificationRoster": [
+          {
+            "partyRef": "participant-referrer-diagnostic",
+            "partyRole": "NOMINATOR",
+            "notificationScope": "FULL",
+            "channelRef": "sms:+910000000010"
+          },
+          {
+            "partyRef": "participant-patient-diagnostic",
+            "partyRole": "SUBJECT",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000011"
+          },
+          {
+            "partyRef": "participant-observer-diagnostic",
+            "partyRole": "OBSERVER",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000012"
+          }
+        ],
+        "targetBookingRef": "b7b9a5c1-2b7b-449d-8a68-4203c3b638c2"
+      }
+    }
+  }
+}

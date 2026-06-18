@@ -1,0 +1,97 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-emergency-t2",
+    "action": "on_cancel",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "af612be0-f291-4565-9cca-5aede007018f",
+    "messageId": "28b733f3-3755-5f67-a98b-8f7dd1772890",
+    "timestamp": "2026-06-15T09:31:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "7a5a2d49-726d-4ff3-928f-74f0c0b41ac6",
+      "status": {
+        "code": "CANCELLED"
+      },
+      "descriptor": {
+        "name": "Appointment Cancelled — Consent Withdrawn"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-emergency",
+              "descriptor": {
+                "name": "Emergency department slot",
+                "shortDesc": "Immediate-availability ED bed"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "PHYSICAL_CONSULTATION",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Cardiology"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-emergency",
+            "resourceIds": [
+              "res-target-emergency"
+            ],
+            "descriptor": {
+              "name": "Emergency admission (immediate)"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-emergency-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 0,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

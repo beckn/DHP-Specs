@@ -15,7 +15,7 @@
         "beckn:resourceAttributes": {
           "@type": "hr:HealthResource",
           "healthServiceType": "DIAGNOSTIC_ANALYTICS",
-          "serviceUnit": "PER_UNIT",
+          "serviceUnit": "ANALYSIS",
           "coverageArea": ["IN-KA", "IN-TN", "IN-AP"],
           "capacityPerDay": 500,
           "capacityPerWeek": 3000,

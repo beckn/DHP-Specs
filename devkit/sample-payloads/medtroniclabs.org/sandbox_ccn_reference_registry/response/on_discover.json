@@ -1,0 +1,307 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry",
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "50dfee76-a049-402c-b859-fba346516375",
+    "messageId": "ecab1eac-06b0-5a4a-af93-676f1470e6d7",
+    "timestamp": "2026-06-14T09:01:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "schemaContext": [
+      "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+      "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "catalog-coord-nashik-001",
+        "bppId": "bpp.example.com",
+        "bppUri": "http://onix-bpp:8082/bpp/receiver",
+        "descriptor": {
+          "name": "Nashik District Referral Desk"
+        },
+        "provider": {
+          "id": "cc-np-nashik-001",
+          "descriptor": {
+            "name": "Nashik District Referral Desk"
+          }
+        },
+        "resources": [
+          {
+            "id": "res-coord-nashik-001",
+            "descriptor": {
+              "name": "Nashik District Referral Coordination"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+              "@type": "scres:ServiceCoordinationResource",
+              "coordinationScope": {
+                "referralCategories": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "ReferralCategory",
+                    "code": "CLINICAL",
+                    "display": "Clinical referral"
+                  }
+                ],
+                "targetServiceTypes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "TargetServiceType",
+                    "code": "CONSULTATION"
+                  },
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "TargetServiceType",
+                    "code": "INVESTIGATION"
+                  },
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "TargetServiceType",
+                    "code": "DISPENSING"
+                  }
+                ],
+                "programmeScope": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY"
+                  }
+                ],
+                "geographyScope": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "LGDDistrict",
+                    "code": "507",
+                    "display": "Nashik"
+                  }
+                ]
+              },
+              "acceptanceMode": "MANUAL_REVIEW",
+              "supportedUrgencyTiers": [
+                "ROUTINE",
+                "URGENT",
+                "EMERGENCY"
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "offer-coord-standard-001",
+            "resourceIds": [
+              "res-coord-nashik-001"
+            ],
+            "descriptor": {
+              "name": "Coordination service — standard"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/ServiceCoordinationOffer/v2.1/context.jsonld",
+              "@type": "scoff:ServiceCoordinationOffer",
+              "coordinationSlaWindows": [
+                {
+                  "urgencyTier": "ROUTINE",
+                  "lapseWindowHours": 168,
+                  "slaBreachWindowHours": 168
+                },
+                {
+                  "urgencyTier": "URGENT",
+                  "lapseWindowHours": 48,
+                  "slaBreachWindowHours": 48
+                },
+                {
+                  "urgencyTier": "EMERGENCY",
+                  "lapseWindowHours": 1,
+                  "slaBreachWindowHours": 1
+                }
+              ],
+              "retryPolicy": "ONE_SILENT_RETRY",
+              "handoffSupported": true,
+              "maxActiveReferrals": 500
+            }
+          }
+        ]
+      },
+      {
+        "id": "catalog-apollo-card-001",
+        "bppId": "bpp.example.com",
+        "bppUri": "http://onix-bpp:8082/bpp/receiver",
+        "descriptor": {
+          "name": "Apollo Cardiology"
+        },
+        "provider": {
+          "id": "provider-np-apollo-card-001",
+          "descriptor": {
+            "name": "Apollo Cardiology"
+          }
+        },
+        "resources": [
+          {
+            "id": "res-apollo-card-opd",
+            "descriptor": {
+              "name": "Apollo Cardiology — Dr. Mehta"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "clinicalDeliveryUnit": "CONSULTATION",
+              "acceptedSchemes": [
+                {
+                  "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                  "@type": "Scheme",
+                  "code": "PMJAY"
+                }
+              ],
+              "clinicalValidation": {
+                "accreditationBody": "NMC",
+                "registrationNumber": "NMC-MH-2009-44521",
+                "specialty": "Cardiology"
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "offer-apollo-card-opd",
+            "resourceIds": [
+              "res-apollo-card-opd"
+            ],
+            "descriptor": {
+              "name": "Cardiology OPD consultation"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 72,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "catalog-nashikpath-001",
+        "bppId": "bpp.example.com",
+        "bppUri": "http://onix-bpp:8082/bpp/receiver",
+        "descriptor": {
+          "name": "Nashik Path Labs"
+        },
+        "provider": {
+          "id": "provider-np-nashikpath-001",
+          "descriptor": {
+            "name": "Nashik Path Labs"
+          }
+        },
+        "resources": [
+          {
+            "id": "res-nashikpath-lipid",
+            "descriptor": {
+              "name": "Nashik Path Labs"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "LAB_TEST",
+              "clinicalDeliveryUnit": "TEST",
+              "acceptedSchemes": [
+                {
+                  "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                  "@type": "Scheme",
+                  "code": "PMJAY"
+                }
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "offer-nashikpath-lipid",
+            "resourceIds": [
+              "res-nashikpath-lipid"
+            ],
+            "descriptor": {
+              "name": "Lipid panel — fasting"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "LAB_TEST",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 24,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "catalog-medplus-001",
+        "bppId": "bpp.example.com",
+        "bppUri": "http://onix-bpp:8082/bpp/receiver",
+        "descriptor": {
+          "name": "MedPlus Specialty Pharmacy"
+        },
+        "provider": {
+          "id": "provider-np-medplus-001",
+          "descriptor": {
+            "name": "MedPlus Specialty Pharmacy"
+          }
+        },
+        "resources": [
+          {
+            "id": "res-medplus-dispense",
+            "descriptor": {
+              "name": "MedPlus Specialty Pharmacy"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+              "@type": "hr:HealthResource",
+              "healthServiceType": "PHARMACY_DISPENSING",
+              "clinicalDeliveryUnit": "SESSION",
+              "acceptedSchemes": [
+                {
+                  "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                  "@type": "Scheme",
+                  "code": "PMJAY"
+                }
+              ]
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "offer-medplus-dispense",
+            "resourceIds": [
+              "res-medplus-dispense"
+            ],
+            "descriptor": {
+              "name": "Specialty drug dispensing"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHARMACY_DISPENSING",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 12,
+                "outcomeNoteFormatStandard": "FHIR/MedicationDispense",
+                "mandatory": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

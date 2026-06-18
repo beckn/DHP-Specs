@@ -1,0 +1,44 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry",
+    "action": "catalog/on_publish",
+    "version": "2.0.0",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "transactionId": "e0e0e0e0-0000-4000-8000-000000000004",
+    "messageId": "a2222222-2222-4222-8222-222222222222",
+    "timestamp": "2026-06-14T09:00:00+05:30"
+  },
+  "message": {
+    "results": [
+      {
+        "catalogId": "catalog-coord-nashik-001",
+        "status": "ACCEPTED",
+        "stats": {
+          "itemCount": 1
+        }
+      },
+      {
+        "catalogId": "catalog-apollo-card-001",
+        "status": "ACCEPTED",
+        "stats": {
+          "itemCount": 1
+        }
+      },
+      {
+        "catalogId": "catalog-nashikpath-001",
+        "status": "ACCEPTED",
+        "stats": {
+          "itemCount": 1
+        }
+      },
+      {
+        "catalogId": "catalog-medplus-001",
+        "status": "ACCEPTED",
+        "stats": {
+          "itemCount": 1
+        }
+      }
+    ]
+  }
+}

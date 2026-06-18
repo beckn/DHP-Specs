@@ -1,0 +1,203 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-emergency-t1",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "225d3b6b-57b1-4ec0-8fe9-fc1c6967212a",
+    "messageId": "851ae362-4348-56f0-90d1-23d971c88dbc",
+    "timestamp": "2026-06-14T11:30:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "f1d79e4c-b185-47db-84a0-0a6b87dd3cd9",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t1-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-coord-emergency",
+              "descriptor": {
+                "name": "Mumbai Emergency Coordination Cell",
+                "shortDesc": "Care coordination desk — referral handling",
+                "longDesc": "Standing care-coordination capability: discovers and books downstream targets, manages referral lifecycle and handover."
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+                "@type": "scres:ServiceCoordinationResource",
+                "coordinationScope": {
+                  "referralCategories": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "ReferralCategory",
+                      "code": "CLINICAL",
+                      "display": "Clinical"
+                    }
+                  ],
+                  "targetServiceTypes": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "TargetServiceType",
+                      "code": "ADMISSION",
+                      "display": "Admission"
+                    }
+                  ],
+                  "geographyScope": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "LGDDistrict",
+                      "code": "519",
+                      "display": "Mumbai"
+                    }
+                  ]
+                },
+                "acceptanceMode": "AUTO_ACCEPT",
+                "supportedUrgencyTiers": [
+                  "URGENT",
+                  "EMERGENCY"
+                ]
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-coord-emergency",
+            "resourceIds": [
+              "res-coord-emergency"
+            ],
+            "descriptor": {
+              "name": "Referral coordination engagement",
+              "shortDesc": "Per-referral coordination service"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-coord-emergency-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 0,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthReferral/v2.1/context.jsonld",
+        "@type": "hrf:HealthReferral",
+        "lifecycleState": "BOOKING_CONFIRMED",
+        "clinicalUrgencyTier": "EMERGENCY",
+        "targetCriteria": {
+          "specialty": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "Specialty",
+            "code": "CARDIOLOGY",
+            "display": "Cardiology"
+          },
+          "consultationModality": "IN_PERSON"
+        },
+        "coordinationId": "f1d79e4c-b185-47db-84a0-0a6b87dd3cd9",
+        "schemeRef": {
+          "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+          "@type": "Scheme",
+          "code": "PMJAY",
+          "display": "Ayushman Bharat PM-JAY"
+        },
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "C",
+            "display": "Deemed, post-facto ratified"
+          },
+          "consentId": "28bf5456-50f7-4b59-9c75-acc646f7bc59",
+          "consentDocRef": "consent-emergency-001",
+          "patientParticipantId": "participant-patient-emergency",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "consentedBy": "participant-referrer-emergency",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ],
+          "deemedBasisCode": "EMERGENCY_NECESSITY",
+          "clinicalJustification": "Patient unconscious on arrival; deemed consent invoked under emergency clinical necessity. Post-facto ratification pending."
+        },
+        "referralNote": {
+          "artifactRef": "referralnote-emergency-001",
+          "credentialScope": "did:example:provider:participant-provider-emergency",
+          "accessWindowStart": "2026-06-14T09:15:00+05:30",
+          "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+          "revocationStatus": "ACTIVE",
+          "specialty": "Cardiology",
+          "urgency": "EMERGENCY",
+          "priorResultRefs": []
+        },
+        "notificationRoster": [
+          {
+            "partyRef": "participant-referrer-emergency",
+            "partyRole": "NOMINATOR",
+            "notificationScope": "FULL",
+            "channelRef": "sms:+910000000010"
+          },
+          {
+            "partyRef": "participant-patient-emergency",
+            "partyRole": "SUBJECT",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000011"
+          },
+          {
+            "partyRef": "participant-observer-emergency",
+            "partyRole": "OBSERVER",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000012"
+          }
+        ],
+        "recommendedTargetRef": {
+          "targetProviderId": "participant-provider-emergency",
+          "targetResourceRef": "res-target-emergency",
+          "targetOfferRef": "offer-target-emergency",
+          "termsSnapshot": {
+            "outcomeCommitment": {
+              "attendanceToOutcomeSlaHours": 48,
+              "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+              "mandatory": true
+            }
+          },
+          "snapshotAt": "2026-06-14T09:06:00+05:30"
+        },
+        "targetBookingRef": "7a5a2d49-726d-4ff3-928f-74f0c0b41ac6"
+      }
+    }
+  }
+}
