@@ -1,0 +1,149 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-doctor-t2",
+    "action": "on_init",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "408a016f-eccc-44af-b763-03cd757e3b87",
+    "messageId": "15c9c41a-19d2-5f6d-a28d-8abc92fba524",
+    "timestamp": "2026-06-14T09:36:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "ba58571a-cfb7-4dae-ba98-56c65a094499",
+      "status": {
+        "code": "DRAFT"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-specialist",
+              "descriptor": {
+                "name": "Cardiology consultation — Dr. Mehta",
+                "shortDesc": "In-person interventional cardiology consult"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "PHYSICAL_CONSULTATION",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Cardiology"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-specialist",
+            "resourceIds": [
+              "res-target-specialist"
+            ],
+            "descriptor": {
+              "name": "Specialist consultation (named)"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-specialist-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 800,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-appt-specialist-001",
+          "status": {
+            "code": "QUOTED"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 800,
+            "currency": "INR",
+            "totalAmount": 800,
+            "netAmount": 800,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ],
+            "selectedPaymentMethod": "NEFT"
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthContract/v2.1/context.jsonld",
+        "@type": "hct:HealthContract",
+        "healthServiceType": "PHYSICAL_CONSULTATION",
+        "coordinationRef": "8fab86de-cf27-4fb3-924e-be332346000f",
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "c3f84391-eb8d-4ae5-9e03-6e066859cfa8",
+          "consentDocRef": "consent-specialist-001",
+          "patientParticipantId": "participant-patient-specialist",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ]
+        },
+        "inputArtifacts": [
+          {
+            "artifactRef": "referralnote-specialist-001",
+            "artifactType": "REFERRAL",
+            "mimeType": "application/pdf",
+            "sourceCoordinationRef": "8fab86de-cf27-4fb3-924e-be332346000f",
+            "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+            "revocationStatus": "ACTIVE"
+          }
+        ]
+      }
+    }
+  }
+}

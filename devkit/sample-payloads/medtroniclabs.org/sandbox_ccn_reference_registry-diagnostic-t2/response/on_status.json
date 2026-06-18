@@ -1,0 +1,149 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-diagnostic-t2",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "a9046a23-4550-4cc1-b6ab-6aa5c86ce29f",
+    "messageId": "dfb3d13d-4c01-5816-903a-bd144c0da95c",
+    "timestamp": "2026-06-15T17:00:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "b7b9a5c1-2b7b-449d-8a68-4203c3b638c2",
+      "status": {
+        "code": "COMPLETE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-diagnostic",
+              "descriptor": {
+                "name": "Lipid panel (fasting)",
+                "shortDesc": "Fasting lipid profile, NABL-accredited lab"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "LAB_TEST",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Pathology"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-diagnostic",
+            "resourceIds": [
+              "res-target-diagnostic"
+            ],
+            "descriptor": {
+              "name": "Lab test — lipid panel"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "LAB_TEST",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-diagnostic-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 450,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "performance-t2-001",
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/HealthPerformance/v2.1/context.jsonld",
+            "@type": "hpe:HealthPerformance",
+            "healthServiceType": "LAB_TEST",
+            "attendanceStatus": "ATTENDED",
+            "serviceLocation": {
+              "gps": "18.5204,73.8567",
+              "address": "FC Road, Pune"
+            },
+            "providerConfirmedCompletion": true,
+            "outcomeNoteRef": "outcomenote-diagnostic-001",
+            "outcomeDeliveredAt": "2026-06-15T17:00:00+05:30",
+            "artifactsGenerated": [
+              "outcomenote-diagnostic-001"
+            ],
+            "followupRecommendationCode": "ROUTINE"
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthContract/v2.1/context.jsonld",
+        "@type": "hct:HealthContract",
+        "healthServiceType": "LAB_TEST",
+        "coordinationRef": "7a1ac527-8093-4b3c-b3cc-596421bfa311",
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "646b842b-ea43-4df6-a240-40dca4cd98b4",
+          "consentDocRef": "consent-diagnostic-001",
+          "patientParticipantId": "participant-patient-diagnostic",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ]
+        },
+        "inputArtifacts": [
+          {
+            "artifactRef": "referralnote-diagnostic-001",
+            "artifactType": "REFERRAL",
+            "mimeType": "application/pdf",
+            "sourceCoordinationRef": "7a1ac527-8093-4b3c-b3cc-596421bfa311",
+            "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+            "revocationStatus": "ACTIVE"
+          }
+        ]
+      }
+    }
+  }
+}

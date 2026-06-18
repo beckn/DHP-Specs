@@ -1,0 +1,172 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-doctor-t1",
+    "action": "on_init",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "a6929fe7-b003-43c8-9c6c-41dc81360ec6",
+    "messageId": "18ad6f42-85fe-50e8-a487-a513b3123efa",
+    "timestamp": "2026-06-14T09:11:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "8fab86de-cf27-4fb3-924e-be332346000f",
+      "status": {
+        "code": "DRAFT"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t1-001",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-coord-specialist",
+              "descriptor": {
+                "name": "Nashik Referral Coordination Desk",
+                "shortDesc": "Care coordination desk — referral handling",
+                "longDesc": "Standing care-coordination capability: discovers and books downstream targets, manages referral lifecycle and handover."
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+                "@type": "scres:ServiceCoordinationResource",
+                "coordinationScope": {
+                  "referralCategories": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "ReferralCategory",
+                      "code": "CLINICAL",
+                      "display": "Clinical"
+                    }
+                  ],
+                  "targetServiceTypes": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "TargetServiceType",
+                      "code": "CONSULTATION",
+                      "display": "Consultation"
+                    }
+                  ],
+                  "geographyScope": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "LGDDistrict",
+                      "code": "507",
+                      "display": "Nashik"
+                    }
+                  ]
+                },
+                "acceptanceMode": "MANUAL_REVIEW",
+                "supportedUrgencyTiers": [
+                  "ROUTINE",
+                  "URGENT",
+                  "EMERGENCY"
+                ]
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-coord-specialist",
+            "resourceIds": [
+              "res-coord-specialist"
+            ],
+            "descriptor": {
+              "name": "Referral coordination engagement",
+              "shortDesc": "Per-referral coordination service"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-coord-specialist-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 200,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-coord-specialist-001",
+          "status": {
+            "code": "QUOTED"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 200,
+            "currency": "INR",
+            "totalAmount": 200,
+            "netAmount": 200,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ],
+            "selectedPaymentMethod": "NEFT"
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthReferral/v2.1/context.jsonld",
+        "@type": "hrf:HealthReferral",
+        "coordinationId": "8fab86de-cf27-4fb3-924e-be332346000f",
+        "lifecycleState": "DRAFT",
+        "clinicalUrgencyTier": "URGENT",
+        "targetCriteria": {
+          "specialty": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "Specialty",
+            "code": "CARDIOLOGY",
+            "display": "Cardiology"
+          },
+          "subSpecialty": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "SubSpecialty",
+            "code": "INTERVENTIONAL_CARDIOLOGY",
+            "display": "Interventional Cardiology"
+          },
+          "equipmentNeeds": [
+            "ECHO",
+            "CATH_LAB"
+          ],
+          "consultationModality": "IN_PERSON"
+        },
+        "schemeRef": {
+          "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+          "@type": "Scheme",
+          "code": "PMJAY",
+          "display": "Ayushman Bharat PM-JAY"
+        }
+      }
+    }
+  }
+}

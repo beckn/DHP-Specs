@@ -1,0 +1,97 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-pharmacy-t2",
+    "action": "on_cancel",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "51099d3d-dff3-4dec-ba68-1570e765b7b7",
+    "messageId": "65cb699e-067c-5645-b00d-f79311ae985e",
+    "timestamp": "2026-06-15T09:31:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "73742aa9-df28-400d-a67f-8eb131067127",
+      "status": {
+        "code": "CANCELLED"
+      },
+      "descriptor": {
+        "name": "Appointment Cancelled — Eligibility Expired"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-pharmacy",
+              "descriptor": {
+                "name": "Specialty drug dispensing",
+                "shortDesc": "Cold-chain specialty drug, scheme-covered"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "PHARMACY_DISPENSING",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Pharmacy"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-pharmacy",
+            "resourceIds": [
+              "res-target-pharmacy"
+            ],
+            "descriptor": {
+              "name": "Pharmacy dispensing (specialty drug)"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHARMACY_DISPENSING",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/MedicationDispense",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-pharmacy-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 0,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

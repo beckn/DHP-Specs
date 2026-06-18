@@ -1,0 +1,190 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-emergency-t2",
+    "action": "on_confirm",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "af612be0-f291-4565-9cca-5aede007018f",
+    "messageId": "ec232da0-736e-5be7-9207-724eb6d7d015",
+    "timestamp": "2026-06-14T09:41:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "7a5a2d49-726d-4ff3-928f-74f0c0b41ac6",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-t2-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-target-emergency",
+              "descriptor": {
+                "name": "Emergency department slot",
+                "shortDesc": "Immediate-availability ED bed"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/HealthResource/v2.1/context.jsonld",
+                "@type": "hr:HealthResource",
+                "healthServiceType": "PHYSICAL_CONSULTATION",
+                "acceptedSchemes": [
+                  {
+                    "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                    "@type": "Scheme",
+                    "code": "PMJAY",
+                    "display": "Ayushman Bharat PM-JAY"
+                  }
+                ],
+                "specialty": "Cardiology"
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-target-emergency",
+            "resourceIds": [
+              "res-target-emergency"
+            ],
+            "descriptor": {
+              "name": "Emergency admission (immediate)"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-appt-emergency-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 0,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-appt-emergency-001",
+          "status": {
+            "code": "ACTIVE"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 0,
+            "currency": "INR",
+            "totalAmount": 0,
+            "netAmount": 0,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ],
+            "selectedPaymentMethod": "NEFT",
+            "transactionRef": "NEFT-EMERGENCY-20260614"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "participant-patient-emergency",
+          "descriptor": {
+            "name": "Unidentified Patient",
+            "shortDesc": "Patient (Subject)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "PATIENT",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "ABHA",
+                "value": "91-1234-5678-9012"
+              }
+            ]
+          }
+        },
+        {
+          "id": "participant-cc-emergency",
+          "descriptor": {
+            "name": "Mumbai Emergency Coordination Cell",
+            "shortDesc": "Care Coordinator (Seeker NP for T2)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "CARE_COORDINATOR",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "HFR",
+                "value": "HFR-CC-0001"
+              }
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthContract/v2.1/context.jsonld",
+        "@type": "hct:HealthContract",
+        "healthServiceType": "PHYSICAL_CONSULTATION",
+        "coordinationRef": "f1d79e4c-b185-47db-84a0-0a6b87dd3cd9",
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "C",
+            "display": "Deemed, post-facto ratified"
+          },
+          "consentId": "28bf5456-50f7-4b59-9c75-acc646f7bc59",
+          "consentDocRef": "consent-emergency-001",
+          "patientParticipantId": "participant-patient-emergency",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ]
+        },
+        "inputArtifacts": [
+          {
+            "artifactRef": "referralnote-emergency-001",
+            "artifactType": "REFERRAL",
+            "mimeType": "application/pdf",
+            "sourceCoordinationRef": "f1d79e4c-b185-47db-84a0-0a6b87dd3cd9",
+            "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+            "revocationStatus": "ACTIVE"
+          }
+        ]
+      }
+    }
+  }
+}

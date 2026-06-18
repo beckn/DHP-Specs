@@ -35,17 +35,23 @@ components:
                 - PATIENT
                 - CARE_GIVER
                 - SPECIALIST
+                - GENERAL_PRACTITIONER
                 - FIELD_WORKER
                 - PAYER
                 - IMPLEMENTING_AGENCY
+                - CARE_COORDINATOR
               description: >
                 Role of this participant in the health service engagement.
                 PATIENT: the individual receiving the service.
                 CARE_GIVER: guardian or carer acting on behalf of the patient.
-                SPECIALIST: licensed health practitioner delivering the service.
+                SPECIALIST: licensed specialist practitioner delivering the service.
+                GENERAL_PRACTITIONER: general / primary-care physician (e.g. the
+                referring practitioner); no specialist accreditation required.
                 FIELD_WORKER: community health worker or field facilitator.
                 PAYER: entity bearing the cost (individual or organisational).
                 IMPLEMENTING_AGENCY: organisation that procured the service capacity.
+                CARE_COORDINATOR: care coordinator addressing the referral-coordination
+                transaction (T1). Observers ride the existing FIELD_WORKER role.
               x-jsonld-id: "hpa:participantRole"
             healthIds:
               type: array

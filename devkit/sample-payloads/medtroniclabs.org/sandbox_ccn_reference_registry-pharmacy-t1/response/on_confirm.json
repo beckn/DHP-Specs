@@ -1,0 +1,283 @@
+{
+  "context": {
+    "networkId": "medtroniclabs.org/sandbox_ccn_reference_registry-pharmacy-t1",
+    "action": "on_confirm",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "1a8c2872-5819-4eb5-997c-b5926d24c183",
+    "messageId": "dd6a07c5-7cc8-5f12-b4fa-2d3f8bd679dd",
+    "timestamp": "2026-06-14T09:16:00+05:30",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver"
+  },
+  "message": {
+    "contract": {
+      "id": "cac02ba1-2e7d-4553-9ee4-f749f8b435f4",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "descriptor": {
+        "name": "Referral — Prescriber -> Pharmacy (specialty drug)",
+        "docs": [
+          {
+            "label": "Referral Note — Karthik Nair",
+            "url": "https://docs.example.org/referral/referralnote-pharmacy-001.pdf",
+            "mimeType": "application/pdf",
+            "standard": "FHIR/ServiceRequest"
+          },
+          {
+            "label": "Patient Consent — Referral",
+            "url": "https://docs.example.org/consent/consent-pharmacy-001.pdf",
+            "mimeType": "application/pdf"
+          }
+        ]
+      },
+      "commitments": [
+        {
+          "id": "commitment-t1-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-coord-pharmacy",
+              "descriptor": {
+                "name": "Bengaluru Pharmacy Coordination Desk",
+                "shortDesc": "Care coordination desk — referral handling",
+                "longDesc": "Standing care-coordination capability: discovers and books downstream targets, manages referral lifecycle and handover."
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/ServiceCoordinationResource/v2.1/context.jsonld",
+                "@type": "scres:ServiceCoordinationResource",
+                "coordinationScope": {
+                  "referralCategories": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "ReferralCategory",
+                      "code": "CLINICAL",
+                      "display": "Clinical"
+                    }
+                  ],
+                  "targetServiceTypes": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "TargetServiceType",
+                      "code": "PROCEDURE",
+                      "display": "Procedure"
+                    }
+                  ],
+                  "geographyScope": [
+                    {
+                      "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+                      "@type": "LGDDistrict",
+                      "code": "572",
+                      "display": "Bengaluru"
+                    }
+                  ]
+                },
+                "acceptanceMode": "MANUAL_REVIEW",
+                "supportedUrgencyTiers": [
+                  "ROUTINE",
+                  "URGENT"
+                ]
+              },
+              "quantity": {
+                "count": 1
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-coord-pharmacy",
+            "resourceIds": [
+              "res-coord-pharmacy"
+            ],
+            "descriptor": {
+              "name": "Referral coordination engagement",
+              "shortDesc": "Per-referral coordination service"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/HealthOffer/v2.1/context.jsonld",
+              "@type": "hof:HealthOffer",
+              "healthServiceType": "PHYSICAL_CONSULTATION",
+              "offerType": "SINGLE_EVENT",
+              "outcomeCommitment": {
+                "attendanceToOutcomeSlaHours": 48,
+                "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+                "mandatory": true
+              }
+            },
+            "considerations": [
+              {
+                "id": "cons-coord-pharmacy-001",
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+                  "@type": "hcn:HealthConsideration",
+                  "pricePerUnit": 50,
+                  "currency": "INR",
+                  "payerArchetype": "GOVERNMENT",
+                  "paymentMethodsAccepted": [
+                    "BANK_TRANSFER",
+                    "NEFT"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "cons-coord-pharmacy-001",
+          "status": {
+            "code": "ACTIVE"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/HealthConsideration/v2.1/context.jsonld",
+            "@type": "hcn:HealthConsideration",
+            "pricePerUnit": 50,
+            "currency": "INR",
+            "totalAmount": 50,
+            "netAmount": 50,
+            "payerArchetype": "GOVERNMENT",
+            "paymentMethodsAccepted": [
+              "BANK_TRANSFER",
+              "NEFT"
+            ],
+            "selectedPaymentMethod": "NEFT",
+            "transactionRef": "NEFT-PHARMACY-20260614"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "participant-referrer-pharmacy",
+          "descriptor": {
+            "name": "Dr. Latha Rao (Prescriber)",
+            "shortDesc": "General Practitioner (Nominator)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "GENERAL_PRACTITIONER",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "HFR",
+                "value": "HFR-GP-0001"
+              }
+            ]
+          }
+        },
+        {
+          "id": "participant-patient-pharmacy",
+          "descriptor": {
+            "name": "Karthik Nair",
+            "shortDesc": "Patient (Subject)"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/HealthParticipant/v2.1/context.jsonld",
+            "@type": "hpa:HealthParticipant",
+            "participantRole": "PATIENT",
+            "primaryLanguage": "en",
+            "healthIds": [
+              {
+                "system": "ABHA",
+                "value": "91-1234-5678-9012"
+              }
+            ]
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/HealthReferral/v2.1/context.jsonld",
+        "@type": "hrf:HealthReferral",
+        "lifecycleState": "SCHEME_PREAUTH_PENDING",
+        "clinicalUrgencyTier": "ROUTINE",
+        "targetCriteria": {
+          "serviceCategory": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ServiceCategory",
+            "code": "PROCEDURE",
+            "display": "Dispensing"
+          },
+          "procedureNeeds": [
+            "SPECIALTY_DRUG_DISPENSING"
+          ],
+          "consultationModality": "IN_PERSON"
+        },
+        "coordinationId": "cac02ba1-2e7d-4553-9ee4-f749f8b435f4",
+        "schemeRef": {
+          "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+          "@type": "Scheme",
+          "code": "PMJAY",
+          "display": "Ayushman Bharat PM-JAY"
+        },
+        "consent": {
+          "consentClass": {
+            "@context": "https://raw.githubusercontent.com/beckn/DHP-Specs/main/devkit/stub/context.jsonld",
+            "@type": "ConsentClass",
+            "code": "B",
+            "display": "Treatment-relationship"
+          },
+          "consentId": "2d2ddb3c-2d0e-47fa-8a0d-864067c8dc17",
+          "consentDocRef": "consent-pharmacy-001",
+          "patientParticipantId": "participant-patient-pharmacy",
+          "consentStandard": "HealthConsent/v1",
+          "consentedAt": "2026-06-14T09:15:00+05:30",
+          "consentedBy": "participant-referrer-pharmacy",
+          "purposeOfCollection": [
+            "REFERRAL_CARE",
+            "TREATMENT"
+          ],
+          "originatingConsentRef": "treatment-rel-participant-referrer-pharmacy"
+        },
+        "referralNote": {
+          "artifactRef": "referralnote-pharmacy-001",
+          "credentialScope": "did:example:provider:participant-provider-pharmacy",
+          "accessWindowStart": "2026-06-14T09:15:00+05:30",
+          "accessWindowEnd": "2026-07-14T09:00:00+05:30",
+          "revocationStatus": "ACTIVE",
+          "specialty": "Pharmacy",
+          "urgency": "ROUTINE",
+          "priorResultRefs": []
+        },
+        "notificationRoster": [
+          {
+            "partyRef": "participant-referrer-pharmacy",
+            "partyRole": "NOMINATOR",
+            "notificationScope": "FULL",
+            "channelRef": "sms:+910000000010"
+          },
+          {
+            "partyRef": "participant-patient-pharmacy",
+            "partyRole": "SUBJECT",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000011"
+          },
+          {
+            "partyRef": "participant-observer-pharmacy",
+            "partyRole": "OBSERVER",
+            "notificationScope": "LIFECYCLE_ONLY",
+            "channelRef": "sms:+910000000012"
+          }
+        ],
+        "recommendedTargetRef": {
+          "targetProviderId": "participant-provider-pharmacy",
+          "targetResourceRef": "res-target-pharmacy",
+          "targetOfferRef": "offer-target-pharmacy",
+          "termsSnapshot": {
+            "outcomeCommitment": {
+              "attendanceToOutcomeSlaHours": 48,
+              "outcomeNoteFormatStandard": "FHIR/DiagnosticReport",
+              "mandatory": true
+            }
+          },
+          "snapshotAt": "2026-06-14T09:06:00+05:30"
+        }
+      }
+    }
+  }
+}
